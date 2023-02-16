@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.OptionsActivity
 import com.example.cardealapplication.R
@@ -71,6 +72,7 @@ class SellActivity3 : AppCompatActivity() {
         val smsManager:SmsManager
         smsManager=SmsManager.getDefault()
         smsManager.sendTextMessage(phone,null,"Your Inspection is Confirmed at this address:\n"+address,null,null)
+        Toast.makeText(this, "Inspection Confirmed", Toast.LENGTH_SHORT).show()
     }
 
     private fun isValidPhone(Phone: String): Boolean {
