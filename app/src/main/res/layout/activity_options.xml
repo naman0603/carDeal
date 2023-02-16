@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OptionsActivity">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo_2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:id="@+id/logo"
+
+            />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_below="@id/logo"
+            android:id="@+id/view"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnBuy"
+            android:hint="@string/buy_car"
+            android:background="@drawable/btn_bg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@id/view"
+            android:textSize="20sp"
+            android:drawablePadding="10dp"
+            />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/btnBuy"
+            android:id="@+id/view2"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSell"
+            android:hint="@string/sell_car"
+            android:background="@drawable/btn_bg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@id/view2"
+            android:textSize="20sp"
+            />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/btnSell"
+            android:id="@+id/view3"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnInfo"
+            android:hint="@string/car_information"
+            android:background="@drawable/btn_bg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@id/view3"
+            android:textSize="20sp"
+            />
+
+    </RelativeLayout>
+
+

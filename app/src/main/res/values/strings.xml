@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">carDeal</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create Account ?</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_account">Already Have Account?</string>
+    <string name="submit">Submit</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="buy_car">Buy Car</string>
+    <string name="sell_car">Sell Car</string>
+    <string name="car_information">Car Information</string>
+    <string name="sign_up_with">Sign Up with</string>
+    <string name="select_detail_of_your_car">Fill Details of Your Car</string>
+    <string name="select_car_brand">Select Car Brand</string>
+    <string name="brand">Brand</string>
+    <string name="model">Model</string>
+    <string name="variant">Variant</string>
+    <string name="manufacture_year">Manufacture Year</string>
+    <string name="state">State</string>
+    <string name="type">Type</string>
+    <string name="number_of_owners">Number Of Owners</string>
+    <string name="color">Color</string>
+    <string name="kilometers_driven">Kilometers Driven</string>
+    <string name="transmission">Transmission</string>
+    <string name="fill_your_details">Fill your Details</string>
+    <string name="address">Address</string>
+    <string name="done">Done</string>
+</resources>
