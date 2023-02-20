@@ -182,7 +182,7 @@
             android:id="@+id/txtKms"
             android:hint="@string/kilometers_driven"
             android:inputType="number"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             />
 
     </com.google.android.material.textfield.TextInputLayout>

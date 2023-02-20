@@ -121,7 +121,7 @@
             android:id="@+id/txtAddress"
             android:hint="@string/address"
             android:inputType="textMultiLine"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:autofillHints="postalAddress"
             android:maxLines="6"
             android:lines="6"

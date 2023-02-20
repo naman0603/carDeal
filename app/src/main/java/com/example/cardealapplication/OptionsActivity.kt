@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.ActionBar
 import com.example.cardealapplication.car_info.InfoActivity
 import com.example.cardealapplication.purchase.PurchaseActivity
 import com.example.cardealapplication.sell.SellActivity
@@ -16,6 +17,9 @@ class OptionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_options)
         initView()
+        supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        supportActionBar!!.setCustomView(R.layout.custom_action_bar)
+
     }
 
     private fun initView() {
