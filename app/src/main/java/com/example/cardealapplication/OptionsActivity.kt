@@ -26,13 +26,16 @@ class OptionsActivity : AppCompatActivity() {
 
         btnBuy.setOnClickListener {
             startActivity(Intent(this, PurchaseActivity::class.java))
+            finish()
         }
         btnSell.setOnClickListener {
             startActivity(Intent(this,SellActivity::class.java))
+            finish()
         }
 
         btnInfo.setOnClickListener {
             startActivity(Intent(this,InfoActivity::class.java))
+            finish()
         }
 
     }
