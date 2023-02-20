@@ -15,6 +15,7 @@
         <activity
             android:name=".sell.SellActivity3"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:parentActivityName=".sell.SellActivity2"/>
         <activity
             android:name=".sell.SellActivity2"
