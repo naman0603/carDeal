@@ -31,4 +31,7 @@
     <string name="fill_your_details">Fill your Details</string>
     <string name="address">Address</string>
     <string name="done">Done</string>
+    <string name="sample_text">Sample Text</string>
+    <string name="car_name">Car Name</string>
+    <string name="car_price">Car Price</string>
 </resources>

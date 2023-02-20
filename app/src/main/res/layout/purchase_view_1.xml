@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp"
+    app:cardElevation="8dp"
+    android:id="@+id/cardView"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image"
+            android:src="@mipmap/ic_launcher"
+            android:padding="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtCarName"
+            android:text="@string/car_name"
+            android:layout_toEndOf="@id/image"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtManYear"
+            android:text="@string/manufacture_year"
+            android:layout_toEndOf="@id/image"
+            android:layout_below="@id/txtCarName"
+            android:padding="4dp"
+            android:textSize="14sp"
+            android:paddingStart="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtCarPrice"
+            android:text="@string/car_price"
+            android:layout_toEndOf="@id/image"
+            android:layout_below="@id/txtManYear"
+            android:padding="6dp"
+            android:textSize="16sp"
+            android:paddingStart="10dp"
+            android:textColor="@color/black"/>
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
