@@ -21,8 +21,9 @@
         android:layout_height="80dp"
         android:layout_below="@id/logo" />
 
-    <EditText
-        android:id="@+id/name"
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/input1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/view"
@@ -30,59 +31,104 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:autofillHints="Name"
-        android:background="@drawable/edittext_background"
-        android:drawableStart="@drawable/ic_user"
-        android:drawablePadding="16dp"
-        android:hint="@string/name"
-        android:imeOptions="actionNext"
-        android:inputType="text"
-        android:minLines="1"
-        android:padding="18dp" />
+        android:autofillHints="name"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxStrokeWidth="1.5dp"
+        app:boxStrokeColor="@color/background"
+        app:boxBackgroundMode="outline"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_user"
+            android:drawablePadding="16dp"
+            android:padding="18dp"
+            android:hint="@string/name"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:minLines="1"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
 
-    <EditText
-        android:id="@+id/phoneNumber"
+        android:id="@+id/input2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name"
+        android:layout_below="@id/input1"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:autofillHints="phone"
-        android:background="@drawable/edittext_background"
-        android:drawableStart="@drawable/ic_phone"
-        android:drawablePadding="16dp"
-        android:hint="@string/phone_number"
-        android:imeOptions="actionNext"
-        android:inputType="phone"
-        android:minLines="1"
-        android:padding="18dp" />
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxStrokeWidth="1.5dp"
+        app:boxStrokeColor="@color/background"
+        app:boxBackgroundMode="outline"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="16dp"
+            android:padding="18dp"
+            android:hint="@string/phone_number"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
+            android:minLines="1"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/emailAddress"
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/input3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/phoneNumber"
+        android:layout_below="@id/input2"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:autofillHints="emailAddress"
-        android:background="@drawable/edittext_background"
-        android:drawableStart="@drawable/ic_email"
-        android:drawablePadding="16dp"
-        android:hint="@string/email_address"
-        android:imeOptions="actionNext"
-        android:inputType="textEmailAddress"
-        android:minLines="1"
-        android:padding="18dp" />
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxStrokeWidth="1.5dp"
+        app:boxStrokeColor="@color/background"
+        app:boxBackgroundMode="outline"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="16dp"
+            android:padding="18dp"
+            android:hint="@string/email_address"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:minLines="1"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input1"
+        android:id="@+id/input4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/emailAddress"
+        android:layout_below="@id/input3"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -117,7 +163,7 @@
         android:id="@+id/view2"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_below="@id/input1" />
+        android:layout_below="@id/input4" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignUp"

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".authentication.LoginActivity">
 
      <ImageView
@@ -19,8 +20,9 @@
         android:layout_below="@id/logo"
         android:id="@+id/view"/>
 
-     <EditText
-        android:id="@+id/emailAddress"
+     <com.google.android.material.textfield.TextInputLayout
+
+         android:id="@+id/input1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/view"
@@ -29,42 +31,69 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:autofillHints="emailAddress"
-        android:background="@drawable/edittext_background"
-        android:drawableStart="@drawable/ic_email"
-        android:drawablePadding="16dp"
-        android:padding="18dp"
-        android:hint="@string/email_address"
-        android:imeOptions="actionNext"
-        android:inputType="textEmailAddress"
-        android:minLines="1"
-        />
+         app:boxBackgroundColor="@color/white"
+         app:boxCornerRadiusTopStart="8dp"
+         app:boxCornerRadiusTopEnd="8dp"
+         app:boxCornerRadiusBottomEnd="8dp"
+         app:boxCornerRadiusBottomStart="8dp"
+         app:boxStrokeWidth="1.5dp"
+         app:boxStrokeColor="@color/background"
+         app:boxBackgroundMode="outline"
+         >
+         <com.google.android.material.textfield.TextInputEditText
+             android:id="@+id/emailAddress"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:drawableStart="@drawable/ic_email"
+             android:drawablePadding="16dp"
+             android:padding="18dp"
+             android:hint="@string/email_address"
+             android:imeOptions="actionNext"
+             android:inputType="textEmailAddress"
+             android:minLines="1"
+             />
+     </com.google.android.material.textfield.TextInputLayout>
 
-     <EditText
-        android:id="@+id/password"
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/input2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/emailAddress"
+        android:layout_below="@id/input1"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:autofillHints="password"
-        android:background="@drawable/edittext_background"
-        android:drawableStart="@drawable/ic_key"
-        android:drawablePadding="16dp"
-        android:padding="18dp"
-        android:hint="@string/password"
-        android:imeOptions="actionDone"
-        android:inputType="textPassword"
-        android:drawableEnd="@drawable/ic_view"
-        android:minLines="1"
-        />
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxStrokeWidth="1.5dp"
+        app:boxStrokeColor="@color/background"
+        app:boxBackgroundMode="outline"
+        app:passwordToggleEnabled="true"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_key"
+            android:drawablePadding="16dp"
+            android:padding="18dp"
+            android:hint="@string/password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:minLines="1"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/txt2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/password"
+            android:layout_below="@id/input2"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="11dp"
             android:text="@string/forgot_password"

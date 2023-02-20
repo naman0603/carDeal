@@ -7,12 +7,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.cardealapplication.R
+import com.google.android.material.textfield.TextInputEditText
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class ForgotPasswordActivity : AppCompatActivity() {
-   lateinit var txtnewPass:EditText
-    lateinit var txtconNewPass:EditText
+   lateinit var txtnewPass:TextInputEditText
+    lateinit var txtconNewPass:TextInputEditText
     lateinit var btnSubmit:Button
 
     val PasswordPattern= Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$")

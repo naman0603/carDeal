@@ -9,12 +9,13 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.cardealapplication.OptionsActivity
 import com.example.cardealapplication.R
+import com.google.android.material.textfield.TextInputEditText
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
-   lateinit var txtEmail:EditText
-   lateinit  var txtPassword:EditText
+   lateinit var txtEmail:TextInputEditText
+   lateinit  var txtPassword:TextInputEditText
    lateinit var btnLogin:Button
    lateinit var txt1:TextView
    lateinit var txt2:TextView

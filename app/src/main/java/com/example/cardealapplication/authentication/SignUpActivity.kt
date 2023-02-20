@@ -13,10 +13,10 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
-    lateinit var txtName:EditText
-    lateinit var txtEmail:EditText
+    lateinit var txtName:TextInputEditText
+    lateinit var txtEmail:TextInputEditText
     lateinit var txtPassword:TextInputEditText
-    lateinit var txtPhone:EditText
+    lateinit var txtPhone:TextInputEditText
    lateinit var btnSignUp:Button
     lateinit var txt1:TextView
 
