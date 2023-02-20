@@ -102,9 +102,6 @@ class SellActivity : AppCompatActivity() {
         val brandItems = listOf("1","2","3","4")
         val adapter = ArrayAdapter(this,R.layout.list_item,brandItems)
         txtBrand.setAdapter(adapter)
-        /* val brandItems = listOf("1","2","3","4")
-         val txtBrand: Spinner =findViewById(R.id.brand_Spinner)
-         val adapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,brandItems)
-         txtBrand.adapter=adapter*/
+
     }
 }

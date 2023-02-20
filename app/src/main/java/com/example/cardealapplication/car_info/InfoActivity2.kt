@@ -1,0 +1,12 @@
+package com.example.cardealapplication.car_info
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.example.cardealapplication.R
+
+class InfoActivity2 : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_info_2)
+    }
+}

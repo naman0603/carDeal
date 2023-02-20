@@ -34,4 +34,5 @@
     <string name="sample_text">Sample Text</string>
     <string name="car_name">Car Name</string>
     <string name="car_price">Car Price</string>
+    <string name="select_car">Select Car</string>
 </resources>
