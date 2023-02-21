@@ -24,8 +24,12 @@ class PurchaseActivity : AppCompatActivity() {
 
     private fun addData() {
         model.add(PurchaseDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5kEhz8kWPfT53ac6oiHZYs4je6WWxillLmQ&usqp=CAU",
-            "Nexon","2020","700000")
+            "Nexon","2020","550000")
         )
+        model.add(PurchaseDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5kEhz8kWPfT53ac6oiHZYs4je6WWxillLmQ&usqp=CAU",
+            "Nexon","2022","700000")
+        )
+
     }
 
     private fun initView() {
