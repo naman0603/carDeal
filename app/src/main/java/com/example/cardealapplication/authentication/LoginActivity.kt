@@ -10,6 +10,9 @@ import android.widget.Toast
 import com.example.cardealapplication.OptionsActivity
 import com.example.cardealapplication.R
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -19,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
    lateinit var btnLogin:Button
    lateinit var txt1:TextView
    lateinit var txt2:TextView
+   lateinit var auth: FirebaseAuth
 
     val EmailPattern= Pattern.compile( "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
     val PasswordPattern= Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$")
@@ -26,7 +30,18 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        auth=Firebase.auth
         initView()
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            startActivity(Intent(this,OptionsActivity::class.java))
+        }
     }
 
     private fun initView() {
@@ -62,8 +77,14 @@ class LoginActivity : AppCompatActivity() {
             txtPassword.error="Minimum eight characters, at least one uppercase letter,\n"+
                     "one lowercase letter, one number and one special character Required"
         }else{
-            startActivity(Intent(this,OptionsActivity::class.java))
-            finish()
+           auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
+               if(it.isSuccessful){
+                   startActivity(Intent(this,OptionsActivity::class.java))
+                   finish()
+               }else{
+                   Toast.makeText(baseContext, "Incorrect Email or Password", Toast.LENGTH_SHORT).show()
+               }
+           }
         }
        
     }
