@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
 
         val currentUser = auth.currentUser
-        if(currentUser != null){
+        if(currentUser != null && currentUser.isEmailVerified){
             startActivity(Intent(this,OptionsActivity::class.java))
         }
     }
@@ -78,9 +78,19 @@ class LoginActivity : AppCompatActivity() {
                     "one lowercase letter, one number and one special character Required"
         }else{
            auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
-               if(it.isSuccessful){
-                   startActivity(Intent(this,OptionsActivity::class.java))
-                   finish()
+               if(it.isSuccessful ){
+                   if(auth.currentUser!!.isEmailVerified){
+                       startActivity(Intent(this,OptionsActivity::class.java))
+                       finish()
+                   }else{
+                       auth.currentUser!!.sendEmailVerification().addOnCompleteListener {
+
+                           Toast.makeText(this, " Mail has been sent\n " +
+                                   " Please Verify Your mail ", Toast.LENGTH_SHORT).show()
+                       }
+
+                   }
+
                }else{
                    Toast.makeText(baseContext, "Incorrect Email or Password", Toast.LENGTH_SHORT).show()
                }

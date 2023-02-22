@@ -77,10 +77,18 @@ class SignUpActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this){
                 if(it.isSuccessful)
                 {
-                    auth.signOut()
-                    startActivity(Intent(this,LoginActivity::class.java))
-                    finish()
-                    Toast.makeText(this, "SignUp Successful", Toast.LENGTH_SHORT).show()
+                    auth.currentUser!!.sendEmailVerification().addOnCompleteListener {
+
+                            auth.signOut()
+                            startActivity(Intent(this,LoginActivity::class.java))
+                            finish()
+                            Toast.makeText(this, "SignUp Successful\n" +
+                                    "Verification Mail has been Sent", Toast.LENGTH_SHORT).show()
+
+
+                    }.addOnFailureListener{
+                        Toast.makeText(this, " Error Occured ", Toast.LENGTH_SHORT).show()
+                    }
 
                 }else{
                     Toast.makeText(this, "SignUp Failed", Toast.LENGTH_SHORT).show()
