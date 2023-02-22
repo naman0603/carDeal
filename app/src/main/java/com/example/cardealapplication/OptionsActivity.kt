@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.appcompat.app.ActionBar
 import com.example.cardealapplication.authentication.LoginActivity
 import com.example.cardealapplication.car_info.InfoActivity
+import com.example.cardealapplication.databinding.ActivityOptionsBinding
 import com.example.cardealapplication.purchase.PurchaseActivity
 import com.example.cardealapplication.sell.SellActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -16,37 +17,33 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class OptionsActivity : AppCompatActivity() {
-    lateinit var btnBuy:Button
-    lateinit var btnSell:Button
-    lateinit var btnInfo:Button
+
     lateinit var auth: FirebaseAuth
+    lateinit var binding: ActivityOptionsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_options)
+
+        binding= ActivityOptionsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         auth=Firebase.auth
         initView()
         supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar!!.setCustomView(R.layout.custom_action_bar)
-
-
     }
 
     private fun initView() {
 
-        btnBuy=findViewById(R.id.btnBuy)
-        btnSell=findViewById(R.id.btnSell)
-        btnInfo=findViewById(R.id.btnInfo)
 
-        btnBuy.setOnClickListener {
+        binding.btnBuy.setOnClickListener {
             startActivity(Intent(this, PurchaseActivity::class.java))
 
         }
-        btnSell.setOnClickListener {
+        binding.btnSell.setOnClickListener {
             startActivity(Intent(this,SellActivity::class.java))
 
         }
 
-        btnInfo.setOnClickListener {
+        binding.btnInfo.setOnClickListener {
             startActivity(Intent(this,InfoActivity::class.java))
 
         }

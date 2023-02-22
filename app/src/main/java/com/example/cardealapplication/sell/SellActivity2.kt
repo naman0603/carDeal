@@ -1,44 +1,32 @@
 package com.example.cardealapplication.sell
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.R
-import com.google.android.material.textfield.TextInputEditText
+import com.example.cardealapplication.databinding.ActivitySell2Binding
 
 class SellActivity2 : AppCompatActivity() {
-    lateinit var txtType: AutoCompleteTextView
-    lateinit var txtTransmission: AutoCompleteTextView
-    lateinit var txtOwners: AutoCompleteTextView
-    lateinit var txtColor: TextInputEditText
-    lateinit var txtKms:  TextInputEditText
 
-    lateinit var btnContinue: Button
+    lateinit var binding: ActivitySell2Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sell_2)
+        binding= ActivitySell2Binding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         initView()
 
     }
     private fun initView() {
-        txtType = findViewById(R.id.txtType)
-        txtTransmission = findViewById(R.id.txtTransmission)
-        txtOwners= findViewById(R.id.txtOwners)
-        txtColor= findViewById(R.id.txtColor)
-        txtKms= findViewById(R.id.txtKms)
-        btnContinue = findViewById(R.id.btnContinue)
 
         typeItemView()
         transmissionItemView()
         ownersItemView()
 
-        btnContinue.setOnClickListener {
+        binding.btnContinue.setOnClickListener {
             performValidation()
         }
 
@@ -49,14 +37,14 @@ class SellActivity2 : AppCompatActivity() {
 
         val ownersItem = listOf("1","2","3","4")
         val adapter=ArrayAdapter(this,R.layout.list_item,ownersItem)
-        txtOwners.setAdapter(adapter)
+        binding.txtOwners.setAdapter(adapter)
     }
 
     private fun transmissionItemView() {
 
         val transmissionItems = listOf("1","2","3","4")
         val adapter=ArrayAdapter(this,R.layout.list_item,transmissionItems)
-        txtTransmission.setAdapter(adapter)
+        binding.txtTransmission.setAdapter(adapter)
 
     }
 
@@ -64,7 +52,7 @@ class SellActivity2 : AppCompatActivity() {
 
         val typeItem = listOf("1","2","3","4")
         val adapter=ArrayAdapter(this,R.layout.list_item,typeItem)
-        txtType.setAdapter(adapter)
+        binding.txtType.setAdapter(adapter)
 
 
     }
@@ -72,27 +60,27 @@ class SellActivity2 : AppCompatActivity() {
 
     private fun performValidation() {
 
-        val type =txtType.text.toString()
-        val transmission = txtTransmission.text.toString()
-        val owners = txtOwners.text.toString()
-        val color = txtColor.text.toString()
-        val kms = txtKms.text.toString()
+        val type =binding.txtType.text.toString()
+        val transmission = binding.txtTransmission.text.toString()
+        val owners = binding.txtOwners.text.toString()
+        val color = binding.txtColor.text.toString()
+        val kms = binding.txtKms.text.toString()
 
         if(type.isEmpty())
         {
-            txtType.error="Cannot Be Empty"
+            binding.txtType.error="Cannot Be Empty"
         }else if(transmission.isEmpty())
         {
-            txtTransmission.error="Cannot Be Empty"
+            binding.txtTransmission.error="Cannot Be Empty"
         }else if(owners.isEmpty())
         {
-            txtOwners.error="Cannot Be Empty"
+            binding.txtOwners.error="Cannot Be Empty"
         }else if(color.isEmpty())
         {
-            txtColor.error="Cannot Be Empty"
+            binding.txtColor.error="Cannot Be Empty"
         }else if(kms.isEmpty())
         {
-            txtKms.error="Cannot Be Empty"
+            binding.txtKms.error="Cannot Be Empty"
         }else
         {
             startActivity(Intent(this,SellActivity3::class.java))

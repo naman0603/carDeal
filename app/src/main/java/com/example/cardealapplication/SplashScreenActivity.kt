@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.example.cardealapplication.authentication.LoginActivity
+import com.example.cardealapplication.databinding.ActivitySplashScreenBinding
 
 class SplashScreenActivity : AppCompatActivity() {
+    lateinit var binding: ActivitySplashScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initView()
     }
 

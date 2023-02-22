@@ -7,19 +7,17 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import com.example.cardealapplication.R
+import com.example.cardealapplication.databinding.ActivityInfoBinding
 import com.example.cardealapplication.sell.SellActivity2
 
 class InfoActivity : AppCompatActivity() {
-
-    lateinit var txtModel: AutoCompleteTextView
-    lateinit var txtBrand: AutoCompleteTextView
-    lateinit var txtVariant: AutoCompleteTextView
-
-    lateinit var btnSubmit:Button
+    
+    lateinit var binding: ActivityInfoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_info)
+        binding= ActivityInfoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         initView()
@@ -27,35 +25,31 @@ class InfoActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        txtModel= findViewById(R.id.txtModel)
-        txtBrand= findViewById(R.id.txtBrand)
-        txtVariant= findViewById(R.id.txtVariant)
 
         brandItemView()
         modelItemView()
         variantItemView()
 
-        btnSubmit=findViewById(R.id.btnSubmit)
-        btnSubmit.setOnClickListener {
+        binding.btnSubmit.setOnClickListener {
             performValidation()
         }
 
     }
 
     private fun performValidation() {
-        val Brand=txtBrand.text.toString()
-        val Model=txtModel.text.toString()
-        val Variant=txtVariant.text.toString()
+        val Brand=binding.txtBrand.text.toString()
+        val Model=binding.txtModel.text.toString()
+        val Variant=binding.txtVariant.text.toString()
 
         if(Brand.isEmpty())
         {
-            txtBrand.error="Cannot Be Empty"
+            binding.txtBrand.error="Cannot Be Empty"
         }else if(Model.isEmpty())
         {
-            txtModel.error="Cannot Be Empty"
+            binding.txtModel.error="Cannot Be Empty"
         }else if(Variant.isEmpty())
         {
-            txtVariant.error="Cannot Be Empty"
+            binding.txtVariant.error="Cannot Be Empty"
         }else
         {
             startActivity(Intent(this, InfoActivity2::class.java))
@@ -65,20 +59,20 @@ class InfoActivity : AppCompatActivity() {
     private fun brandItemView() {
         val brandItems = listOf("1","2","3","4")
         val adapter = ArrayAdapter(this,R.layout.list_item,brandItems)
-        txtBrand.setAdapter(adapter)
+        binding.txtBrand.setAdapter(adapter)
 
     }
 
     private fun modelItemView() {
         val modelItems = listOf("1","2","3","4")
         val adapter = ArrayAdapter(this,R.layout.list_item,modelItems)
-        txtModel.setAdapter(adapter)
+        binding.txtModel.setAdapter(adapter)
     }
 
     private fun variantItemView() {
         val variantItems = listOf("1","2","3","4")
         val adapter = ArrayAdapter(this,R.layout.list_item,variantItems)
-        txtVariant.setAdapter(adapter)
+        binding.txtVariant.setAdapter(adapter)
 
     }
 }

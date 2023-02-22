@@ -8,24 +8,22 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.OptionsActivity
 import com.example.cardealapplication.R
+import com.example.cardealapplication.databinding.ActivitySell3Binding
 import com.google.android.material.textfield.TextInputEditText
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class SellActivity3 : AppCompatActivity() {
 
-    lateinit var txtName:TextInputEditText
-    lateinit var txtAddress:TextInputEditText
-    lateinit var txtPhone:TextInputEditText
-
-    lateinit var btnDone:Button
+    lateinit var binding: ActivitySell3Binding
 
     val PhonePattern= Pattern.compile("^[6-9]\\d{9}\$")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sell_3)
+        binding = ActivitySell3Binding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         initView()
@@ -34,29 +32,23 @@ class SellActivity3 : AppCompatActivity() {
 
     private fun initView() {
 
-        txtName=findViewById(R.id.txtName)
-        txtPhone=findViewById(R.id.txtPhone)
-        txtAddress=findViewById(R.id.txtAddress)
-
-        btnDone=findViewById(R.id.btnDone)
-
-        btnDone.setOnClickListener {
+        binding.btnDone.setOnClickListener {
             performValidation()
         }
     }
 
     private fun performValidation() {
 
-        val name=txtName.text.toString()
-        val phone=txtPhone.text.toString()
-        val address=txtAddress.text.toString()
+        val name=binding.txtName.text.toString()
+        val phone=binding.txtPhone.text.toString()
+        val address=binding.txtAddress.text.toString()
 
         if(name.isEmpty()){
-            txtName.error="Cannot Be Empty"
+            binding.txtName.error="Cannot Be Empty"
         }else if(phone.isEmpty()||!isValidPhone(phone)){
-            txtPhone.error="Cannot Be Empty"
+            binding.txtPhone.error="Cannot Be Empty"
         }else if(address.isEmpty()){
-            txtAddress.error="Cannot Be Empty"
+            binding.txtAddress.error="Cannot Be Empty"
         }else {
             startActivity(Intent(this, OptionsActivity::class.java))
             sendSMS()
@@ -65,8 +57,8 @@ class SellActivity3 : AppCompatActivity() {
     }
 
     private fun sendSMS() {
-        val phone=txtPhone.text.toString()
-        val address=txtAddress.text.toString()
+        val phone=binding.txtPhone.text.toString()
+        val address=binding.txtAddress.text.toString()
 
 
         val smsManager:SmsManager

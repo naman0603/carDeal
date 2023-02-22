@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.R
+import com.example.cardealapplication.databinding.ActivitySignUpBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -15,13 +16,8 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
-    lateinit var txtName:TextInputEditText
-    lateinit var txtEmail:TextInputEditText
-    lateinit var txtPassword:TextInputEditText
-    lateinit var txtPhone:TextInputEditText
-   lateinit var btnSignUp:Button
-    lateinit var txt1:TextView
     lateinit var auth: FirebaseAuth
+    lateinit var binding: ActivitySignUpBinding
 
 
     val EmailPattern= Pattern.compile( "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
@@ -30,47 +26,42 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        binding= ActivitySignUpBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         auth=Firebase.auth
         initView()
     }
 
     private fun initView() {
-        txtName=findViewById(R.id.name)
-        txtEmail=findViewById(R.id.emailAddress)
-        txtPassword=findViewById(R.id.password)
-        txtPhone=findViewById(R.id.phoneNumber)
-        btnSignUp=findViewById(R.id.btnSignUp)
-        txt1=findViewById(R.id.txt1)
 
-        txt1.setOnClickListener {
+        binding.txt1.setOnClickListener {
             startActivity(Intent(this,LoginActivity::class.java))
             finish()
         }
 
-        btnSignUp.setOnClickListener {
+       binding.btnSignUp.setOnClickListener {
             performValidation()
         }
     }
 
     private fun performValidation() {
-        val name=txtName.text.toString()
-        val email=txtEmail.text.toString()
-        val password=txtPassword.text.toString()
-        val phone=txtPhone.text.toString()
+        val name=binding.name.text.toString()
+        val email=binding.emailAddress.text.toString()
+        val password=binding.password.text.toString()
+        val phone=binding.phoneNumber.text.toString()
 
         if(name.isEmpty())
         {
-            txtName.error="Cannot be Empty"
+            binding.name.error="Cannot be Empty"
         } else if(phone.isEmpty()||!isValidPhoneNumber(phone))
         {
-            txtPhone.error="Invalid Phone Nuber"
+            binding.phoneNumber.error="Invalid Phone Nuber"
         } else if(email.isEmpty()||!isValidEmail(email))
         {
-            txtEmail.error="Invalid Email"
+            binding.emailAddress.error="Invalid Email"
         } else if(password.isEmpty()||!isValidPassword(password))
         {
-            txtPassword.error="Minimum eight characters, at least one uppercase letter,\n"+
+            binding.emailAddress.error="Minimum eight characters, at least one uppercase letter,\n"+
                     "one lowercase letter, one number and one special character Required"
         } else
         {

@@ -7,14 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cardealapplication.DataAdapter.PurchaseDataAdapter
 import com.example.cardealapplication.DataModel.PurchaseDataModel
 import com.example.cardealapplication.R
+import com.example.cardealapplication.databinding.ActivityPurchaseBinding
 
 class PurchaseActivity : AppCompatActivity() {
-    lateinit var recyclerView: RecyclerView
     lateinit var dataAdapter: PurchaseDataAdapter
+    lateinit var binding: ActivityPurchaseBinding
     var model=java.util.ArrayList<PurchaseDataModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_purchase)
+        binding= ActivityPurchaseBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         initView()
@@ -33,10 +35,9 @@ class PurchaseActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        recyclerView=findViewById(R.id.recyclerView)
-        recyclerView.layoutManager=LinearLayoutManager(this)
+        binding.recyclerView.layoutManager=LinearLayoutManager(this)
         dataAdapter= PurchaseDataAdapter(this,model)
-        recyclerView.adapter=dataAdapter
+        binding.recyclerView.adapter=dataAdapter
     }
 
 

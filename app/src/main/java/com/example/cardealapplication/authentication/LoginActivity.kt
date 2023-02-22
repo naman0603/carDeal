@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.cardealapplication.OptionsActivity
 import com.example.cardealapplication.R
+import com.example.cardealapplication.databinding.ActivityLoginBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -17,19 +18,16 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
-   lateinit var txtEmail:TextInputEditText
-   lateinit  var txtPassword:TextInputEditText
-   lateinit var btnLogin:Button
-   lateinit var txt1:TextView
-   lateinit var txt2:TextView
    lateinit var auth: FirebaseAuth
+   lateinit var binding: ActivityLoginBinding
 
     val EmailPattern= Pattern.compile( "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
     val PasswordPattern= Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding=ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         auth=Firebase.auth
         initView()
     }
@@ -46,35 +44,30 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initView() {
 
-         txtEmail=findViewById(R.id.emailAddress)
-         txtPassword=findViewById(R.id.password)
-         btnLogin=findViewById(R.id.btnLogin)
-         txt1=findViewById(R.id.txt1_login)
-         txt2=findViewById(R.id.txt2)
 
 
-        txt1.setOnClickListener {
+        binding.txt1Login.setOnClickListener {
             startActivity(Intent(this,SignUpActivity::class.java))
             finish()
         }
 
-        txt2.setOnClickListener {
+        binding.txt2.setOnClickListener {
             startActivity(Intent(this,ForgotPasswordActivity::class.java))
         }
 
-        btnLogin.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             performValidation()
         }
     }
 
     private fun performValidation() {
-        val email=txtEmail.text.toString()
-        val password=txtPassword.text.toString()
+        val email=binding.emailAddress.text.toString()
+        val password=binding.password.text.toString()
         
         if(email.isEmpty()||!isValidEmail(email)){
-            txtEmail.error="Email is not Valid "
+            binding.emailAddress.error="Email is not Valid "
         }else if (password.isEmpty()||!isValidPassword(password)){
-            txtPassword.error="Minimum eight characters, at least one uppercase letter,\n"+
+            binding.password.error="Minimum eight characters, at least one uppercase letter,\n"+
                     "one lowercase letter, one number and one special character Required"
         }else{
            auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
