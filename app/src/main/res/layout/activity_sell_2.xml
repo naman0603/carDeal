@@ -152,8 +152,9 @@
             android:layout_height="match_parent"
             android:id="@+id/txtColor"
             android:hint="@string/color"
-            android:imeOptions="actionDone"
+            android:imeOptions="actionNext"
             android:maxLines="1"
+            android:minLines="1"
             android:inputType="textPersonName"
             />
 

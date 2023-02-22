@@ -64,7 +64,6 @@ class LoginActivity : AppCompatActivity() {
         }else{
             startActivity(Intent(this,OptionsActivity::class.java))
             finish()
-            Toast.makeText(this, "Login Succesful", Toast.LENGTH_SHORT).show()
         }
        
     }
