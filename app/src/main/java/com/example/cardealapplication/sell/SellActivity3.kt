@@ -51,6 +51,7 @@ class SellActivity3 : AppCompatActivity() {
             binding.txtAddress.error="Cannot Be Empty"
         }else {
             startActivity(Intent(this, OptionsActivity::class.java))
+            finish()
             sendSMS()
         }
 
