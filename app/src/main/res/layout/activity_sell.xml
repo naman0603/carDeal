@@ -34,15 +34,49 @@
         android:fontFamily="sans-serif-light"
         />
 
-    <com.google.android.material.textfield.TextInputLayout
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/img1"
+            android:layout_below="@id/txt1"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="12dp"
+           />
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/img2"
+            android:layout_below="@id/txt1"
+            android:layout_toEndOf="@id/img1"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="3dp"
+
+            />
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/img3"
+            android:layout_below="@id/txt1"
+            android:layout_toEndOf="@id/img2"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="3dp"
+
+            />
+
+
+        <com.google.android.material.textfield.TextInputLayout
 
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/input1"
-        android:layout_below="@id/txt1"
+        android:layout_below="@id/img1"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
         android:padding="10dp"
@@ -63,7 +97,8 @@
             android:hint="@string/brand"
             android:inputType="none"
             android:padding="16dp"
-            android:imeOptions="actionNext"/>
+            android:imeOptions="actionNext"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -187,7 +222,7 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnContinue"
