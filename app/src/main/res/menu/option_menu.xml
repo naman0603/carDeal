@@ -3,6 +3,11 @@
     <item
         android:title="@string/log_out"
         android:icon="@drawable/ic_logout"
-        android:id="@+id/btnLogout"/>
+        android:id="@+id/btnLogout"
+        />
+    <item
+        android:title="@string/account"
+        android:icon="@drawable/ic_user"
+        android:id="@+id/btnAccount"/>
 
 </menu>

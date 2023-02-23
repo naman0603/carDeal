@@ -65,10 +65,9 @@ class LoginActivity : AppCompatActivity() {
         val password=binding.password.text.toString()
         
         if(email.isEmpty()||!isValidEmail(email)){
-            binding.emailAddress.error="Email is not Valid "
+            binding.emailAddress.error="Cannot Be Empty "
         }else if (password.isEmpty()||!isValidPassword(password)){
-            binding.password.error="Minimum eight characters, at least one uppercase letter,\n"+
-                    "one lowercase letter, one number and one special character Required"
+            binding.password.error="Cannot Be Empty"
         }else{
            auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
                if(it.isSuccessful ){
@@ -93,13 +92,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isValidEmail(Email: String): Boolean {
-        val matcher:Matcher=EmailPattern.matcher(Email)
-     return matcher.matches()
+    /*    val matcher:Matcher=EmailPattern.matcher(Email)
+     return matcher.matches()*/
+        return true
     }
 
     private fun isValidPassword(Password: String): Boolean {
+/*
         val matcher:Matcher= PasswordPattern.matcher(Password)
         return matcher.matches()
+*/
+        return true
     }
 
 }

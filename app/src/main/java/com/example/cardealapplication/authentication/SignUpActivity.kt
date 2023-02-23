@@ -1,16 +1,15 @@
 package com.example.cardealapplication.authentication
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cardealapplication.R
 import com.example.cardealapplication.databinding.ActivitySignUpBinding
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -18,6 +17,8 @@ import java.util.regex.Pattern
 class SignUpActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     lateinit var binding: ActivitySignUpBinding
+    lateinit var uid :String
+    val db = Firebase.firestore
 
 
     val EmailPattern= Pattern.compile( "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
@@ -68,6 +69,8 @@ class SignUpActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this){
                 if(it.isSuccessful)
                 {
+                   uid= auth.uid.toString()
+                    addData(name,email,phone,uid)
                     auth.currentUser!!.sendEmailVerification().addOnCompleteListener {
 
                             auth.signOut()
@@ -88,6 +91,23 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun addData(Name: String, Email: String, Phone: String, Uid: String) {
+
+
+        val user = hashMapOf(
+            "Name" to Name,
+            "Email" to Email,
+            "Phone" to Phone,
+            "User Id" to Uid
+        )
+
+        db.collection("Users")
+            .add(user).addOnSuccessListener {
+
+                Log.d(TAG, "Data Added")
+            }
     }
 
     private fun isValidPhoneNumber(Phone: String): Boolean {

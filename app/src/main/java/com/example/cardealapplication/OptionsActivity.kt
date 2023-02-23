@@ -1,12 +1,11 @@
 package com.example.cardealapplication
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.authentication.LoginActivity
 import com.example.cardealapplication.car_info.InfoActivity
 import com.example.cardealapplication.databinding.ActivityOptionsBinding
@@ -61,6 +60,10 @@ class OptionsActivity : AppCompatActivity() {
                 auth.signOut()
                 startActivity(Intent(this,LoginActivity::class.java))
                 finish()
+            }
+            R.id.btnAccount->{
+                startActivity(Intent(this,AccountActivity::class.java))
+
             }
         }
         return super.onOptionsItemSelected(item)
