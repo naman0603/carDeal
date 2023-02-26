@@ -1,9 +1,7 @@
 package com.example.cardealapplication.authentication
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.databinding.ActivitySignUpBinding
@@ -96,18 +94,15 @@ class SignUpActivity : AppCompatActivity() {
     private fun addData(Name: String, Email: String, Phone: String, Uid: String) {
 
 
-        val user = hashMapOf(
-            "Name" to Name,
-            "Email" to Email,
-            "Phone" to Phone,
-            "User Id" to Uid
+        db.collection("Users").document(Uid).set(
+
+            hashMapOf(
+                "Name" to Name,
+                "Email" to Email,
+                "Phone" to Phone,
+                "User Id" to Uid
+            )
         )
-
-        db.collection("Users")
-            .add(user).addOnSuccessListener {
-
-                Log.d(TAG, "Data Added")
-            }
     }
 
     private fun isValidPhoneNumber(Phone: String): Boolean {
