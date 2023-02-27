@@ -4,15 +4,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
+import android.widget.Toast
+import com.example.cardealapplication.DataModel.InfoBrandDataModel
 import com.example.cardealapplication.R
 import com.example.cardealapplication.databinding.ActivityInfoBinding
-import com.example.cardealapplication.sell.SellActivity2
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class InfoActivity : AppCompatActivity() {
     
     lateinit var binding: ActivityInfoBinding
+    private var model:ArrayList<InfoBrandDataModel> = ArrayList()
+    val db = Firebase.firestore
+    lateinit var carModelNameList : List<String>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,10 +62,23 @@ class InfoActivity : AppCompatActivity() {
     }
 
     private fun brandItemView() {
-        val brandItems = listOf("1","2","3","4")
-        val adapter = ArrayAdapter(this,R.layout.list_item,brandItems)
-        binding.txtBrand.setAdapter(adapter)
 
+        db.collection("Cars Model")
+            .get()
+            .addOnCompleteListener {
+                if(it.isSuccessful){
+                    for(document in it.result!!){
+                        model.add(InfoBrandDataModel(document.data["Company"].toString(),
+                            document.id))
+
+                    }
+                }
+
+                carModelNameList = model.map { it.brand }
+                val adapter = ArrayAdapter(this,R.layout.list_item,carModelNameList)
+                binding.txtBrand.setAdapter(adapter)
+
+            }
     }
 
     private fun modelItemView() {
