@@ -72,7 +72,7 @@
         android:layout_below="@id/input1"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         android:padding="10dp"
         app:boxCornerRadiusTopStart="8dp"
@@ -94,37 +94,13 @@
             android:imeOptions="actionNext"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/input3"
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
         android:layout_below="@id/input2"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical"
-        android:layout_marginTop="30dp"
+        android:id="@+id/view1"/>
 
-        android:padding="10dp"
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxStrokeWidth="1.5dp"
-        app:boxStrokeColor="@color/background"
-        >
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:id="@+id/txtVariant"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:cursorVisible="false"
-            android:hint="@string/variant"
-            android:inputType="none"
-            android:padding="16dp"
-            android:imeOptions="actionNext"/>
-    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
@@ -137,7 +113,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:layout_below="@id/input3"/>
+        android:layout_below="@id/view1"/>
 
 
 </RelativeLayout>

@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".car_info.InfoActivity2">
+    tools:context=".car_info.InfoActivity2"
+    android:orientation="vertical"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/img"
+        android:padding="10dp"
+        android:layout_margin="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_background"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:id="@+id/txtCarName"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_background"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:id="@+id/txtEngine"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_background"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:id="@+id/txtMileage"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_background"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:id="@+id/txtPrice"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_background"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:id="@+id/txtSeatingCapacity"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_background"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:id="@+id/txtTransmission"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        />
+
+
+
+
+</LinearLayout>

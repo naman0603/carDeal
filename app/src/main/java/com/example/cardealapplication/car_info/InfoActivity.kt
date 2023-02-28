@@ -1,11 +1,15 @@
 package com.example.cardealapplication.car_info
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.DataModel.InfoBrandDataModel
+import com.example.cardealapplication.DataModel.InfoHyundaiModelData
+import com.example.cardealapplication.DataModel.InfoMarutiModelData
+import com.example.cardealapplication.DataModel.InfoTataModelData
 import com.example.cardealapplication.R
 import com.example.cardealapplication.databinding.ActivityInfoBinding
 import com.google.firebase.firestore.ktx.firestore
@@ -14,10 +18,16 @@ import com.google.firebase.ktx.Firebase
 class InfoActivity : AppCompatActivity() {
     
     lateinit var binding: ActivityInfoBinding
-    private var model:ArrayList<InfoBrandDataModel> = ArrayList()
-    val db = Firebase.firestore
-    lateinit var carModelNameList : List<String>
+    private val db = Firebase.firestore
 
+    private var brandModelList:ArrayList<InfoBrandDataModel> = ArrayList()
+    private var marutiModelList:ArrayList<InfoMarutiModelData> = ArrayList()
+    private var hyundaiModelList:ArrayList<InfoHyundaiModelData> = ArrayList()
+    private var tataModelList:ArrayList<InfoTataModelData> = ArrayList()
+    private lateinit var carBrandList : List<String>
+    private lateinit var marutiCarList : List<String>
+    private lateinit var tataCarList : List<String>
+    private lateinit var hyundaiCarList : List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,69 +38,104 @@ class InfoActivity : AppCompatActivity() {
         initView()
 
     }
-
     private fun initView() {
-
         brandItemView()
-        modelItemView()
-        variantItemView()
+
 
         binding.btnSubmit.setOnClickListener {
             performValidation()
         }
 
     }
-
     private fun performValidation() {
-        val Brand=binding.txtBrand.text.toString()
-        val Model=binding.txtModel.text.toString()
-        val Variant=binding.txtVariant.text.toString()
+        val brand=binding.txtBrand.text.toString()
+        val model=binding.txtModel.text.toString()
 
-        if(Brand.isEmpty())
+        if(brand.isEmpty())
         {
             binding.txtBrand.error="Cannot Be Empty"
-        }else if(Model.isEmpty())
+        }else if(model.isEmpty())
         {
             binding.txtModel.error="Cannot Be Empty"
-        }else if(Variant.isEmpty())
-        {
-            binding.txtVariant.error="Cannot Be Empty"
         }else
         {
-            startActivity(Intent(this, InfoActivity2::class.java))
+            val intent=Intent(this, InfoActivity2::class.java)
+            intent.putExtra("CarName",model)
+            startActivity(intent)
+
         }
     }
-
     private fun brandItemView() {
 
         db.collection("Cars Model")
             .get()
-            .addOnCompleteListener {
+            .addOnCompleteListener { it ->
                 if(it.isSuccessful){
                     for(document in it.result!!){
-                        model.add(InfoBrandDataModel(document.data["Company"].toString(),
+                        brandModelList.add(InfoBrandDataModel(document.data["Company"].toString(),
                             document.id))
-
                     }
                 }
 
-                carModelNameList = model.map { it.brand }
-                val adapter = ArrayAdapter(this,R.layout.list_item,carModelNameList)
+                carBrandList = brandModelList.map { it.brand }
+                val adapter = ArrayAdapter(this,R.layout.list_item,carBrandList)
                 binding.txtBrand.setAdapter(adapter)
+            }
+        binding.txtBrand.onItemClickListener=
+            AdapterView.OnItemClickListener { parent, view, position, id ->
 
+                if(position==0){
+                    marutiModelView()
+                }
+                if (position==1){
+                    tataModelView()
+                }
+                if (position==2){
+                    hyundaiModelView()
+                }
             }
     }
-
-    private fun modelItemView() {
-        val modelItems = listOf("1","2","3","4")
-        val adapter = ArrayAdapter(this,R.layout.list_item,modelItems)
-        binding.txtModel.setAdapter(adapter)
+    private fun hyundaiModelView() {
+        tataModelList.clear()
+        db.collection("Cars").whereEqualTo("model_id",brandModelList[2].model_id).
+        get().addOnCompleteListener { it ->
+            if(it.isSuccessful){
+                for(document in it.result!!){
+                    hyundaiModelList.add(InfoHyundaiModelData(document.data["car_name"].toString()))
+                }
+            }
+            hyundaiCarList = hyundaiModelList.map { it.car_name }
+            val adapter = ArrayAdapter(this,R.layout.list_item,hyundaiCarList)
+            binding.txtModel.setAdapter(adapter)
+        }
+    }
+    private fun tataModelView() {
+        tataModelList.clear()
+        db.collection("Cars").whereEqualTo("model_id",brandModelList[1].model_id).
+        get().addOnCompleteListener { it ->
+            if(it.isSuccessful){
+                        for (document in it.result!!){
+                            tataModelList.add(InfoTataModelData(document.data["car_name"].toString()))
+                        }
+                    }
+                    tataCarList=tataModelList.map { it.car_name }
+                    val adapter=ArrayAdapter(this,R.layout.list_item,tataCarList)
+                    binding.txtModel.setAdapter(adapter)
+                }
+    }
+    private fun marutiModelView() {
+        marutiModelList.clear()
+        db.collection("Cars").whereEqualTo("model_id",brandModelList[0].model_id).
+        get().addOnCompleteListener { it ->
+            if(it.isSuccessful){
+                for(document in it.result!!){
+                    marutiModelList.add(InfoMarutiModelData(document.data["car_name"].toString()))
+                }
+            }
+            marutiCarList = marutiModelList.map { it.car_name }
+            val adapter = ArrayAdapter(this,R.layout.list_item,marutiCarList)
+            binding.txtModel.setAdapter(adapter)
+        }
     }
 
-    private fun variantItemView() {
-        val variantItems = listOf("1","2","3","4")
-        val adapter = ArrayAdapter(this,R.layout.list_item,variantItems)
-        binding.txtVariant.setAdapter(adapter)
-
-    }
 }

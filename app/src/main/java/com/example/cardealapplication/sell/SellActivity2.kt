@@ -20,6 +20,7 @@ class SellActivity2 : AppCompatActivity() {
         initView()
 
     }
+
     private fun initView() {
 
         typeItemView()
