@@ -4,12 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cardealapplication.DataModel.InfoBrandDataModel
-import com.example.cardealapplication.DataModel.InfoHyundaiModelData
-import com.example.cardealapplication.DataModel.InfoMarutiModelData
-import com.example.cardealapplication.DataModel.InfoTataModelData
+import com.example.cardealapplication.dataModel.InfoBrandDataModel
+import com.example.cardealapplication.dataModel.InfoHyundaiModelData
+import com.example.cardealapplication.dataModel.InfoMarutiModelData
+import com.example.cardealapplication.dataModel.InfoTataModelData
 import com.example.cardealapplication.R
 import com.example.cardealapplication.databinding.ActivityInfoBinding
 import com.google.firebase.firestore.ktx.firestore
@@ -82,16 +81,18 @@ class InfoActivity : AppCompatActivity() {
                 binding.txtBrand.setAdapter(adapter)
             }
         binding.txtBrand.onItemClickListener=
-            AdapterView.OnItemClickListener { parent, view, position, id ->
+            AdapterView.OnItemClickListener { _, _, position, _ ->
 
-                if(position==0){
-                    marutiModelView()
-                }
-                if (position==1){
-                    tataModelView()
-                }
-                if (position==2){
-                    hyundaiModelView()
+                when (position) {
+                    0 -> {
+                        marutiModelView()
+                    }
+                    1 -> {
+                        tataModelView()
+                    }
+                    2 -> {
+                        hyundaiModelView()
+                    }
                 }
             }
     }

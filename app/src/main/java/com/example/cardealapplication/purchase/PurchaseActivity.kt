@@ -3,16 +3,14 @@ package com.example.cardealapplication.purchase
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.cardealapplication.DataAdapter.PurchaseDataAdapter
-import com.example.cardealapplication.DataModel.PurchaseDataModel
-import com.example.cardealapplication.R
+import com.example.cardealapplication.dataAdapter.PurchaseDataAdapter
+import com.example.cardealapplication.dataModel.PurchaseDataModel
 import com.example.cardealapplication.databinding.ActivityPurchaseBinding
 
 class PurchaseActivity : AppCompatActivity() {
-    lateinit var dataAdapter: PurchaseDataAdapter
+    private lateinit var dataAdapter: PurchaseDataAdapter
     lateinit var binding: ActivityPurchaseBinding
-    var model=java.util.ArrayList<PurchaseDataModel>()
+    private var model=java.util.ArrayList<PurchaseDataModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityPurchaseBinding.inflate(layoutInflater)

@@ -1,4 +1,4 @@
-package com.example.cardealapplication.DataAdapter
+package com.example.cardealapplication.dataAdapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 import com.bumptech.glide.Glide
-import com.example.cardealapplication.DataModel.PurchaseDataModel
+import com.example.cardealapplication.dataModel.PurchaseDataModel
 import com.example.cardealapplication.R
-import com.example.cardealapplication.ViewHolder.PurchaseViewHolder
+import com.example.cardealapplication.viewHolder.PurchaseViewHolder
 
 class PurchaseDataAdapter(val context:Context,val model:java.util.ArrayList<PurchaseDataModel>):RecyclerView.Adapter<PurchaseViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PurchaseViewHolder {

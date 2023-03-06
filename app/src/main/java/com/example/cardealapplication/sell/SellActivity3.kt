@@ -3,13 +3,10 @@ package com.example.cardealapplication.sell
 import android.content.Intent
 import android.os.Bundle
 import android.telephony.SmsManager
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.OptionsActivity
-import com.example.cardealapplication.R
 import com.example.cardealapplication.databinding.ActivitySell3Binding
-import com.google.android.material.textfield.TextInputEditText
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -17,7 +14,7 @@ class SellActivity3 : AppCompatActivity() {
 
     lateinit var binding: ActivitySell3Binding
 
-    val PhonePattern= Pattern.compile("^[6-9]\\d{9}\$")
+    private val phonePattern= Pattern.compile("^[6-9]\\d{9}\$")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,14 +59,14 @@ class SellActivity3 : AppCompatActivity() {
         val address=binding.txtAddress.text.toString()
 
 
-        val smsManager:SmsManager
-        smsManager=SmsManager.getDefault()
-        smsManager.sendTextMessage(phone,null,"Your Inspection is Confirmed at this address:\n"+address,null,null)
+        val smsManager:SmsManager = SmsManager.getDefault()
+        smsManager.sendTextMessage(phone,null,
+            "Your Inspection is Confirmed at this address:\n$address",null,null)
         Toast.makeText(this, "Inspection Confirmed", Toast.LENGTH_SHORT).show()
     }
 
     private fun isValidPhone(Phone: String): Boolean {
-        val matcher: Matcher = PhonePattern.matcher(Phone)
+        val matcher: Matcher = phonePattern.matcher(Phone)
         return matcher.matches()
     }
 

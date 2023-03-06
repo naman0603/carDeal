@@ -1,8 +1,7 @@
 package com.example.cardealapplication.purchase
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.cardealapplication.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.databinding.ActivityPurchase2Binding
 
 class PurchaseActivity2 : AppCompatActivity() {

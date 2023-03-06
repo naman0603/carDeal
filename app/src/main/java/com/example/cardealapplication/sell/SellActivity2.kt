@@ -53,7 +53,7 @@ class SellActivity2 : AppCompatActivity() {
 
         val typeItem = listOf("1","2","3","4")
         val adapter=ArrayAdapter(this,R.layout.list_item,typeItem)
-        binding.txtType.setAdapter(adapter)
+        binding.txtInsurance.setAdapter(adapter)
 
 
     }
@@ -61,15 +61,15 @@ class SellActivity2 : AppCompatActivity() {
 
     private fun performValidation() {
 
-        val type =binding.txtType.text.toString()
+        val insurance =binding.txtInsurance.text.toString()
         val transmission = binding.txtTransmission.text.toString()
         val owners = binding.txtOwners.text.toString()
         val color = binding.txtColor.text.toString()
         val kms = binding.txtKms.text.toString()
 
-        if(type.isEmpty())
+        if(insurance.isEmpty())
         {
-            binding.txtType.error="Cannot Be Empty"
+            binding.txtInsurance.error="Cannot Be Empty"
         }else if(transmission.isEmpty())
         {
             binding.txtTransmission.error="Cannot Be Empty"

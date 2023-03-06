@@ -17,7 +17,7 @@ import com.google.firebase.ktx.Firebase
 
 class OptionsActivity : AppCompatActivity() {
 
-    lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     lateinit var binding: ActivityOptionsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

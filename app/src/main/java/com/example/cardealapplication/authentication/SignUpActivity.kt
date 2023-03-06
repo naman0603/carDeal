@@ -13,15 +13,15 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
-    lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     lateinit var binding: ActivitySignUpBinding
-    lateinit var uid :String
-    val db = Firebase.firestore
+    private lateinit var uid :String
+    private val db = Firebase.firestore
 
 
-    val EmailPattern= Pattern.compile( "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
-    val PasswordPattern= Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$")
-    val PhonePattern=Pattern.compile("^[6-9]\\d{9}\$")
+    private val emailPattern= Pattern.compile( "[a-zA-Z\\d._-]+@[a-z]+\\.+[a-z]+")
+    private val passwordPattern= Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$")
+    private val phonePattern=Pattern.compile("^[6-9]\\d{9}\$")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,17 +106,17 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun isValidPhoneNumber(Phone: String): Boolean {
-        val matcher:Matcher= PhonePattern.matcher(Phone)
+        val matcher:Matcher= phonePattern.matcher(Phone)
         return matcher.matches()
     }
 
     private fun isValidPassword(Password: String): Boolean {
-        val matcher:Matcher=  PasswordPattern.matcher(Password)
+        val matcher:Matcher=  passwordPattern.matcher(Password)
         return matcher.matches()
     }
 
     private fun isValidEmail(Email: String): Boolean {
-        val matcher:Matcher= EmailPattern.matcher(Email)
+        val matcher:Matcher= emailPattern.matcher(Email)
         return matcher.matches()
     }
 }

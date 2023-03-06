@@ -2,14 +2,11 @@ package com.example.cardealapplication.car_info
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cardealapplication.DataModel.InfoImagesModel
+import com.example.cardealapplication.dataModel.InfoImagesModel
 import com.example.cardealapplication.databinding.ActivityInfo2Binding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 class InfoActivity2 : AppCompatActivity() {
@@ -18,10 +15,6 @@ class InfoActivity2 : AppCompatActivity() {
     private var imgList= mutableListOf<CarouselItem>()
     private var imageModelList:ArrayList<InfoImagesModel> = ArrayList()
     private lateinit var imageList : List<String>
-
-    private var sr: StorageReference? =null
-    private var fs : FirebaseStorage? =null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

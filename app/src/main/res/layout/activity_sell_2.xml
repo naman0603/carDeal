@@ -54,11 +54,11 @@
         >
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:id="@+id/txtType"
+            android:id="@+id/txtInsurance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:cursorVisible="false"
-            android:hint="@string/type"
+            android:hint="@string/insurance"
             android:inputType="none"
             android:padding="16dp"
             android:imeOptions="actionNext"/>

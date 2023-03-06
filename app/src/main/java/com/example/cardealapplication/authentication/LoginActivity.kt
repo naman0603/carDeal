@@ -1,28 +1,18 @@
 package com.example.cardealapplication.authentication
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.OptionsActivity
-import com.example.cardealapplication.R
 import com.example.cardealapplication.databinding.ActivityLoginBinding
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
-   lateinit var auth: FirebaseAuth
+   private lateinit var auth: FirebaseAuth
    lateinit var binding: ActivityLoginBinding
-
-    val EmailPattern= Pattern.compile( "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
-    val PasswordPattern= Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

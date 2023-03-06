@@ -1,4 +1,4 @@
-package com.example.cardealapplication.DataModel
+package com.example.cardealapplication.dataModel
 
 data class InfoImagesModel(
     var Image: List<Images>){
