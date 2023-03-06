@@ -1,30 +1,57 @@
 package com.example.cardealapplication.car_info
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Toast
-import com.example.cardealapplication.R
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.example.cardealapplication.DataModel.InfoImagesModel
 import com.example.cardealapplication.databinding.ActivityInfo2Binding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 class InfoActivity2 : AppCompatActivity() {
     lateinit var binding: ActivityInfo2Binding
-    val db = Firebase.firestore
+    private val db = Firebase.firestore
+    private var imgList= mutableListOf<CarouselItem>()
+    private var imageModelList:ArrayList<InfoImagesModel> = ArrayList()
+    private lateinit var imageList : List<String>
+
+    private var sr: StorageReference? =null
+    private var fs : FirebaseStorage? =null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInfo2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setData()
+        setImg()
 
     }
 
+    private fun setImg() {
+        imgList.add(
+            CarouselItem(
+                imageUrl = "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080"
+            )
+        )
+        imgList.add(
+            CarouselItem(
+                imageUrl = "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"
+            )
+        )
+        binding.img.setData(imgList)
+    }
+
+    @SuppressLint("SetTextI18n")
     private fun setData() {
         val carName=intent.getStringExtra("CarName")
 
         db.collection("Cars").whereEqualTo("car_name",carName).get()
-            .addOnCompleteListener {it->
+            .addOnCompleteListener {
                 if(it.isSuccessful){
                     for (document in it.result!!){
                         binding.txtCarName.text = "Name : ${document.data["car_name"].toString()}"
@@ -36,7 +63,7 @@ class InfoActivity2 : AppCompatActivity() {
 
                     }
                 }
-            }
 
+            }
     }
 }
