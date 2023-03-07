@@ -29,7 +29,6 @@ class PurchaseActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         initView()
-        addData()
     }
     private fun addData() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
@@ -59,5 +58,6 @@ class PurchaseActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager=LinearLayoutManager(this)
         dataAdapter= PurchaseDataAdapter(this,model)
         binding.recyclerView.adapter=dataAdapter
+        addData()
     }
 }

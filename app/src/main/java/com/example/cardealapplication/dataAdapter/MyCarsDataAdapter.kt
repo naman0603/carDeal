@@ -20,7 +20,7 @@ class MyCarsDataAdapter(val context: Context, val model:java.util.ArrayList<MyCa
     override fun getItemCount():Int=model.size
 
     override fun onBindViewHolder(holder: MyCarsViewHolder, position: Int) {
-        holder.itemView.findViewById<TextView>(R.id.txtCarName).text=model[position].txtCarName
+        holder.itemView.findViewById<TextView>(R.id.txtCarName).text=model[position].txtCarModel
         holder.itemView.findViewById<TextView>(R.id.txtCarPrice).text=model[position].txtCarPrice
         holder.itemView.findViewById<TextView>(R.id.txtManYear).text=model[position].txtManYear
         Glide.with(context).load(model[position].img).into(holder.itemView.findViewById(R.id.image))
