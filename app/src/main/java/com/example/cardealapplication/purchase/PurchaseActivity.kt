@@ -30,15 +30,13 @@ class PurchaseActivity : AppCompatActivity() {
 
         initView()
         addData()
-
     }
-
-    @SuppressLint("NotifyDataSetChanged")
     private fun addData() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         this.db = getInstance()
         db.collection("Sell Car").whereNotEqualTo("User Id",uid).
         addSnapshotListener(object : EventListener<QuerySnapshot>{
+            @SuppressLint("NotifyDataSetChanged")
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                 if(error!=null){
                     Log.v("error",""+error.message.toString())
@@ -54,11 +52,7 @@ class PurchaseActivity : AppCompatActivity() {
                     }
                 dataAdapter.notifyDataSetChanged()
             }
-
         })
-
-
-
     }
 
     private fun initView() {
@@ -66,6 +60,4 @@ class PurchaseActivity : AppCompatActivity() {
         dataAdapter= PurchaseDataAdapter(this,model)
         binding.recyclerView.adapter=dataAdapter
     }
-
-
 }
