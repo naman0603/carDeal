@@ -39,4 +39,6 @@
     <string name="log_out">Log Out</string>
     <string name="account">Account</string>
     <string name="insurance">Insurance</string>
+    <string name="expected_price">Expected Price</string>
+    <string name="my_cars">My Cars</string>
 </resources>

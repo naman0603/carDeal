@@ -15,6 +15,9 @@
         android:theme="@style/Theme.CarDealApplication"
         tools:targetApi="31">
         <activity
+            android:name=".MyCarsActivity"
+            android:exported="false" />
+        <activity
             android:name=".AccountActivity"
             android:exported="false" />
         <activity

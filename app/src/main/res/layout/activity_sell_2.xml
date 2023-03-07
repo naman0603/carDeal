@@ -145,6 +145,7 @@
         app:boxStrokeWidth="1.5dp"
         app:boxStrokeColor="@color/background"
         app:boxBackgroundMode="outline"
+        android:textColorHint="@color/black"
 
         >
         <com.google.android.material.textfield.TextInputEditText
@@ -156,6 +157,7 @@
             android:maxLines="1"
             android:minLines="1"
             android:inputType="textPersonName"
+            android:textColor="@color/black"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -177,7 +179,7 @@
         app:boxStrokeWidth="1.5dp"
         app:boxStrokeColor="@color/background"
         app:boxBackgroundMode="outline"
-
+        android:textColorHint="@color/black"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -186,7 +188,7 @@
             android:hint="@string/kilometers_driven"
             android:inputType="number"
             android:imeOptions="actionDone"
-
+            android:textColor="@color/black"
             />
 
     </com.google.android.material.textfield.TextInputLayout>

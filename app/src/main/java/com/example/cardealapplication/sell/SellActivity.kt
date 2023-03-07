@@ -2,19 +2,16 @@ package com.example.cardealapplication.sell
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.R
 import com.example.cardealapplication.databinding.ActivitySellBinding
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 class SellActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySellBinding
-    private var db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,20 +55,20 @@ class SellActivity : AppCompatActivity() {
             binding.txtState.error = "Cannot Be Empty"
         } else {
             addData(brand,model,variant,year,state)
-            startActivity(Intent(this, SellActivity2::class.java))
         }
     }
 
     private fun addData(brand: String, model: String, variant: String, year: String, state: String) {
-        db.collection("Sell Car").document().set(
-            hashMapOf(
-                "Brand" to brand,
-                "Model" to model,
-                "Variant" to variant,
-                "Manufacture Year" to year,
-                "State" to state
-            )
-        )
+        Log.v("Data",""+brand+"\n"+model+"\n"+variant+"\n"+year+"\n"+state+"\n")
+
+
+        var intent = Intent(this,SellActivity2::class.java)
+        intent.putExtra("brand",brand)
+        intent.putExtra("model",model)
+        intent.putExtra("variant",variant)
+        intent.putExtra("year",year)
+        intent.putExtra("state",state)
+        startActivity(intent)
     }
 
     private fun yearItemView() {
@@ -111,8 +108,6 @@ class SellActivity : AppCompatActivity() {
 
         binding.txtBrand.onItemClickListener=
             AdapterView.OnItemClickListener { _, _, position, _ ->
-                Toast.makeText(this, ""+binding.txtBrand.text, Toast.LENGTH_SHORT).show()
-
                 when (position) {
                     0 -> {
                         marutiItemView()

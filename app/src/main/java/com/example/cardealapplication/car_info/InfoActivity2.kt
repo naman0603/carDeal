@@ -2,6 +2,7 @@ package com.example.cardealapplication.car_info
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.dataModel.InfoImagesModel
 import com.example.cardealapplication.databinding.ActivityInfo2Binding
@@ -13,8 +14,9 @@ class InfoActivity2 : AppCompatActivity() {
     lateinit var binding: ActivityInfo2Binding
     private val db = Firebase.firestore
     private var imgList= mutableListOf<CarouselItem>()
-    private var imageModelList:ArrayList<InfoImagesModel> = ArrayList()
+    private var imageModelList:List<InfoImagesModel.Images> = ArrayList()
     private lateinit var imageList : List<String>
+    var measurement: List<InfoImagesModel.Images>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +56,20 @@ class InfoActivity2 : AppCompatActivity() {
                         binding.txtSeatingCapacity.text = "Seating Capacity : ${document.data["seating_capacity"].toString()}"
                         binding.txtTransmission.text = "Transmission : ${document.data["transmission"].toString()}"
 
+/*
+                        measurement = document.data["Image"] as List<InfoImagesModel.Images>?
+*/
                     }
+
+
+
                 }
+
+            /*    for (i in 0 until measurement!!.size){
+
+
+                    Log.v("imageModelList",""+ measurement!!.get(i).image_url)
+                }*/
 
             }
     }

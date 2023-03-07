@@ -1,11 +1,13 @@
 package com.example.cardealapplication
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuBuilder
 import com.example.cardealapplication.authentication.LoginActivity
 import com.example.cardealapplication.car_info.InfoActivity
 import com.example.cardealapplication.databinding.ActivityOptionsBinding
@@ -49,7 +51,9 @@ class OptionsActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        if (menu is MenuBuilder) menu.setOptionalIconsVisible(true)
         menuInflater.inflate(R.menu.option_menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -64,6 +68,9 @@ class OptionsActivity : AppCompatActivity() {
             R.id.btnAccount->{
                 startActivity(Intent(this,AccountActivity::class.java))
 
+            }
+            R.id.btnMyCars ->{
+                startActivity(Intent(this,MyCarsActivity::class.java))
             }
         }
         return super.onOptionsItemSelected(item)

@@ -50,6 +50,8 @@
         app:boxStrokeWidth="1.5dp"
         app:boxStrokeColor="@color/background"
         app:boxBackgroundMode="outline"
+        android:textColorHint="@color/black"
+
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -59,6 +61,7 @@
             android:inputType="text"
             android:imeOptions="actionNext"
             android:autofillHints="name"
+            android:textColor="@color/black"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -81,6 +84,7 @@
         app:boxStrokeWidth="1.5dp"
         app:boxStrokeColor="@color/background"
         app:boxBackgroundMode="outline"
+        android:textColorHint="@color/black"
 
         >
         <com.google.android.material.textfield.TextInputEditText
@@ -91,6 +95,8 @@
             android:inputType="number"
             android:imeOptions="actionNext"
             android:autofillHints="phone"
+            android:textColor="@color/black"
+
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -113,6 +119,42 @@
         app:boxStrokeWidth="1.5dp"
         app:boxStrokeColor="@color/background"
         app:boxBackgroundMode="outline"
+        android:textColorHint="@color/black"
+
+        >
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/txtExpPrice"
+        android:hint="@string/expected_price"
+        android:inputType="number"
+        android:imeOptions="actionNext"
+        android:autofillHints="postalAddress"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/input4"
+        android:layout_below="@id/input3"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxStrokeWidth="1.5dp"
+        app:boxStrokeColor="@color/background"
+        app:boxBackgroundMode="outline"
+        android:textColorHint="@color/black"
 
         >
         <com.google.android.material.textfield.TextInputEditText
@@ -125,7 +167,8 @@
             android:autofillHints="postalAddress"
             android:maxLines="6"
             android:lines="6"
-             />
+            android:textColor="@color/black"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -140,7 +183,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:layout_below="@id/input3"/>
+        android:layout_below="@id/input4"/>
 
 
 
