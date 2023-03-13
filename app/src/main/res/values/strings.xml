@@ -41,4 +41,6 @@
     <string name="insurance">Insurance</string>
     <string name="expected_price">Expected Price</string>
     <string name="my_cars">My Cars</string>
+    <string name="location">Location</string>
+    <string name="city">City</string>
 </resources>

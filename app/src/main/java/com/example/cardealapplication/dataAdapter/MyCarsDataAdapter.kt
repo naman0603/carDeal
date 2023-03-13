@@ -1,6 +1,7 @@
 package com.example.cardealapplication.dataAdapter
 
 import android.content.Context
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -20,9 +21,10 @@ class MyCarsDataAdapter(val context: Context, val model:java.util.ArrayList<MyCa
     override fun getItemCount():Int=model.size
 
     override fun onBindViewHolder(holder: MyCarsViewHolder, position: Int) {
+        val txtCarPrice = "<b>₹</b> "+model[position].txtCarPrice
         holder.itemView.findViewById<TextView>(R.id.txtCarName).text=model[position].txtCarModel
-        holder.itemView.findViewById<TextView>(R.id.txtCarPrice).text=model[position].txtCarPrice
-        holder.itemView.findViewById<TextView>(R.id.txtManYear).text=model[position].txtManYear
+        holder.itemView.findViewById<TextView>(R.id.txtCarPrice).text= Html.fromHtml(txtCarPrice)
+        holder.itemView.findViewById<TextView>(R.id.txtPlace).text=model[position].txtState
         Glide.with(context).load(model[position].img).into(holder.itemView.findViewById(R.id.image))
     }
 }

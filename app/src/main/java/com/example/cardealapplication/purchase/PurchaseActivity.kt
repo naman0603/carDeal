@@ -1,6 +1,7 @@
 package com.example.cardealapplication.purchase
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -43,10 +44,24 @@ class PurchaseActivity : AppCompatActivity() {
 
                     for (dc:DocumentChange in value?.documentChanges!!){
                         if(dc.type == DocumentChange.Type.ADDED){
-                            model.add(PurchaseDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5kEhz8kWPfT53ac6oiHZYs4je6WWxillLmQ&usqp=CAU",
+                            model.add(PurchaseDataModel(
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5kEhz8kWPfT53ac6oiHZYs4je6WWxillLmQ&usqp=CAU",
                                 dc.document.data["Model"].toString(),
                                 dc.document.data["Manufacture Year"].toString(),
-                                dc.document.data["Expected Price"].toString()))
+                                dc.document.data["Expected Price"].toString(),
+                                dc.document.data["Phone"].toString(),
+                                dc.document.data["Brand"].toString(),
+                                dc.document.data["Variant"].toString(),
+                                dc.document.data["State"].toString(),
+                                dc.document.data["Insurance"].toString(),
+                                dc.document.data["Transmission"].toString(),
+                                dc.document.data["Owners"].toString(),
+                                dc.document.data["Color"].toString(),
+                                dc.document.data["Kms"].toString(),
+                                dc.document.data["Address"].toString(),
+                                dc.document.data["Name"].toString()
+
+                                ))
                         }
                     }
                 dataAdapter.notifyDataSetChanged()
@@ -59,5 +74,10 @@ class PurchaseActivity : AppCompatActivity() {
         dataAdapter= PurchaseDataAdapter(this,model)
         binding.recyclerView.adapter=dataAdapter
         addData()
+        dataAdapter.onItemClick = {
+            val intent = Intent(this,PurchaseActivity2::class.java)
+            intent.putExtra("Data",it)
+            startActivity(intent)
+        }
     }
 }

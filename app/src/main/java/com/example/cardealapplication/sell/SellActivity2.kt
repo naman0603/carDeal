@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.R
 import com.example.cardealapplication.databinding.ActivitySell2Binding
@@ -95,13 +94,13 @@ class SellActivity2 : AppCompatActivity() {
 
     private fun addData(insurance: String, transmission: String, owners: String, color: String, kms: String) {
 
-        var brand = intent.extras?.getString("brand")
-        var model = intent.extras?.getString("model")
-        var variant = intent.extras?.getString("variant")
-        var year = intent.extras?.getString("year")
-        var state = intent.extras?.getString("state")
+        val brand = intent.extras?.getString("brand")
+        val model = intent.extras?.getString("model")
+        val variant = intent.extras?.getString("variant")
+        val year = intent.extras?.getString("year")
+        val state = intent.extras?.getString("state")
         Log.v("Data",""+brand+"\n"+model+"\n"+variant+"\n"+year+"\n"+state+"\n")
-        var intent = Intent(this,SellActivity3::class.java)
+        val intent = Intent(this,SellActivity3::class.java)
 
         intent.putExtra("brand",brand)
         intent.putExtra("model",model)
