@@ -151,6 +151,5 @@ class PurchaseActivity2 : AppCompatActivity() {
                 }
             }
         }
-
     }
 }
