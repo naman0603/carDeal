@@ -13,18 +13,17 @@ import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 class InfoActivity2 : AppCompatActivity() {
     lateinit var binding: ActivityInfo2Binding
     private val db = Firebase.firestore
+
     private var imgList= mutableListOf<CarouselItem>()
     private var imageModelList:List<InfoImagesModel.Images> = ArrayList()
     private lateinit var imageList : List<String>
     var measurement: List<InfoImagesModel.Images>? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInfo2Binding.inflate(layoutInflater)
         setContentView(binding.root)
         setData()
         setImg()
-
     }
 
     private fun setImg() {
@@ -60,9 +59,6 @@ class InfoActivity2 : AppCompatActivity() {
                         measurement = document.data["Image"] as List<InfoImagesModel.Images>?
 */
                     }
-
-
-
                 }
 
             /*    for (i in 0 until measurement!!.size){

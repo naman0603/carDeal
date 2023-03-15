@@ -18,11 +18,9 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var uid :String
     private val db = Firebase.firestore
 
-
     private val emailPattern= Pattern.compile( "[a-zA-Z\\d._-]+@[a-z]+\\.+[a-z]+")
     private val passwordPattern= Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$")
     private val phonePattern=Pattern.compile("^[6-9]\\d{9}\$")
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivitySignUpBinding.inflate(layoutInflater)
@@ -30,19 +28,15 @@ class SignUpActivity : AppCompatActivity() {
         auth=Firebase.auth
         initView()
     }
-
     private fun initView() {
-
         binding.txt1.setOnClickListener {
             startActivity(Intent(this,LoginActivity::class.java))
             finish()
         }
-
        binding.btnSignUp.setOnClickListener {
             performValidation()
         }
     }
-
     private fun performValidation() {
         val name=binding.name.text.toString()
         val email=binding.emailAddress.text.toString()
@@ -81,21 +75,15 @@ class SignUpActivity : AppCompatActivity() {
                     }.addOnFailureListener{
                         Toast.makeText(this, " Error Occured ", Toast.LENGTH_SHORT).show()
                     }
-
                 }else{
                     Toast.makeText(this, "SignUp Failed", Toast.LENGTH_SHORT).show()
-
                 }
             }
         }
-
     }
-
     private fun addData(Name: String, Email: String, Phone: String, Uid: String) {
 
-
         db.collection("Users").document(Uid).set(
-
             hashMapOf(
                 "Name" to Name,
                 "Email" to Email,
@@ -104,17 +92,14 @@ class SignUpActivity : AppCompatActivity() {
             )
         )
     }
-
     private fun isValidPhoneNumber(Phone: String): Boolean {
         val matcher:Matcher= phonePattern.matcher(Phone)
         return matcher.matches()
     }
-
     private fun isValidPassword(Password: String): Boolean {
         val matcher:Matcher=  passwordPattern.matcher(Password)
         return matcher.matches()
     }
-
     private fun isValidEmail(Email: String): Boolean {
         val matcher:Matcher= emailPattern.matcher(Email)
         return matcher.matches()

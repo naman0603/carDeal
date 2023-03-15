@@ -16,12 +16,9 @@ class SellActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivitySell2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         initView()
-
     }
-
     private fun initView() {
 
         insuranceItemView()
@@ -31,38 +28,25 @@ class SellActivity2 : AppCompatActivity() {
         binding.btnContinue.setOnClickListener {
             performValidation()
         }
-
     }
-
-
     private fun ownersItemView() {
-
         val ownersItem = listOf("1","2","3","4","5")
         val adapter=ArrayAdapter(this,R.layout.list_item,ownersItem)
         binding.txtOwners.setAdapter(adapter)
     }
 
     private fun transmissionItemView() {
-
         val transmissionItems = listOf("Manual Transmission (MT)","Automatic Transmission (AMT)",
             "Semi-Automatic transmission (SAT)","Continuously Variable transmission (CVT)")
         val adapter=ArrayAdapter(this,R.layout.list_item,transmissionItems)
         binding.txtTransmission.setAdapter(adapter)
-
     }
-
     private fun insuranceItemView() {
-
         val typeItem = listOf("Yes","No")
         val adapter=ArrayAdapter(this,R.layout.list_item,typeItem)
         binding.txtInsurance.setAdapter(adapter)
-
-
     }
-
-
     private fun performValidation() {
-
         val insurance =binding.txtInsurance.text.toString()
         val transmission = binding.txtTransmission.text.toString()
         val owners = binding.txtOwners.text.toString()
@@ -87,11 +71,8 @@ class SellActivity2 : AppCompatActivity() {
         }else
         {
             addData(insurance,transmission,owners,color,kms)
-
         }
-
     }
-
     private fun addData(insurance: String, transmission: String, owners: String, color: String, kms: String) {
 
         val brand = intent.extras?.getString("brand")
@@ -115,8 +96,5 @@ class SellActivity2 : AppCompatActivity() {
         intent.putExtra("kms",kms)
 
         startActivity(intent)
-
-
     }
-
 }

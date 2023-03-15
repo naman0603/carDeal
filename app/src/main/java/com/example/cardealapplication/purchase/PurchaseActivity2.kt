@@ -23,10 +23,9 @@ import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 class PurchaseActivity2 : AppCompatActivity() {
     lateinit var binding:ActivityPurchase2Binding
-    private var imgList= mutableListOf<CarouselItem>()
     private val db = Firebase.firestore
 
-
+    private var imgList= mutableListOf<CarouselItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPurchase2Binding.inflate(layoutInflater)
@@ -92,7 +91,6 @@ class PurchaseActivity2 : AppCompatActivity() {
         txtOwnerPhone.text=Html.fromHtml(phone)
         txtOwnerLocation.text=Html.fromHtml(loc)
 
-
         builder.setCancelable(true)
         builder.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         builder.show()
@@ -106,8 +104,6 @@ class PurchaseActivity2 : AppCompatActivity() {
             builder.dismiss()
         }
     }
-
-
     private fun callSeller() {
         val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
        val dial = Intent(Intent.ACTION_DIAL)
@@ -143,7 +139,6 @@ class PurchaseActivity2 : AppCompatActivity() {
                     this.data = Uri.parse(url)
                     this.`package` = "com.whatsapp"
                 }
-
                 try {
                     startActivity(intent)
                 } catch (ex : ActivityNotFoundException){

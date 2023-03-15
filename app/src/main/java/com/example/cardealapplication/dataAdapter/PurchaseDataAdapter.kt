@@ -1,4 +1,4 @@
-package com.example.cardealapplication.car_info.dataAdapter
+package com.example.cardealapplication.dataAdapter
 
 import android.content.Context
 import android.text.Html

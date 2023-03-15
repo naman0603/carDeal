@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cardealapplication.car_info.dataAdapter.MyCarsDataAdapter
+import com.example.cardealapplication.dataAdapter.MyCarsDataAdapter
 import com.example.cardealapplication.dataModel.MyCarsDataModel
 import com.example.cardealapplication.databinding.ActivityMyCarsBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -18,28 +18,30 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class MyCarsActivity : AppCompatActivity() {
-    private lateinit var dataAdapter: MyCarsDataAdapter
+
     lateinit var binding: ActivityMyCarsBinding
-    private var model=java.util.ArrayList<MyCarsDataModel>()
     private var db = Firebase.firestore
+
+    private var model=java.util.ArrayList<MyCarsDataModel>()
+    private lateinit var dataAdapter: MyCarsDataAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMyCarsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView()
     }
-
     private fun initView() {
+
         binding.recyclerView.layoutManager=LinearLayoutManager(this)
         dataAdapter= MyCarsDataAdapter(this,model)
         binding.recyclerView.adapter=dataAdapter
 
         addData()
     }
-
     private fun addData() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         db= getInstance()
+
         db.collection("Sell Car").whereEqualTo("User Id",uid).
         addSnapshotListener(object : EventListener<QuerySnapshot> {
             @SuppressLint("NotifyDataSetChanged")
@@ -73,9 +75,6 @@ class MyCarsActivity : AppCompatActivity() {
                 }
                 dataAdapter.notifyDataSetChanged()
             }
-
         })
-
-
     }
 }

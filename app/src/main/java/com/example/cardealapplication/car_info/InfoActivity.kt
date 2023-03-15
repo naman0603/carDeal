@@ -27,7 +27,6 @@ class InfoActivity : AppCompatActivity() {
     private lateinit var marutiCarList : List<String>
     private lateinit var tataCarList : List<String>
     private lateinit var hyundaiCarList : List<String>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityInfoBinding.inflate(layoutInflater)
@@ -35,16 +34,13 @@ class InfoActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         initView()
-
     }
     private fun initView() {
         brandItemView()
 
-
         binding.btnSubmit.setOnClickListener {
             performValidation()
         }
-
     }
     private fun performValidation() {
         val brand=binding.txtBrand.text.toString()
@@ -61,7 +57,6 @@ class InfoActivity : AppCompatActivity() {
             val intent=Intent(this, InfoActivity2::class.java)
             intent.putExtra("CarName",model)
             startActivity(intent)
-
         }
     }
     private fun brandItemView() {
@@ -75,14 +70,12 @@ class InfoActivity : AppCompatActivity() {
                             document.id))
                     }
                 }
-
                 carBrandList = brandModelList.map { it.brand }
                 val adapter = ArrayAdapter(this,R.layout.list_item,carBrandList)
                 binding.txtBrand.setAdapter(adapter)
             }
         binding.txtBrand.onItemClickListener=
             AdapterView.OnItemClickListener { _, _, position, _ ->
-
                 when (position) {
                     0 -> {
                         marutiModelView()
@@ -138,5 +131,4 @@ class InfoActivity : AppCompatActivity() {
             binding.txtModel.setAdapter(adapter)
         }
     }
-
 }

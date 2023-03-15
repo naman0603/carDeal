@@ -10,7 +10,6 @@ import com.example.cardealapplication.databinding.ActivityForgotPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-
 class ForgotPasswordActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     lateinit var binding: ActivityForgotPasswordBinding
@@ -24,24 +23,17 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
         initView()
     }
-
     private fun initView() {
-
-
-
         binding.btnSubmit.setOnClickListener {
             email = binding.emailAddress.text.toString().trim()
             Log.d(TAG, "Successfull $email")
             auth.sendPasswordResetEmail(email).addOnSuccessListener {
                 startActivity(Intent(this,LoginActivity::class.java))
                 Toast.makeText(this, "Check Your Email", Toast.LENGTH_SHORT).show()
-
             }.addOnFailureListener {
                 Toast.makeText(this, "Error Occurred", Toast.LENGTH_SHORT).show()
-
             }
         }
-
     }
 
 

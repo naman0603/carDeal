@@ -16,7 +16,6 @@ import com.example.cardealapplication.sell.SellActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-
 class OptionsActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -30,30 +29,24 @@ class OptionsActivity : AppCompatActivity() {
         initView()
         supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar!!.setCustomView(R.layout.custom_action_bar)
-
     }
-
     private fun initView() {
-
         binding.btnBuy.setOnClickListener {
             startActivity(Intent(this, PurchaseActivity::class.java))
         }
         binding.btnSell.setOnClickListener {
             startActivity(Intent(this,SellActivity::class.java))
         }
-
         binding.btnInfo.setOnClickListener {
             startActivity(Intent(this,InfoActivity::class.java))
         }
     }
-
     @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         if (menu is MenuBuilder) menu.setOptionalIconsVisible(true)
         menuInflater.inflate(R.menu.option_menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.btnLogout->{
@@ -63,7 +56,6 @@ class OptionsActivity : AppCompatActivity() {
             }
             R.id.btnAccount->{
                 startActivity(Intent(this,AccountActivity::class.java))
-
             }
             R.id.btnMyCars ->{
                 startActivity(Intent(this,MyCarsActivity::class.java))

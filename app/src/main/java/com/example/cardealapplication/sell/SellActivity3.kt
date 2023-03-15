@@ -17,9 +17,8 @@ class SellActivity3 : AppCompatActivity() {
 
     lateinit var binding: ActivitySell3Binding
     private var db = Firebase.firestore
+
     private val phonePattern= Pattern.compile("^[6-9]\\d{9}\$")
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySell3Binding.inflate(layoutInflater)
@@ -27,18 +26,13 @@ class SellActivity3 : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         initView()
-
     }
-
     private fun initView() {
-
         binding.btnDone.setOnClickListener {
             performValidation()
         }
     }
-
     private fun performValidation() {
-
         val name=binding.txtName.text.toString()
         val phone=binding.txtPhone.text.toString()
         val address=binding.txtAddress.text.toString()
@@ -56,18 +50,14 @@ class SellActivity3 : AppCompatActivity() {
             makeDatabase(name,phone,address,price)
             sendSMS(phone,address)
         }
-
     }
-
     private fun sendSMS(phone: String, address: String) {
 
         val smsManager:SmsManager = SmsManager.getDefault()
         smsManager.sendTextMessage(phone,null,
             "Your Inspection is Confirmed at this address:\n$address",null,null)
         Toast.makeText(this, "Inspection Confirmed", Toast.LENGTH_SHORT).show()
-
     }
-
     private fun makeDatabase(name: String, phone: String, address: String, price: String) {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val brand = intent.extras?.getString("brand")
@@ -110,5 +100,4 @@ class SellActivity3 : AppCompatActivity() {
         val matcher: Matcher = phonePattern.matcher(Phone)
         return matcher.matches()
     }
-
 }
