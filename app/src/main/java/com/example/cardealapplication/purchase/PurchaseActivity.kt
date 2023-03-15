@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cardealapplication.dataAdapter.PurchaseDataAdapter
+import com.example.cardealapplication.car_info.dataAdapter.PurchaseDataAdapter
 import com.example.cardealapplication.dataModel.PurchaseDataModel
 import com.example.cardealapplication.databinding.ActivityPurchaseBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -59,9 +59,9 @@ class PurchaseActivity : AppCompatActivity() {
                                 dc.document.data["Color"].toString(),
                                 dc.document.data["Kms"].toString(),
                                 dc.document.data["Address"].toString(),
-                                dc.document.data["Name"].toString()
-
-                                ))
+                                dc.document.data["Name"].toString(),
+                                dc.document.data["City"].toString()
+                            ))
                         }
                     }
                 dataAdapter.notifyDataSetChanged()

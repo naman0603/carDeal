@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cardealapplication.dataAdapter.MyCarsDataAdapter
+import com.example.cardealapplication.car_info.dataAdapter.MyCarsDataAdapter
 import com.example.cardealapplication.dataModel.MyCarsDataModel
 import com.example.cardealapplication.databinding.ActivityMyCarsBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -65,7 +65,8 @@ class MyCarsActivity : AppCompatActivity() {
                             dc.document.data["Owners"].toString(),
                             dc.document.data["Color"].toString(),
                             dc.document.data["Kms"].toString(),
-                            dc.document.data["Address"].toString()
+                            dc.document.data["Address"].toString(),
+                            dc.document.data["City"].toString()
                             )
                         )
                     }

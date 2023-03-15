@@ -1,14 +1,22 @@
 package com.example.cardealapplication.purchase
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
+import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.text.Html
+import android.util.Log
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cardealapplication.R
 import com.example.cardealapplication.dataModel.PurchaseDataModel
 import com.example.cardealapplication.databinding.ActivityPurchase2Binding
 import com.google.firebase.auth.FirebaseAuth
@@ -21,13 +29,12 @@ class PurchaseActivity2 : AppCompatActivity() {
     private var imgList= mutableListOf<CarouselItem>()
     private val db = Firebase.firestore
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPurchase2Binding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-
         initView()
     }
 
@@ -41,7 +48,7 @@ class PurchaseActivity2 : AppCompatActivity() {
             val txtManYear= "Manufacture Year :- <b>${data.txtManYear}</b>"
             val txtKms= "Kilometers Driven :- <b>${data.txtKms}</b>"
             val txtCarVariant= "Car Variant :-<b> ${data.txtCarVariant}</b>"
-            val txtState= "State :- <b>${data.txtState}</b>"
+            val txtState= "Location :-  <b>${data.txtCity}</b>, <b>${data.txtState}</b>"
             val txtInsurance= "Insurance :- <b>${data.txtInsurance}</b>"
             val txtTransmission= "Transmission :- <b>${data.txtTransmission}</b>"
             val txtOwners= "No. of Owners :-<b> ${data.txtOwners}</b>"
@@ -60,52 +67,112 @@ class PurchaseActivity2 : AppCompatActivity() {
             imgList.add(CarouselItem(imageUrl = data.img))
             binding.img.setData(imgList)
         }
-
         binding.btnDone.setOnClickListener {
-           val builder =  AlertDialog.Builder(this)
-            builder.setTitle("Confirm Purchase")
-            builder.setMessage("Are you sure you wanna Purchase this car")
+            popUp()
+        }
+    }
 
-            builder.setPositiveButton("Yes") { dialog, _ ->
-                startActivity(Intent(this, PurchaseActivity::class.java))
-                sendSms()
-                dialog.cancel()
+    private fun popUp() {
+        val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
+
+        val dialogBinding = layoutInflater.inflate(R.layout.custom_popup_menu_purchase,null)
+        val builder = Dialog(this)
+
+        builder.setContentView(dialogBinding)
+
+        val txtOwnerName:TextView =builder.findViewById(R.id.txtOwnerName)
+        val txtOwnerPhone:TextView = builder.findViewById(R.id.txtOwnerPhone)
+        val txtOwnerLocation:TextView = builder.findViewById(R.id.txtOwnerLocation)
+
+        val btnCall:Button = builder.findViewById(R.id.btnCall)
+        val btnMsg:Button = builder.findViewById(R.id.btnMsg)
+
+        val name :String = "<b>Owner Name</b> :- "+data?.txtName
+        val phone : String = "<b>Owner Phone</b> :- "+data?.txtPhone
+        val loc : String = "<b>Owner Location</b> :- ${data?.txtCity}, ${data?.txtState}"
+
+        txtOwnerName.text=Html.fromHtml(name)
+        txtOwnerPhone.text=Html.fromHtml(phone)
+        txtOwnerLocation.text=Html.fromHtml(loc)
+
+
+        builder.setCancelable(true)
+        builder.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        builder.show()
+
+        btnCall.setOnClickListener {
+            callSeller()
+            builder.dismiss()
+        }
+        btnMsg.setOnClickListener {
+            sendSms()
+            builder.dismiss()
+        }
+    }
+
+
+    private fun callSeller() {
+        val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
+       val dial = Intent(Intent.ACTION_DIAL)
+        dial.data =  Uri.parse("tel:"+data?.txtPhone)
+        startActivity(dial)
+    }
+    private fun sendSms() {
+        val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        val ref = db.collection("Users").document(uid)
+        ref.collection("Users").document(uid)
+
+        var phone: String
+        var email: String
+        var name: String
+
+        ref.get().addOnSuccessListener {
+            if(it!=null){
+                phone = it.data?.get("Phone").toString()
+                email = it.data?.get("Email").toString()
+                name = it.data?.get("Name").toString()
+
+                val smsManager:SmsManager = SmsManager.getDefault()
+                smsManager.sendTextMessage(data?.txtPhone,null,
+                    "Details Of Intrested Buyer of Your Car\n"+
+                            "Car Name :- "+data?.txtCarModel.toString()+"\n"+
+                            "Expected Price :- "+data?.txtCarPrice.toString()+"\n"+
+                            "Phone Number of interested buyer :- "+phone+"\n",null,null)
+
             }
-
-            builder.setNegativeButton("No") { dialog, _ ->
-                dialog.cancel()
-            }
-
-            val alert : AlertDialog = builder.create()
-            alert.show()
         }
 
     }
-
+/*
     private fun sendSms() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val ref = db.collection("Users").document(uid)
         val smsManager: SmsManager = SmsManager.getDefault()
         var phone: String
+        var email: String
+        var name: String
         val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
 
 
         ref.get().addOnSuccessListener {
             if (it!=null){
-                 phone = it.data?.get("Phone").toString()
-                smsManager.sendTextMessage(phone,null,
-                "Details Of Car You Wanna Purchase\n"+
+                phone = it.data?.get("Phone").toString()
+                email = it.data?.get("Email").toString()
+                name = it.data?.get("Name").toString()
+                Toast.makeText(this, "" +phone, Toast.LENGTH_SHORT).show()
+
+                smsManager.sendTextMessage("+919574534576",null,
+                "Details Of Intrested Buyer of Your Car\n"+
                         "Car Name :- "+data?.txtCarModel.toString()+"\n"+
                         "Expected Price :- "+data?.txtCarPrice.toString()+"\n"+
-                        "Owner of Car :- "+data?.txtName.toString()+"\n"+
-                        "Phone Number Of Owner :- "+data?.txtPhone.toString(),
-                    null,null)
+                        "Name of interested buyer :- "+name+"\n"+
+                        "Phone Number of interested buyer :- "+phone+"\n"+
+                        "Email of interested buyer :- "+email
+                    ,null,null)
             }
-
         }
 
-
-
-        Toast.makeText(this, "Details of Owner has been Messaged", Toast.LENGTH_SHORT).show()
     }
+*/
 }

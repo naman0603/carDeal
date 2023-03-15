@@ -99,7 +99,7 @@ class SellActivity2 : AppCompatActivity() {
         val variant = intent.extras?.getString("variant")
         val year = intent.extras?.getString("year")
         val state = intent.extras?.getString("state")
-        Log.v("Data",""+brand+"\n"+model+"\n"+variant+"\n"+year+"\n"+state+"\n")
+        val city = intent.extras?.getString("city")
         val intent = Intent(this,SellActivity3::class.java)
 
         intent.putExtra("brand",brand)
@@ -107,6 +107,7 @@ class SellActivity2 : AppCompatActivity() {
         intent.putExtra("variant",variant)
         intent.putExtra("year",year)
         intent.putExtra("state",state)
+        intent.putExtra("city",city)
         intent.putExtra("insurance",insurance)
         intent.putExtra("transmission",transmission)
         intent.putExtra("owners",owners)

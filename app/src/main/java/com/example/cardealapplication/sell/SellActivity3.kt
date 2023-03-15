@@ -75,6 +75,7 @@ class SellActivity3 : AppCompatActivity() {
         val variant = intent.extras?.getString("variant")
         val year = intent.extras?.getString("year")
         val state = intent.extras?.getString("state")
+        val city = intent.extras?.getString("city")
         val insurance = intent.extras?.getString("insurance")
         val transmission = intent.extras?.getString("transmission")
         val owners = intent.extras?.getString("owners")
@@ -90,6 +91,7 @@ class SellActivity3 : AppCompatActivity() {
                 "Variant" to variant,
                 "Manufacture Year" to year,
                 "State" to state,
+                "City" to city,
                 "Insurance" to insurance,
                 "Transmission" to transmission,
                 "Owners" to owners,

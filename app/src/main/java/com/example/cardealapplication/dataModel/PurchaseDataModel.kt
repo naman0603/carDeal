@@ -6,8 +6,9 @@ import android.os.Parcelable
 class PurchaseDataModel(val img :String, val txtCarModel:String, val txtManYear:String, val txtCarPrice:String,
                         val txtPhone:String, val txtCarBrand:String,val txtCarVariant:String,val txtState:String,
                         val txtInsurance:String,val txtTransmission:String,val txtOwners:String,val txtColor:String,
-                        val txtKms:String, val txtAddress:String,val txtName:String) : Parcelable {
+                        val txtKms:String, val txtAddress:String,val txtName:String,val txtCity:String) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -42,6 +43,7 @@ class PurchaseDataModel(val img :String, val txtCarModel:String, val txtManYear:
         parcel.writeString(txtKms)
         parcel.writeString(txtAddress)
         parcel.writeString(txtName)
+        parcel.writeString(txtCity)
 
     }
 

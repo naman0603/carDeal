@@ -1,4 +1,4 @@
-package com.example.cardealapplication.dataAdapter
+package com.example.cardealapplication.car_info.dataAdapter
 
 import android.content.Context
 import android.text.Html
@@ -24,7 +24,8 @@ class MyCarsDataAdapter(val context: Context, val model:java.util.ArrayList<MyCa
         val txtCarPrice = "<b>₹</b> "+model[position].txtCarPrice
         holder.itemView.findViewById<TextView>(R.id.txtCarName).text=model[position].txtCarModel
         holder.itemView.findViewById<TextView>(R.id.txtCarPrice).text= Html.fromHtml(txtCarPrice)
-        holder.itemView.findViewById<TextView>(R.id.txtPlace).text=model[position].txtState
+        holder.itemView.findViewById<TextView>(R.id.txtPlace).text=
+            "${model[position].txtCity}, ${model[position].txtState}"
         Glide.with(context).load(model[position].img).into(holder.itemView.findViewById(R.id.image))
     }
 }

@@ -30,25 +30,21 @@ class OptionsActivity : AppCompatActivity() {
         initView()
         supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar!!.setCustomView(R.layout.custom_action_bar)
+
     }
 
     private fun initView() {
 
-
         binding.btnBuy.setOnClickListener {
             startActivity(Intent(this, PurchaseActivity::class.java))
-
         }
         binding.btnSell.setOnClickListener {
             startActivity(Intent(this,SellActivity::class.java))
-
         }
 
         binding.btnInfo.setOnClickListener {
             startActivity(Intent(this,InfoActivity::class.java))
-
         }
-
     }
 
     @SuppressLint("RestrictedApi")

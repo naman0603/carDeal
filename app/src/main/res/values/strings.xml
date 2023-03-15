@@ -43,4 +43,10 @@
     <string name="my_cars">My Cars</string>
     <string name="location">Location</string>
     <string name="city">City</string>
+    <string name="call_seller">Call Seller</string>
+    <string name="sms_seller">SMS seller</string>
+    <string name="send_details_of_seller">Send Details of Seller</string>
+    <string name="owner_details">Owner Details</string>
+    <string name="call_owner">Call Owner</string>
+    <string name="msg_owner">Msg Owner</string>
 </resources>

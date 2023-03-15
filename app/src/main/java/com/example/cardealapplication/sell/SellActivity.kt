@@ -42,6 +42,7 @@ class SellActivity : AppCompatActivity() {
         val variant = binding.txtVariant.text.toString()
         val year = binding.txtYear.text.toString()
         val state = binding.txtState.text.toString()
+        val city = binding.txtCity.text.toString()
 
         if (brand.isEmpty()) {
             binding.txtBrand.error = "Cannot Be Empty"
@@ -53,21 +54,31 @@ class SellActivity : AppCompatActivity() {
             binding.txtYear.error = "Cannot Be Empty"
         } else if (state.isEmpty()) {
             binding.txtState.error = "Cannot Be Empty"
+        } else if (city.isEmpty()) {
+            binding.txtCity.error = "Cannot Be Empty"
         } else {
-            addData(brand,model,variant,year,state)
+            addData(brand,model,variant,year,state,city)
         }
     }
 
-    private fun addData(brand: String, model: String, variant: String, year: String, state: String) {
-        Log.v("Data",""+brand+"\n"+model+"\n"+variant+"\n"+year+"\n"+state+"\n")
+    private fun addData(
+        brand: String,
+        model: String,
+        variant: String,
+        year: String,
+        state: String,
+        city: String
+    ) {
+        Log.v("Data",""+brand+"\n"+model+"\n"+variant+"\n"+year+"\n"+state+"\n"+city)
 
 
-        var intent = Intent(this,SellActivity2::class.java)
+        val intent = Intent(this,SellActivity2::class.java)
         intent.putExtra("brand",brand)
         intent.putExtra("model",model)
         intent.putExtra("variant",variant)
         intent.putExtra("year",year)
         intent.putExtra("state",state)
+        intent.putExtra("city",city)
         startActivity(intent)
     }
 
