@@ -2,19 +2,16 @@ package com.example.cardealapplication.purchase
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.telephony.SmsManager
 import android.text.Html
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.R
 import com.example.cardealapplication.dataModel.PurchaseDataModel
@@ -89,7 +86,7 @@ class PurchaseActivity2 : AppCompatActivity() {
 
         val name :String = "<b>Owner Name</b> :- "+data?.txtName
         val phone : String = "<b>Owner Phone</b> :- "+data?.txtPhone
-        val loc : String = "<b>Owner Location</b> :- ${data?.txtCity}, ${data?.txtState}"
+        val loc = "<b>Owner Location</b> :- ${data?.txtCity}, ${data?.txtState}"
 
         txtOwnerName.text=Html.fromHtml(name)
         txtOwnerPhone.text=Html.fromHtml(phone)
@@ -133,46 +130,27 @@ class PurchaseActivity2 : AppCompatActivity() {
                 email = it.data?.get("Email").toString()
                 name = it.data?.get("Name").toString()
 
-                val smsManager:SmsManager = SmsManager.getDefault()
-                smsManager.sendTextMessage(data?.txtPhone,null,
-                    "Details Of Intrested Buyer of Your Car\n"+
-                            "Car Name :- "+data?.txtCarModel.toString()+"\n"+
-                            "Expected Price :- "+data?.txtCarPrice.toString()+"\n"+
-                            "Phone Number of interested buyer :- "+phone+"\n",null,null)
+                val url =
+                    "https://api.whatsapp.com/send?phone=${data?.txtPhone.toString()}" +
+                            "&text=*Details Of Intrested Buyer of Your Car*+"+"\n"+
+                            "*Car Name* :- " +data?.txtCarModel.toString()+"\n"+
+                            "*Expected Price* :- "+data?.txtCarPrice.toString()+"\n"+
+                            "*Name of interested buyer* :- "+name+"\n"+
+                            "*Phone Number of interested buyer* :- "+phone+"\n"+
+                            "*Email of interested buyer* :- "+email
 
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    this.data = Uri.parse(url)
+                    this.`package` = "com.whatsapp"
+                }
+
+                try {
+                    startActivity(intent)
+                } catch (ex : ActivityNotFoundException){
+                    Toast.makeText(this, "Please Install Whatsapp", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
     }
-/*
-    private fun sendSms() {
-        val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        val ref = db.collection("Users").document(uid)
-        val smsManager: SmsManager = SmsManager.getDefault()
-        var phone: String
-        var email: String
-        var name: String
-        val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
-
-
-        ref.get().addOnSuccessListener {
-            if (it!=null){
-                phone = it.data?.get("Phone").toString()
-                email = it.data?.get("Email").toString()
-                name = it.data?.get("Name").toString()
-                Toast.makeText(this, "" +phone, Toast.LENGTH_SHORT).show()
-
-                smsManager.sendTextMessage("+919574534576",null,
-                "Details Of Intrested Buyer of Your Car\n"+
-                        "Car Name :- "+data?.txtCarModel.toString()+"\n"+
-                        "Expected Price :- "+data?.txtCarPrice.toString()+"\n"+
-                        "Name of interested buyer :- "+name+"\n"+
-                        "Phone Number of interested buyer :- "+phone+"\n"+
-                        "Email of interested buyer :- "+email
-                    ,null,null)
-            }
-        }
-
-    }
-*/
 }
