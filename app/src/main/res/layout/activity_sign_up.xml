@@ -38,7 +38,7 @@
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxStrokeWidth="1.5dp"
-        app:boxStrokeColor="@color/background"
+        app:boxStrokeColor="@color/btn_bg"
         app:boxBackgroundMode="outline"
         android:textColorHint="@color/black"
 
@@ -47,8 +47,7 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_user"
-            android:drawablePadding="16dp"
+
             android:padding="18dp"
             android:hint="@string/name"
             android:imeOptions="actionNext"
@@ -73,7 +72,7 @@
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxStrokeWidth="1.5dp"
-        app:boxStrokeColor="@color/background"
+        app:boxStrokeColor="@color/btn_bg"
         app:boxBackgroundMode="outline"
         android:textColorHint="@color/black"
         >
@@ -81,8 +80,7 @@
             android:id="@+id/phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_phone"
-            android:drawablePadding="16dp"
+
             android:padding="18dp"
             android:hint="@string/phone_number"
             android:imeOptions="actionNext"
@@ -109,7 +107,7 @@
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxStrokeWidth="1.5dp"
-        app:boxStrokeColor="@color/background"
+        app:boxStrokeColor="@color/btn_bg"
         app:boxBackgroundMode="outline"
         android:textColorHint="@color/black"
         >
@@ -117,8 +115,7 @@
             android:id="@+id/emailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_email"
-            android:drawablePadding="16dp"
+
             android:padding="18dp"
             android:hint="@string/email_address"
             android:imeOptions="actionNext"
@@ -143,7 +140,7 @@
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopEnd="8dp"
         app:boxCornerRadiusTopStart="8dp"
-        app:boxStrokeColor="@color/background"
+        app:boxStrokeColor="@color/btn_bg"
         app:boxStrokeWidth="1.5dp"
         app:boxBackgroundMode="outline"
         app:boxBackgroundColor="@color/white"
@@ -156,8 +153,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:autofillHints="password"
-            android:drawableStart="@drawable/ic_key"
-            android:drawablePadding="16dp"
+
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:minLines="1"
@@ -179,10 +175,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-
         android:layout_marginBottom="16dp"
         android:background="@drawable/btn_bg"
-        android:hint="@string/sign_up" />
+        android:hint="@string/sign_up"
+        android:textColorHint="@color/white"/>
 
     <TextView
         android:id="@+id/txt2"
@@ -205,7 +201,7 @@
         android:layout_toEndOf="@id/txt2"
         android:paddingStart="10dp"
         android:text="@string/login"
-        android:textColor="@color/blue_btn"
+        android:textColor="@color/app_theme"
         android:textSize="16sp"
         android:textStyle="bold" />
 

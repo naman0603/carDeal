@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.CarDealApplication" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_btn</item>
+        <item name="colorPrimary">@color/app_theme</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -10,12 +10,12 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/blue_btn</item>
+        <item name="android:statusBarColor">@color/app_theme</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="Theme.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_btn</item>
+        <item name="colorPrimary">@color/app_theme</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -23,7 +23,7 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/blue_btn</item>
+        <item name="android:statusBarColor">@color/app_theme</item>
         <!-- Customize your theme here. -->
     </style>
 

@@ -7,12 +7,11 @@
     tools:context=".OptionsActivity">
 
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_logo_2"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:id="@+id/logo"
+            android:src="@drawable/ic_logo_2"
 
             />
 
@@ -35,6 +34,7 @@
             android:layout_below="@id/view"
             android:textSize="20sp"
             android:drawablePadding="10dp"
+            android:textColorHint="@color/white"
             />
 
         <View
@@ -55,6 +55,7 @@
             android:layout_marginBottom="16dp"
             android:layout_below="@id/view2"
             android:textSize="20sp"
+            android:textColorHint="@color/white"
             />
 
         <View
@@ -75,6 +76,7 @@
             android:layout_marginBottom="16dp"
             android:layout_below="@id/view3"
             android:textSize="20sp"
+            android:textColorHint="@color/white"
             />
 
     </RelativeLayout>

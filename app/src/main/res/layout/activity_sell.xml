@@ -26,7 +26,7 @@
         android:layout_below="@id/view"
         android:text="@string/select_detail_of_your_car"
         android:textAlignment="center"
-        android:textColor="@color/blue_btn"
+        android:textColor="@color/app_theme"
         android:textStyle="bold"
         android:textSize="26sp"
         android:fontFamily="sans-serif-light"
@@ -110,7 +110,7 @@
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxStrokeWidth="1.5dp"
-        app:boxStrokeColor="@color/background"
+        app:boxStrokeColor="@color/btn_bg"
 
         >
 
@@ -142,7 +142,7 @@
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxStrokeWidth="1.5dp"
-        app:boxStrokeColor="@color/background"
+        app:boxStrokeColor="@color/btn_bg"
         >
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -172,7 +172,7 @@
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxStrokeWidth="1.5dp"
-        app:boxStrokeColor="@color/background"
+        app:boxStrokeColor="@color/btn_bg"
         >
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -202,7 +202,7 @@
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxStrokeWidth="1.5dp"
-        app:boxStrokeColor="@color/background"
+        app:boxStrokeColor="@color/btn_bg"
         >
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -232,7 +232,7 @@
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxStrokeWidth="1.5dp"
-        app:boxStrokeColor="@color/background"
+        app:boxStrokeColor="@color/btn_bg"
         >
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -263,7 +263,7 @@
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxStrokeWidth="1.5dp"
-            app:boxStrokeColor="@color/background"
+            app:boxStrokeColor="@color/btn_bg"
             >
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -288,7 +288,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:layout_below="@id/input6"/>
+                    android:layout_below="@id/input6"
+                    android:textColorHint="@color/white"/>
             </RelativeLayout>
         </ScrollView>
     </RelativeLayout>
