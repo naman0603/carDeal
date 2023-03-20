@@ -54,6 +54,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/gallery_btn_bg">
                         <ImageView
+
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             tools:ignore="ContentDescription"

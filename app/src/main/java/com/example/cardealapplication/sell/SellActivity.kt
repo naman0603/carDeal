@@ -1,7 +1,6 @@
 package com.example.cardealapplication.sell
 
 import android.Manifest
-import android.app.Activity
 import android.app.Dialog
 import android.content.ContentValues
 import android.content.Intent
@@ -23,7 +22,11 @@ class SellActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySellBinding
     lateinit var imageView: ImageView
-    var image_uri : Uri? = null
+    private var  image_uri : Uri? = null
+
+    val flag1 = 0
+    val flag2 = 0
+    val flag3 = 0
 
     private val GALLERY_REQUEST_CODE = 100
     private val CAMERA_CAPTURE_CODE = 1001
@@ -46,15 +49,15 @@ class SellActivity : AppCompatActivity() {
 
         binding.btnImg1.setOnClickListener {
             imageView = binding.btnImg1
-            popUp(imageView)
+            popUp()
         }
         binding.btnImg2.setOnClickListener {
             imageView = binding.btnImg2
-            popUp(imageView)
+            popUp()
         }
         binding.btnImg3.setOnClickListener {
             imageView = binding.btnImg3
-            popUp(imageView)
+            popUp()
         }
         binding.btnContinue.setOnClickListener {
             performValidation()
@@ -62,7 +65,7 @@ class SellActivity : AppCompatActivity() {
 
     }
 
-    private fun popUp(image: ImageView) {
+    private fun popUp() {
         val dialogBinding = layoutInflater.inflate(R.layout.popup_photo_sell,null)
         val builder = Dialog(this)
 
@@ -76,7 +79,7 @@ class SellActivity : AppCompatActivity() {
             builder.dismiss()
         }
         gallery.setOnClickListener {
-            uploadImage(image)
+            uploadImage()
             builder.dismiss()
         }
         builder.setCancelable(true)
@@ -132,7 +135,7 @@ class SellActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    private fun uploadImage(image: ImageView) {
+    private fun uploadImage() {
         val intent =  Intent()
 
         intent.action= Intent.ACTION_GET_CONTENT
@@ -144,6 +147,7 @@ class SellActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == GALLERY_REQUEST_CODE){
             imageView.setImageURI(data?.data)
+
         }else if (requestCode == CAMERA_CAPTURE_CODE){
             imageView.setImageURI(image_uri)
         }
@@ -156,6 +160,11 @@ class SellActivity : AppCompatActivity() {
         val year = binding.txtYear.text.toString()
         val state = binding.txtState.text.toString()
         val city = binding.txtCity.text.toString()
+        val img1 = binding.btnImg1.drawable
+
+        if(img1==null){
+            Toast.makeText(this, "Please Insert Images", Toast.LENGTH_SHORT).show()
+        }
 
         if (brand.isEmpty()) {
             binding.txtBrand.error = "Cannot Be Empty"
@@ -220,7 +229,7 @@ class SellActivity : AppCompatActivity() {
             AdapterView.OnItemClickListener { _, _, position, _ ->
                 when(position){
                     0 -> {
-                       andmanNicobarItemView()
+                       andamanNicobarItemView()
                     }
                     1 -> {
                         andhraItemView()
@@ -250,7 +259,7 @@ class SellActivity : AppCompatActivity() {
                         goaItemView()
                     }
                     10 -> {
-                        gujratItemView()
+                        gujaratItemView()
                     }
                     11 -> {
                         haryanaItemView()
@@ -487,7 +496,7 @@ class SellActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, R.layout.list_item, stateItems)
         binding.txtCity.setAdapter(adapter)
     }
-    private fun gujratItemView() {
+    private fun gujaratItemView() {
         val stateItems = listOf("Ahmedabad", "Amreli","Bharuch","Bhavnagar","Bhuj","Dwarka","Gandhinagar",
             "Godhra","Jamnagar","Junagadh","Kandla","Khambhat","Kheda","Mahesana",
             "Morbi","Nadiad","Navsari","Okha","Palanpur","Patan","Porbandar",
@@ -547,7 +556,7 @@ class SellActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, R.layout.list_item, stateItems)
         binding.txtCity.setAdapter(adapter)
     }
-    private fun andmanNicobarItemView() {
+    private fun andamanNicobarItemView() {
         val stateItems = listOf("Port Blair")
         val adapter = ArrayAdapter(this, R.layout.list_item, stateItems)
         binding.txtCity.setAdapter(adapter)
