@@ -1,10 +1,20 @@
 package com.example.cardealapplication.sell
 
+import android.Manifest
+import android.app.Activity
+import android.app.Dialog
+import android.content.ContentValues
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.R
 import com.example.cardealapplication.databinding.ActivitySellBinding
@@ -12,6 +22,11 @@ import com.example.cardealapplication.databinding.ActivitySellBinding
 class SellActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySellBinding
+    lateinit var imageView: ImageView
+    var image_uri : Uri? = null
+
+    private val GALLERY_REQUEST_CODE = 100
+    private val CAMERA_CAPTURE_CODE = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +44,108 @@ class SellActivity : AppCompatActivity() {
         yearItemView()
         stateItemView()
 
+        binding.btnImg1.setOnClickListener {
+            imageView = binding.btnImg1
+            popUp(imageView)
+        }
+        binding.btnImg2.setOnClickListener {
+            imageView = binding.btnImg2
+            popUp(imageView)
+        }
+        binding.btnImg3.setOnClickListener {
+            imageView = binding.btnImg3
+            popUp(imageView)
+        }
         binding.btnContinue.setOnClickListener {
             performValidation()
+        }
+
+    }
+
+    private fun popUp(image: ImageView) {
+        val dialogBinding = layoutInflater.inflate(R.layout.popup_photo_sell,null)
+        val builder = Dialog(this)
+
+        builder.setContentView(dialogBinding)
+
+        val camera :ImageView = builder.findViewById(R.id.camera)
+        val gallery : ImageView = builder.findViewById(R.id.gallery)
+
+        camera.setOnClickListener {
+            checkCameraPermission()
+            builder.dismiss()
+        }
+        gallery.setOnClickListener {
+            uploadImage(image)
+            builder.dismiss()
+        }
+        builder.setCancelable(true)
+        builder.window?.setBackgroundDrawable(getDrawable(R.drawable.popup_sell_bg))
+        builder.show()
+
+    }
+
+    private fun checkCameraPermission() {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            if(checkSelfPermission(Manifest.permission.CAMERA)==PackageManager.PERMISSION_DENIED ||
+                checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED )
+            {
+                val permission = arrayOf(Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                requestPermissions(permission,GALLERY_REQUEST_CODE)
+            }else{
+                openCamera()
+            }
+        }
+        else{
+            openCamera()
+        }
+    }
+
+    private fun openCamera() {
+        val values = ContentValues()
+        values.put(MediaStore.Images.Media.TITLE,"New Picture")
+        values.put(MediaStore.Images.Media.DESCRIPTION,"From Camera")
+
+        image_uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)
+
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,image_uri)
+        startActivityForResult(cameraIntent,CAMERA_CAPTURE_CODE)
+
+    }
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when(requestCode){
+            GALLERY_REQUEST_CODE->{
+                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    openCamera()
+                }else{
+                    Toast.makeText(this, "Please Give Required Permissions", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    private fun uploadImage(image: ImageView) {
+        val intent =  Intent()
+
+        intent.action= Intent.ACTION_GET_CONTENT
+        intent.type="image/*"
+        startActivityForResult(intent,GALLERY_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == GALLERY_REQUEST_CODE){
+            imageView.setImageURI(data?.data)
+        }else if (requestCode == CAMERA_CAPTURE_CODE){
+            imageView.setImageURI(image_uri)
         }
     }
 

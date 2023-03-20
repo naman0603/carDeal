@@ -49,4 +49,7 @@
     <string name="owner_details">Owner Details</string>
     <string name="call_owner">Call Owner</string>
     <string name="msg_owner">Msg Owner</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="enter_images_of_your_car">Enter Images of Your Car</string>
 </resources>

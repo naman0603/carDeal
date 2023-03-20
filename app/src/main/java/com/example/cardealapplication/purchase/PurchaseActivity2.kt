@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.Html
@@ -31,14 +29,15 @@ class PurchaseActivity2 : AppCompatActivity() {
         binding = ActivityPurchase2Binding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
         initView()
     }
-
     @SuppressLint("SetTextI18n")
     private fun initView() {
         val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
 
         if(data!= null){
+
             val txtCarModel= "Name :- <b>${data.txtCarModel}</b>"
             val txtCarPrice= "Price :- <b>${data.txtCarPrice}</b>"
             val txtManYear= "Manufacture Year :- <b>${data.txtManYear}</b>"
@@ -92,7 +91,7 @@ class PurchaseActivity2 : AppCompatActivity() {
         txtOwnerLocation.text=Html.fromHtml(loc)
 
         builder.setCancelable(true)
-        builder.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        builder.window?.setBackgroundDrawable(getDrawable(R.drawable.popup_bg))
         builder.show()
 
         btnCall.setOnClickListener {

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".sell.SellActivity">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,50 +31,76 @@
         android:textSize="26sp"
         android:fontFamily="sans-serif-light"
         />
-
-
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:id="@+id/img1"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView"
             android:layout_below="@id/txt1"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginTop="50dp"
-            android:layout_marginStart="12dp"
-           />
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:id="@+id/img2"
-            android:layout_below="@id/txt1"
-            android:layout_toEndOf="@id/img1"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginTop="50dp"
-            android:layout_marginStart="3dp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gallery_btn_bg">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:ignore="ContentDescription"
+                            android:id="@+id/btnImg1"
+                            android:src="@drawable/ic_add"
+                            android:scaleType="fitXY"
+                            android:layout_margin="5dp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gallery_btn_bg">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:ignore="ContentDescription"
+                            android:id="@+id/btnImg2"
+                            android:src="@drawable/ic_add"
+                            android:scaleType="fitXY"
+                            android:layout_margin="5dp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gallery_btn_bg">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:ignore="ContentDescription"
+                            android:id="@+id/btnImg3"
+                            android:src="@drawable/ic_add"
+                            android:scaleType="fitXY"
+                            android:layout_margin="5dp"/>
+                    </LinearLayout>
 
-            />
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:id="@+id/img3"
-            android:layout_below="@id/txt1"
-            android:layout_toEndOf="@id/img2"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginTop="50dp"
-            android:layout_marginStart="3dp"
+                </LinearLayout>
 
-            />
-
-
-        <com.google.android.material.textfield.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
 
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout"
         android:id="@+id/input1"
-        android:layout_below="@id/img1"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
         android:padding="10dp"
@@ -252,21 +276,19 @@
                 android:imeOptions="actionDone"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-
-
-        <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnContinue"
-        android:hint="Continue"
-        android:background="@drawable/btn_bg"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_below="@id/input6"/>
-
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnContinue"
+                    android:hint="Continue"
+                    android:background="@drawable/btn_bg"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_below="@id/input6"/>
+            </RelativeLayout>
+        </ScrollView>
     </RelativeLayout>
 
-</ScrollView>

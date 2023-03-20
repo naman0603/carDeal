@@ -4,8 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cardealapplication.R
 import com.example.cardealapplication.dataAdapter.PurchaseDataAdapter
 import com.example.cardealapplication.dataModel.PurchaseDataModel
 import com.example.cardealapplication.databinding.ActivityPurchaseBinding
@@ -70,6 +73,7 @@ class PurchaseActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.layoutManager=LinearLayoutManager(this)
         dataAdapter= PurchaseDataAdapter(this,model)
         binding.recyclerView.adapter=dataAdapter
@@ -79,5 +83,27 @@ class PurchaseActivity : AppCompatActivity() {
             intent.putExtra("Data",it)
             startActivity(intent)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.purchase_option_menu,menu)
+
+        val menuItems = menu!!.findItem(R.id.searchView)
+
+        val searchView = menuItems.actionView as SearchView
+        searchView.maxWidth = Int.MAX_VALUE
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
+        return true
     }
 }
