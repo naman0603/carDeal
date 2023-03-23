@@ -25,7 +25,8 @@
             android:endColor="#00ffffff"
             android:startColor="#a5232b"
             android:type="sweep"
-            android:useLevel="false" />
+            android:useLevel="false"
+            />
     </shape>
 
 </rotate>

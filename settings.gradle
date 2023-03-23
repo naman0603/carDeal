@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "carDealApplication"
 include ':app'
+include ':dataentry'

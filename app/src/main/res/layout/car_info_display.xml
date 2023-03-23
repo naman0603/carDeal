@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="280dp"
+    android:layout_height="280dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="12dp"
+    android:id="@+id/cardView"
+    android:layout_margin="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_hyundai_logo"
+            android:padding="20dp"
+            tools:ignore="ContentDescription" />
+        <ImageView
+            android:id="@+id/imgCarImage"
+            android:layout_below="@id/imgLogo"
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_kona"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtName"
+            android:layout_below="@id/imgCarImage"
+            android:text="@string/car_name"
+            android:padding="16dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout"
+            android:layout_below="@id/txtName"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtType"
+                android:text="@string/car_name"
+                android:padding="16dp"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtPrice"
+                android:text="@string/car_name"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/app_theme"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

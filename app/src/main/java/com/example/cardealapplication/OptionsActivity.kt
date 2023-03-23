@@ -28,7 +28,7 @@ class OptionsActivity : AppCompatActivity() {
         auth=Firebase.auth
         initView()
         supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
-        supportActionBar!!.setCustomView(R.layout.custom_action_bar)
+        supportActionBar!!.setCustomView(R.layout.custom_action_bar_home)
     }
     private fun initView() {
         binding.btnBuy.setOnClickListener {

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cardealapplication.MainActivity
 import com.example.cardealapplication.OptionsActivity
 import com.example.cardealapplication.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -26,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if(currentUser != null && currentUser.isEmailVerified){
-            startActivity(Intent(this,OptionsActivity::class.java))
+            startActivity(Intent(this,MainActivity::class.java))
         }
     }
     private fun initView() {
