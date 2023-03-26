@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cardealapplication.R
+import com.example.cardealapplication.car_info.InfoActivity
 import com.example.cardealapplication.dataAdapter.InfoRecommendedCarsDataAdapter
 import com.example.cardealapplication.dataAdapter.MyCarsDataAdapter
 import com.example.cardealapplication.dataModel.HomeRecommendedCarsModelData
@@ -53,8 +54,9 @@ class HomeFragment : Fragment() {
 
     private fun onClick() {
         view?.findViewById<CardView>(R.id.crdAudi)?.setOnClickListener {
-            startActivity(Intent(requireContext(),PurchaseActivity::class.java))
+            startActivity(Intent(requireContext(),InfoActivity::class.java))
         }
+
     }
 
     private fun addData() {

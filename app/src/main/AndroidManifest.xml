@@ -54,7 +54,7 @@
         <activity
             android:name=".car_info.InfoActivity"
             android:exported="false"
-            android:parentActivityName=".OptionsActivity"
+            android:theme="@style/Theme.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
             android:name=".sell.SellActivity"
