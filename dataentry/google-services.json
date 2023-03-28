@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1073804507833",
+    "project_id": "cardeal-abf28",
+    "storage_bucket": "cardeal-abf28.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073804507833:android:a197366e187c96cb8ef968",
+        "android_client_info": {
+          "package_name": "com.example.cardealapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073804507833-bn87ja9lu27jrn3gvi8obkpp47i97mo3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3zmucfl1a92zX8q9_J_63VDy56ivAZT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073804507833-bn87ja9lu27jrn3gvi8obkpp47i97mo3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073804507833:android:b683755ec63ee6958ef968",
+        "android_client_info": {
+          "package_name": "com.example.dataentry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073804507833-bn87ja9lu27jrn3gvi8obkpp47i97mo3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3zmucfl1a92zX8q9_J_63VDy56ivAZT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073804507833-bn87ja9lu27jrn3gvi8obkpp47i97mo3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
