@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="12dp"
+    android:id="@+id/cardView"
+    android:layout_margin="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imgCarView"
+                android:layout_width="200dp"
+                android:layout_height="160dp"
+                android:src="@mipmap/ic_launcher"
+                tools:ignore="ContentDescription" />
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:orientation="vertical"
+                android:layout_toEndOf="@id/imgCarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txtCarName"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:padding="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Car Name"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textAlignment="viewStart"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/txtCarCompany"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:padding="8dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Car Company"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textAlignment="viewStart"/>
+            </LinearLayout>
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_below="@id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/txtCarType"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="12dp"
+                android:layout_height="match_parent"
+                android:text="@string/car_type"
+                android:textSize="18sp"
+                android:textAlignment="center"
+
+                />
+
+            <TextView
+                android:id="@+id/txtCarPrice"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_height="match_parent"
+                android:text="@string/car_type"
+                android:textSize="18sp"
+                android:textColor="@color/app_theme"
+                android:textAlignment="viewEnd"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

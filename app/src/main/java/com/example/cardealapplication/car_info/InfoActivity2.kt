@@ -1,72 +1,90 @@
 package com.example.cardealapplication.car_info
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cardealapplication.dataModel.InfoImagesModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cardealapplication.dataAdapter.InfoCarDetailsDataAdapter
+import com.example.cardealapplication.dataAdapter.MyCarsDataAdapter
+import com.example.cardealapplication.dataModel.InfoCarDetailsDataModel
+import com.example.cardealapplication.dataModel.MyCarsDataModel
+import com.example.cardealapplication.dataModel.PurchaseDataModel
 import com.example.cardealapplication.databinding.ActivityInfo2Binding
+import com.example.cardealapplication.purchase.PurchaseActivity2
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 class InfoActivity2 : AppCompatActivity() {
     lateinit var binding: ActivityInfo2Binding
     private val db = Firebase.firestore
 
-    private var imgList= mutableListOf<CarouselItem>()
-    private var imageModelList:List<InfoImagesModel.Images> = ArrayList()
-    private lateinit var imageList : List<String>
-    var measurement: List<InfoImagesModel.Images>? = null
+    private var model=java.util.ArrayList<InfoCarDetailsDataModel>()
+    private lateinit var dataAdapter: InfoCarDetailsDataAdapter
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInfo2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        setData()
-        setImg()
+
+        initView()
     }
 
-    private fun setImg() {
-        imgList.add(
-            CarouselItem(
-                imageUrl = "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080"
-            )
-        )
-        imgList.add(
-            CarouselItem(
-                imageUrl = "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"
-            )
-        )
-        binding.img.setData(imgList)
+    private fun initView() {
+        binding.recyclerView.layoutManager=LinearLayoutManager(this)
+        dataAdapter= InfoCarDetailsDataAdapter(this,model)
+        binding.recyclerView.adapter=dataAdapter
+        addData()
+        dataAdapter.onItemClick = {
+            val intent = Intent(this, InfoActivity::class.java)
+            intent.putExtra("Data",it)
+            startActivity(intent)
+        }
+
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun setData() {
-        val carName=intent.getStringExtra("CarName")
-
-        db.collection("Cars").whereEqualTo("car_name",carName).get()
-            .addOnCompleteListener {
-                if(it.isSuccessful){
-                    for (document in it.result!!){
-                        binding.txtCarName.text = "Name : ${document.data["car_name"].toString()}"
-                        binding.txtEngine.text = "Engine : ${document.data["engine"].toString()}"
-                        binding.txtMileage.text = "Mileage : ${document.data["mileage"].toString()}"
-                        binding.txtPrice.text = "Price : ${document.data["price"].toString()}"
-                        binding.txtSeatingCapacity.text = "Seating Capacity : ${document.data["seating_capacity"].toString()}"
-                        binding.txtTransmission.text = "Transmission : ${document.data["transmission"].toString()}"
-
-/*
-                        measurement = document.data["Image"] as List<InfoImagesModel.Images>?
-*/
-                    }
+    private fun addData() {
+        val intent = intent
+        val carCompany: String = intent.getStringExtra("Car Name").toString()
+        db.collection("Display Info Cars").whereEqualTo("txtCompanyName",carCompany).
+        addSnapshotListener(object : EventListener<QuerySnapshot> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                if(error!=null){
+                    Log.v("error",""+error.message.toString())
                 }
 
-            /*    for (i in 0 until measurement!!.size){
-
-
-                    Log.v("imageModelList",""+ measurement!!.get(i).image_url)
-                }*/
-
+                for (dc: DocumentChange in value?.documentChanges!!){
+                    if(dc.type == DocumentChange.Type.ADDED){
+                        model.add(
+                            InfoCarDetailsDataModel(
+                                dc.document.data["txtCompanyName"].toString(),
+                                dc.document.data["txtCarName"].toString(),
+                                dc.document.data["txtPriceRange"].toString(),
+                                dc.document.data["txtMileage"].toString(),
+                                dc.document.data["txtEngine"].toString(),
+                                dc.document.data["txtSeat"].toString(),
+                                dc.document.data["txtFuelCapacity"].toString(),
+                                dc.document.data["txtFuelType"].toString(),
+                                dc.document.data["txtTransmission"].toString(),
+                                dc.document.data["txtType"].toString(),
+                                dc.document.data["txtLength"].toString(),
+                                dc.document.data["txtWidth"].toString(),
+                                dc.document.data["txtHeight"].toString(),
+                                dc.document.data["txtDetails"].toString()
+                            )
+                        )
+                    }
+                }
+                dataAdapter.notifyDataSetChanged()
             }
+        })
     }
 }

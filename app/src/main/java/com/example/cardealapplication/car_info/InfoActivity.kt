@@ -1,15 +1,12 @@
 package com.example.cardealapplication.car_info
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
-import com.example.cardealapplication.R
 import com.example.cardealapplication.adapter.InfoViewPagerAdapter
+import com.example.cardealapplication.dataModel.InfoCarDetailsDataModel
 import com.example.cardealapplication.databinding.ActivityInfoBinding
-import com.example.cardealapplication.fragments.InfoDetailsFragment
-import com.example.cardealapplication.fragments.InfoSpecificationFragment
-import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -26,14 +23,20 @@ class InfoActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        val adapter = InfoViewPagerAdapter(supportFragmentManager)
-
-       adapter.addFragment(InfoDetailsFragment(),"Details")
-       adapter.addFragment(InfoSpecificationFragment(),"Specs")
-
+        val data = intent.getParcelableExtra<InfoCarDetailsDataModel>("Data")
+        val adapter = InfoViewPagerAdapter(supportFragmentManager,lifecycle,data)
         binding.viewPager.adapter=adapter
 
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
 
+        TabLayoutMediator(binding.tabLayout,binding.viewPager){tab,position->
+            when(position){
+                0 -> {
+                    tab.text = "Details"
+                }
+                1-> {
+                    tab.text= "Specifications"
+                }
+            }
+        }.attach()
     }
 }

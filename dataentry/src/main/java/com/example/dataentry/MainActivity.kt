@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setCompanyName() {
-        val brandItems =  listOf("Maruti","Hyundai","Honda","Tata","Mahindra","Renault","Ford","Toyota","MG","Kia","Audi","BMW","Mercedes-Benz","Skoda","Ford","Volkswagen","Jaguar","Volvo","Lexus","Land Rover","Porsche")
+        val brandItems =  listOf("Maruti","Hyundai","Honda","Tata","Mahindra","Renault","Toyota","MG","Kia","Audi","BMW","Mercedes-Benz","Skoda","Volkswagen","Jaguar","Volvo","Lexus","Land Rover","Porsche")
         val adapter = ArrayAdapter(this, R.layout.list_item,brandItems )
         binding.txtCompanyName.setAdapter(adapter)
 
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         db.collection("Display Info Cars").document().set(model).
         addOnSuccessListener {
             startActivity(Intent(this,MainActivity::class.java))
-            Toast.makeText(this, "Successfully Added", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, model.txtCompanyName+" "+model.txtCarName+"\nSuccessfully Added", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Toast.makeText(this, "UnSuccessful", Toast.LENGTH_SHORT).show()
         }

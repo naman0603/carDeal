@@ -10,8 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Details of cars are this"
-        android:padding="16dp"
-
+        android:padding="22dp"
+        android:id="@+id/txtDetails"
+        android:textColor="@color/black"
+        android:textSize="22sp"
         />
 
 </FrameLayout>

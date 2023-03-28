@@ -19,13 +19,11 @@
         android:layout_below="@+id/imgCar"
         app:tabTextColor="@color/black"
         app:tabIndicatorColor="@color/btn_bg"
-        app:tabSelectedTextColor="@color/white"
-        app:tabIndicatorGravity="stretch"
-        app:tabIndicatorAnimationMode="elastic"
-        app:tabIndicator="@drawable/tab_indicator"
+        app:tabSelectedTextColor="@color/btn_bg"
+
         >
     </com.google.android.material.tabs.TabLayout>
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_below="@id/tabLayout"
         android:layout_width="match_parent"

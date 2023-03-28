@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.example.cardealapplication.R
 
 class InfoDetailsFragment : Fragment() {
@@ -14,6 +15,16 @@ class InfoDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_info_details, container, false)
+        val view = inflater.inflate(R.layout.fragment_info_details, container, false)
+        setData(view)
+        return view
+    }
+
+    private fun setData(view: View) {
+        val txtDetails = view.findViewById<TextView>(R.id.txtDetails)
+       val details = arguments?.getString("txtDetails")
+
+        txtDetails.text =details.toString()
+
     }
 }

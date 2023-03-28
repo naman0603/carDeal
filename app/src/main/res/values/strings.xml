@@ -70,11 +70,12 @@
     <string name="price_range">Price Range</string>
     <string name="fuel_type">Fuel Type</string>
     <string name="body_type">Body Type</string>
-    <string name="engine">Engine</string>
-    <string name="mileage">Mileage</string>
+    <string name="engine">Engine (cc)</string>
+    <string name="mileage">Mileage (kmpl)</string>
     <string name="seating_capacity">Seating Capacity</string>
-    <string name="fuel_capacity">Fuel Capacity</string>
+    <string name="fuel_capacity">Fuel Capacity (litres)</string>
     <string name="length_mm">Length (mm)</string>
     <string name="width_mm">Width (mm)</string>
     <string name="height_mm">Height (mm)</string>
+    <string name="car_type"> Car Type</string>
 </resources>
