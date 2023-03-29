@@ -78,7 +78,8 @@ class InfoActivity2 : AppCompatActivity() {
                                 dc.document.data["txtLength"].toString(),
                                 dc.document.data["txtWidth"].toString(),
                                 dc.document.data["txtHeight"].toString(),
-                                dc.document.data["txtDetails"].toString()
+                                dc.document.data["txtDetails"].toString(),
+                                dc.document.data["imgCarView"].toString()
                             )
                         )
                     }
@@ -86,5 +87,6 @@ class InfoActivity2 : AppCompatActivity() {
                 dataAdapter.notifyDataSetChanged()
             }
         })
+
     }
 }

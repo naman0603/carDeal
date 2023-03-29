@@ -30,20 +30,20 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
-    lateinit var recyclerView:RecyclerView
-    lateinit var iv1:ImageView
-    lateinit var iv2:ImageView
-    lateinit var iv3:ImageView
-    lateinit var iv4:ImageView
-    lateinit var iv5:ImageView
-    lateinit var iv6:ImageView
+   private lateinit var recyclerView:RecyclerView
+    private lateinit var iv1:ImageView
+    private  lateinit var iv2:ImageView
+    private  lateinit var iv3:ImageView
+    private  lateinit var iv4:ImageView
+    private lateinit var iv5:ImageView
+    private lateinit var iv6:ImageView
 
-    lateinit var tv1:TextView
-    lateinit var tv2:TextView
-    lateinit var tv3:TextView
-    lateinit var tv4:TextView
-    lateinit var tv5:TextView
-    lateinit var tv6:TextView
+    private lateinit var tv1:TextView
+    private  lateinit var tv2:TextView
+    private  lateinit var tv3:TextView
+    private  lateinit var tv4:TextView
+    private lateinit var tv5:TextView
+    private  lateinit var tv6:TextView
 
     private var model=java.util.ArrayList<HomeRecommendedCarsModelData>()
     private lateinit var dataAdapter: InfoRecommendedCarsDataAdapter

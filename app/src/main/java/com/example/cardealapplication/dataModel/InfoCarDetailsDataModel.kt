@@ -7,7 +7,7 @@ data class InfoCarDetailsDataModel(val txtCompanyName : String,val txtCarName : 
                                    val txtMileage : String,val txtEngine : String,val txtSeat : String,
                                    val txtFuelCapacity : String,val txtFuelType : String,val txtTransmission : String,
                                    val txtType : String,val txtLength : String,val txtWidth : String,
-                                   val txtHeight : String,val txtDetails : String):Parcelable {
+                                   val txtHeight : String,val txtDetails : String,val imgCarView: String):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
@@ -22,9 +22,9 @@ data class InfoCarDetailsDataModel(val txtCompanyName : String,val txtCarName : 
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
+        parcel.readString()!!,
         parcel.readString()!!
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(txtCompanyName)
@@ -41,6 +41,7 @@ data class InfoCarDetailsDataModel(val txtCompanyName : String,val txtCarName : 
         parcel.writeString(txtWidth)
         parcel.writeString(txtHeight)
         parcel.writeString(txtDetails)
+        parcel.writeString(imgCarView)
     }
 
     override fun describeContents(): Int {
@@ -56,4 +57,5 @@ data class InfoCarDetailsDataModel(val txtCompanyName : String,val txtCarName : 
             return arrayOfNulls(size)
         }
     }
+
 }

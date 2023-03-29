@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".car_info.InfoActivity">
+    tools:context=".car_info.InfoActivity"
+    android:theme="@style/Theme.CarDealApplication">
 
     <ImageView
         android:id="@+id/imgCar"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:background="@color/btn_bg"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        android:src="@drawable/ic_car"/>
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

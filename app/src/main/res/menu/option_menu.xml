@@ -8,7 +8,7 @@
         />
     <item
         android:title="@string/my_cars"
-        android:icon="@drawable/ic_car"
+        android:icon="@drawable/ic_car_img"
         android:id="@+id/btnMyCars"
         />
     <item
