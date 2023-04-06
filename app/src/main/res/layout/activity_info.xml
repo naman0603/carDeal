@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".car_info.InfoActivity"
-    android:theme="@style/Theme.CarDealApplication">
+   >
 
     <ImageView
         android:id="@+id/imgCar"
@@ -21,12 +21,12 @@
         app:tabTextColor="@color/black"
         app:tabIndicatorColor="@color/btn_bg"
         app:tabSelectedTextColor="@color/btn_bg"
-
-        >
+>
     </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_below="@id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
 </RelativeLayout>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import com.example.cardealapplication.databinding.ActivityMainBinding
 import com.example.cardealapplication.fragments.HomeFragment
+import com.example.cardealapplication.fragments.SellFragment
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
                     supportActionBar!!.setCustomView(R.layout.custom_action_bar_buy)
                 }
-                R.id.nav_Sell->{
+                R.id.nav_Sell->{replaceFragment(SellFragment())
                     supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
                     supportActionBar!!.setCustomView(R.layout.custom_action_bar_sell)
                 }
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun replaceFragment(frag : Fragment){
         val fm = supportFragmentManager.beginTransaction()
-        fm.replace(R.id.frameLayout,frag,)
+        fm.replace(R.id.frameLayout,frag)
         fm.commit()
     }
 }

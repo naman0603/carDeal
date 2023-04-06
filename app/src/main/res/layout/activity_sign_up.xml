@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_logo_2" />
+        android:src="@drawable/ic_logo_2"
+        tools:ignore="ContentDescription" />
 
     <View
         android:id="@+id/view"
@@ -201,7 +202,8 @@
         android:text="@string/login"
         android:textColor="@color/app_theme"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="RtlSymmetry" />
 
 
 </RelativeLayout>

@@ -1,219 +1,149 @@
 package com.example.cardealapplication.sell
 
-import android.Manifest
-import android.app.Dialog
-import android.content.ContentValues
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.R
 import com.example.cardealapplication.databinding.ActivitySellBinding
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class SellActivity : AppCompatActivity() {
+    private var db = Firebase.firestore
+    var carName: MutableList<String> = mutableListOf<String>()
+
 
     lateinit var binding: ActivitySellBinding
-    lateinit var imageView: ImageView
-    private var  image_uri : Uri? = null
-
-    val flag1 = 0
-    val flag2 = 0
-    val flag3 = 0
-
-    private val GALLERY_REQUEST_CODE = 100
-    private val CAMERA_CAPTURE_CODE = 1001
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySellBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
         initView()
     }
 
     private fun initView() {
+        val company : String = intent.extras?.getString("Company Name").toString()
+        setModel()
+        setData()
+        checkData()
+    }
 
-        brandItemView()
-        variantItemView()
-        yearItemView()
-        stateItemView()
+    private fun checkData() {
 
-        binding.btnImg1.setOnClickListener {
-            imageView = binding.btnImg1
-            popUp()
-        }
-        binding.btnImg2.setOnClickListener {
-            imageView = binding.btnImg2
-            popUp()
-        }
-        binding.btnImg3.setOnClickListener {
-            imageView = binding.btnImg3
-            popUp()
-        }
+
         binding.btnContinue.setOnClickListener {
-            performValidation()
-        }
-
-    }
-
-    private fun popUp() {
-        val dialogBinding = layoutInflater.inflate(R.layout.popup_photo_sell,null)
-        val builder = Dialog(this)
-
-        builder.setContentView(dialogBinding)
-
-        val camera :ImageView = builder.findViewById(R.id.camera)
-        val gallery : ImageView = builder.findViewById(R.id.gallery)
-
-        camera.setOnClickListener {
-            checkCameraPermission()
-            builder.dismiss()
-        }
-        gallery.setOnClickListener {
-            uploadImage()
-            builder.dismiss()
-        }
-        builder.setCancelable(true)
-        builder.window?.setBackgroundDrawable(getDrawable(R.drawable.popup_sell_bg))
-        builder.show()
-
-    }
-
-    private fun checkCameraPermission() {
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-            if(checkSelfPermission(Manifest.permission.CAMERA)==PackageManager.PERMISSION_DENIED ||
-                checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED )
+            val txtCarName =binding.txtCarName.text.toString()
+            val txtManufactureYear =binding.txtManufactureYear.text.toString()
+            val txtFuelType =binding.txtFuelType.text.toString()
+            val txtRegisteredState =binding.txtRegisteredState.text.toString()
+            val txtCity =binding.txtCity.text.toString()
+            val txtTransmission =binding.txtTransmission.text.toString()
+            val txtOwners =binding.txtOwners.text.toString()
+            val txtInsurance =binding.txtInsurance.text.toString()
+            if (txtCarName.isEmpty())
             {
-                val permission = arrayOf(Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                requestPermissions(permission,GALLERY_REQUEST_CODE)
+                binding.txtCarName.error="Cannot be empty"
+            } else if (txtManufactureYear.isEmpty())
+            {
+                binding.txtManufactureYear.error="Cannot be empty"
+            } else if (txtFuelType.isEmpty())
+            {
+                binding.txtFuelType.error="Cannot be empty"
+            } else if (txtRegisteredState.isEmpty())
+            {
+                binding.txtRegisteredState.error="Cannot be empty"
+            } else if (txtCity.isEmpty())
+            {
+                binding.txtCity.error="Cannot be empty"
+            } else if (txtTransmission.isEmpty())
+            {
+                binding.txtTransmission.error="Cannot be empty"
+            } else if (txtOwners.isEmpty())
+            {
+                binding.txtOwners.error="Cannot be empty"
+            } else if (txtInsurance.isEmpty())
+            {
+                binding.txtInsurance.error="Cannot be empty"
             }else{
-                openCamera()
+                val intent = Intent(this,SellActivity2::class.java)
+
+                intent.putExtra("txtCarName",txtCarName)
+                intent.putExtra("txtManufactureYear",txtManufactureYear)
+                intent.putExtra("txtFuelType",txtFuelType)
+                intent.putExtra("txtRegisteredState",txtRegisteredState)
+                intent.putExtra("txtCity",txtCity)
+                intent.putExtra("txtTransmission",txtTransmission)
+                intent.putExtra("txtOwners",txtOwners)
+                intent.putExtra("txtInsurance",txtInsurance)
+
+
+                startActivity(intent)
+
             }
         }
-        else{
-            openCamera()
-        }
-    }
-
-    private fun openCamera() {
-        val values = ContentValues()
-        values.put(MediaStore.Images.Media.TITLE,"New Picture")
-        values.put(MediaStore.Images.Media.DESCRIPTION,"From Camera")
-
-        image_uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)
-
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,image_uri)
-        startActivityForResult(cameraIntent,CAMERA_CAPTURE_CODE)
 
     }
 
+    private fun setModel() {
+        val company : String = intent.extras?.getString("Company Name").toString()
+        db.collection("Display Info Cars").whereEqualTo("txtCompanyName",company).
+        addSnapshotListener(object : EventListener<QuerySnapshot> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                if(error!=null){
+                    Log.v("error",""+error.message.toString())
+                }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when(requestCode){
-            GALLERY_REQUEST_CODE->{
-                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    openCamera()
-                }else{
-                    Toast.makeText(this, "Please Give Required Permissions", Toast.LENGTH_SHORT).show()
+                for (dc: DocumentChange in value?.documentChanges!!){
+                    if(dc.type == DocumentChange.Type.ADDED){
+                        carName.add(dc.document.data["txtCarName"].toString())
+
+                    }
                 }
             }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        })
+
     }
 
-    private fun uploadImage() {
-        val intent =  Intent()
-
-        intent.action= Intent.ACTION_GET_CONTENT
-        intent.type="image/*"
-        startActivityForResult(intent,GALLERY_REQUEST_CODE)
+    private fun setData() {
+        viewCarName()
+        viewStateCity()
+        viewFuelType()
+        viewYears()
+        viewOwners()
+        viewTransmission()
+        viewInsurance()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == GALLERY_REQUEST_CODE){
-            imageView.setImageURI(data?.data)
-
-        }else if (requestCode == CAMERA_CAPTURE_CODE){
-            imageView.setImageURI(image_uri)
-        }
+    private fun viewTransmission() {
+        val transmission = listOf<String>("Manual Transmission (MT)","Automatic Transmission (AMT)",
+            "Semi-Automatic transmission (SAT)")
+        val adapter = ArrayAdapter(this, R.layout.list_item, transmission)
+        binding.txtTransmission.setAdapter(adapter)
     }
 
-    private fun performValidation() {
-        val brand = binding.txtBrand.text.toString()
-        val model = binding.txtModel.text.toString()
-        val variant = binding.txtVariant.text.toString()
-        val year = binding.txtYear.text.toString()
-        val state = binding.txtState.text.toString()
-        val city = binding.txtCity.text.toString()
-        val img1 = binding.btnImg1.drawable
-
-        if(img1==null){
-            Toast.makeText(this, "Please Insert Images", Toast.LENGTH_SHORT).show()
-        }
-
-        if (brand.isEmpty()) {
-            binding.txtBrand.error = "Cannot Be Empty"
-        } else if (model.isEmpty()) {
-            binding.txtModel.error = "Cannot Be Empty"
-        } else if (variant.isEmpty()) {
-            binding.txtVariant.error = "Cannot Be Empty"
-        } else if (year.isEmpty()) {
-            binding.txtYear.error = "Cannot Be Empty"
-        } else if (state.isEmpty()) {
-            binding.txtState.error = "Cannot Be Empty"
-        } else if (city.isEmpty()) {
-            binding.txtCity.error = "Cannot Be Empty"
-        } else {
-            addData(brand,model,variant,year,state,city)
-        }
+    private fun viewYears() {
+        val years = listOf<String>("2023","2022","2021","2020","2019","2018","2017","2016","2015","2014","2013","2012","2011","2010","2009","2008","2007","2006","2005","2004","2003","2002","2001","2000")
+        val adapter = ArrayAdapter(this, R.layout.list_item, years)
+        binding.txtManufactureYear.setAdapter(adapter)
     }
 
-    private fun addData(
-        brand: String,
-        model: String,
-        variant: String,
-        year: String,
-        state: String,
-        city: String
-    ) {
-        Log.v("Data",""+brand+"\n"+model+"\n"+variant+"\n"+year+"\n"+state+"\n"+city)
-
-        val intent = Intent(this,SellActivity2::class.java)
-        intent.putExtra("brand",brand)
-        intent.putExtra("model",model)
-        intent.putExtra("variant",variant)
-        intent.putExtra("year",year)
-        intent.putExtra("state",state)
-        intent.putExtra("city",city)
-        startActivity(intent)
+    private fun viewFuelType() {
+        val fuelType = listOf<String>("Petrol","Diesel","CNG","Electric")
+        val adapter = ArrayAdapter(this, R.layout.list_item, fuelType)
+        binding.txtFuelType.setAdapter(adapter)
     }
 
-    private fun yearItemView() {
-        val yearItems = listOf(
-            "2000","2001","2002","2003","2004","2005",
-            "2006","2007","2008","2009","2010",
-            "2011","2012","2013","2014","2015",
-            "2016","2017","2018","2019","2020",
-            "2021","2022","2023")
-        val adapter = ArrayAdapter(this, R.layout.list_item, yearItems.reversed())
-        binding.txtYear.setAdapter(adapter)
-    }
-    private fun stateItemView() {
+    private fun viewStateCity() {
         val stateItems = listOf(
             "Andaman and Nicobar Islands",
             "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chandigarh","Chhattisgarh",
@@ -223,13 +153,13 @@ class SellActivity : AppCompatActivity() {
             "Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana",
             "Tripura","Uttar Pradesh","Uttarakhand","West Bengal")
         val adapter = ArrayAdapter(this, R.layout.list_item, stateItems)
-        binding.txtState.setAdapter(adapter)
+        binding.txtRegisteredState.setAdapter(adapter)
 
-        binding.txtState.onItemClickListener=
+        binding.txtRegisteredState.onItemClickListener=
             AdapterView.OnItemClickListener { _, _, position, _ ->
                 when(position){
                     0 -> {
-                       andamanNicobarItemView()
+                        andamanNicobarItemView()
                     }
                     1 -> {
                         andhraItemView()
@@ -438,9 +368,9 @@ class SellActivity : AppCompatActivity() {
         binding.txtCity.setAdapter(adapter)
     }
     private fun manipurItemView() {
-            val stateItems = listOf("Imphal")
-            val adapter = ArrayAdapter(this, R.layout.list_item, stateItems)
-            binding.txtCity.setAdapter(adapter)
+        val stateItems = listOf("Imphal")
+        val adapter = ArrayAdapter(this, R.layout.list_item, stateItems)
+        binding.txtCity.setAdapter(adapter)
     }
     private fun madhyaItemView() {
         val stateItems = listOf("Balaghat", "Barwani","Betul","Bharhut","Bhind","Bhojpur","Bhopal",
@@ -561,44 +491,23 @@ class SellActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, R.layout.list_item, stateItems)
         binding.txtCity.setAdapter(adapter)
     }
-    private fun variantItemView() {
-        val variantItems = listOf("Petrol","Diesel","CNG","Electric")
-        val adapter = ArrayAdapter(this, R.layout.list_item, variantItems)
-        binding.txtVariant.setAdapter(adapter)
-    }
-    private fun brandItemView() {
-        val brandItems =  listOf("Maruti","Hyundai","Tata")
-        val adapter = ArrayAdapter(this, R.layout.list_item,brandItems )
-        binding.txtBrand.setAdapter(adapter)
 
-        binding.txtBrand.onItemClickListener=
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-                when (position) {
-                    0 -> {
-                        marutiItemView()
-                    }
-                    1 -> {
-                        hyundaiItemView()
-                    }
-                    2 -> {
-                        tataItemView()
-                    }
-                }
-            }
+    private fun viewOwners() {
+        val owners = listOf<String>("1","2","3","4","5","More than 5")
+        val adapter = ArrayAdapter(this, R.layout.list_item, owners)
+        binding.txtOwners.setAdapter(adapter)
     }
-    private fun tataItemView() {
-        val modelItems = listOf("Altroz", "Punch", "Nexon", "Harrier","Safari")
-        val adapter = ArrayAdapter(this, R.layout.list_item, modelItems)
-        binding.txtModel.setAdapter(adapter)
+
+    private fun viewInsurance() {
+        val insurance = listOf<String>("Yes","No")
+        val adapter = ArrayAdapter(this, R.layout.list_item, insurance)
+        binding.txtInsurance.setAdapter(adapter)
     }
-    private fun hyundaiItemView() {
-        val modelItems = listOf("Creta", "Venue", "i10", "i20","Verna")
-        val adapter = ArrayAdapter(this, R.layout.list_item, modelItems)
-        binding.txtModel.setAdapter(adapter)
-    }
-    private fun marutiItemView() {
-        val modelItems = listOf("Ertiga", "Wagon R", "Grand Vitara", "Swift","Brezza")
-        val adapter = ArrayAdapter(this, R.layout.list_item, modelItems)
-        binding.txtModel.setAdapter(adapter)
+
+    private fun viewCarName() {
+
+        val adapter = ArrayAdapter(this, R.layout.list_item, carName)
+        binding.txtCarName.setAdapter(adapter)
+
     }
 }

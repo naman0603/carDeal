@@ -2,8 +2,8 @@ package com.example.cardealapplication.sell
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.R
 import com.example.cardealapplication.databinding.ActivitySell2Binding
@@ -21,48 +21,18 @@ class SellActivity2 : AppCompatActivity() {
     }
     private fun initView() {
 
-        insuranceItemView()
-        transmissionItemView()
-        ownersItemView()
 
         binding.btnContinue.setOnClickListener {
             performValidation()
         }
     }
-    private fun ownersItemView() {
-        val ownersItem = listOf("1","2","3","4","5")
-        val adapter=ArrayAdapter(this,R.layout.list_item,ownersItem)
-        binding.txtOwners.setAdapter(adapter)
-    }
 
-    private fun transmissionItemView() {
-        val transmissionItems = listOf("Manual Transmission (MT)","Automatic Transmission (AMT)",
-            "Semi-Automatic transmission (SAT)","Continuously Variable transmission (CVT)")
-        val adapter=ArrayAdapter(this,R.layout.list_item,transmissionItems)
-        binding.txtTransmission.setAdapter(adapter)
-    }
-    private fun insuranceItemView() {
-        val typeItem = listOf("Yes","No")
-        val adapter=ArrayAdapter(this,R.layout.list_item,typeItem)
-        binding.txtInsurance.setAdapter(adapter)
-    }
     private fun performValidation() {
-        val insurance =binding.txtInsurance.text.toString()
-        val transmission = binding.txtTransmission.text.toString()
-        val owners = binding.txtOwners.text.toString()
+
         val color = binding.txtColor.text.toString()
         val kms = binding.txtKms.text.toString()
 
-        if(insurance.isEmpty())
-        {
-            binding.txtInsurance.error="Cannot Be Empty"
-        }else if(transmission.isEmpty())
-        {
-            binding.txtTransmission.error="Cannot Be Empty"
-        }else if(owners.isEmpty())
-        {
-            binding.txtOwners.error="Cannot Be Empty"
-        }else if(color.isEmpty())
+       if(color.isEmpty())
         {
             binding.txtColor.error="Cannot Be Empty"
         }else if(kms.isEmpty())
@@ -70,30 +40,34 @@ class SellActivity2 : AppCompatActivity() {
             binding.txtKms.error="Cannot Be Empty"
         }else
         {
-            addData(insurance,transmission,owners,color,kms)
+            addData(color,kms)
         }
     }
-    private fun addData(insurance: String, transmission: String, owners: String, color: String, kms: String) {
+    private fun addData( color: String, kms: String) {
 
-        val brand = intent.extras?.getString("brand")
-        val model = intent.extras?.getString("model")
-        val variant = intent.extras?.getString("variant")
-        val year = intent.extras?.getString("year")
-        val state = intent.extras?.getString("state")
-        val city = intent.extras?.getString("city")
+        val txtCarName = intent.extras?.getString("txtCarName")
+        val txtManufactureYear = intent.extras?.getString("txtManufactureYear")
+        val txtFuelType = intent.extras?.getString("txtFuelType")
+        val txtRegisteredState = intent.extras?.getString("txtRegisteredState")
+        val txtCity = intent.extras?.getString("txtCity")
+        val txtTransmission = intent.extras?.getString("txtTransmission")
+        val txtOwners = intent.extras?.getString("txtOwners")
+        val txtInsurance = intent.extras?.getString("txtInsurance")
+        Toast.makeText(this, ""+txtCarName, Toast.LENGTH_SHORT).show()
         val intent = Intent(this,SellActivity3::class.java)
 
-        intent.putExtra("brand",brand)
-        intent.putExtra("model",model)
-        intent.putExtra("variant",variant)
-        intent.putExtra("year",year)
-        intent.putExtra("state",state)
-        intent.putExtra("city",city)
-        intent.putExtra("insurance",insurance)
-        intent.putExtra("transmission",transmission)
-        intent.putExtra("owners",owners)
-        intent.putExtra("color",color)
-        intent.putExtra("kms",kms)
+
+
+        intent.putExtra("txtCarName",txtCarName)
+        intent.putExtra("txtManufactureYear",txtManufactureYear)
+        intent.putExtra("txtFuelType",txtFuelType)
+        intent.putExtra("txtRegisteredState",txtRegisteredState)
+        intent.putExtra("txtCity",txtCity)
+        intent.putExtra("txtTransmission",txtTransmission)
+        intent.putExtra("txtOwners",txtOwners)
+        intent.putExtra("txtInsurance",txtInsurance)
+        intent.putExtra("txtColor",color)
+        intent.putExtra("txtKms",kms)
 
         startActivity(intent)
     }

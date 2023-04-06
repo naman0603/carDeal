@@ -20,6 +20,7 @@ import com.example.cardealapplication.car_info.InfoActivity2
 import com.example.cardealapplication.car_info.InfoActivity3
 import com.example.cardealapplication.dataAdapter.InfoRecommendedCarsDataAdapter
 import com.example.cardealapplication.dataModel.HomeRecommendedCarsModelData
+import com.example.cardealapplication.dataModel.InfoCarDetailsDataModel
 import com.example.cardealapplication.dataModel.InfoCarModelDataModel
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
@@ -49,7 +50,7 @@ class HomeFragment : Fragment() {
     private lateinit var dataAdapter: InfoRecommendedCarsDataAdapter
     private var dataModel = ArrayList<InfoCarModelDataModel>()
 
-    var db = Firebase.firestore
+    private var db = Firebase.firestore
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -83,8 +84,9 @@ class HomeFragment : Fragment() {
         recyclerView.adapter=dataAdapter
         addData()
         dataAdapter.onItemClick = {
+
             val intent = Intent(requireContext(), InfoActivity::class.java)
-            intent.putExtra("data",it.txtName)
+            intent.putExtra("Data",it)
             startActivity(intent)
         }
         onClick()

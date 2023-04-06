@@ -1,14 +1,22 @@
-package com.example.cardealapplication.car_info
+package com.example.cardealapplication.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.cardealapplication.R
+import com.example.cardealapplication.R.*
+import com.example.cardealapplication.car_info.InfoActivity2
 import com.example.cardealapplication.dataAdapter.InfoCarModelDataAdapter
 import com.example.cardealapplication.dataModel.InfoCarModelDataModel
 import com.example.cardealapplication.databinding.ActivityInfo3Binding
+import com.example.cardealapplication.sell.SellActivity
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -16,31 +24,37 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class InfoActivity3 : AppCompatActivity() {
-    lateinit var binding : ActivityInfo3Binding
+class SellFragment : Fragment() {
     private var db = Firebase.firestore
 
     private lateinit var dataAdapter: InfoCarModelDataAdapter
     private var model = ArrayList<InfoCarModelDataModel>()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityInfo3Binding.inflate(layoutInflater)
-        setContentView(binding.root)
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(layout.fragment_sell, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView()
     }
 
     private fun initView() {
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.layoutManager= GridLayoutManager(this,3)
-        dataAdapter = InfoCarModelDataAdapter(this,model)
-        binding.recyclerView.adapter=dataAdapter
+        val recyclerView: RecyclerView? = view?.findViewById(R.id.recyclerView)
+        recyclerView!!.setHasFixedSize(true)
+        recyclerView.layoutManager= GridLayoutManager(context,3)
+        dataAdapter = InfoCarModelDataAdapter(requireContext(),model)
+        recyclerView.adapter=dataAdapter
 
         addData()
 
         dataAdapter.onItemClick = {
-            val intent = Intent(this, InfoActivity2::class.java)
-            intent.putExtra("Car Name",it.txtCompanyName)
+            val intent = Intent(context, SellActivity::class.java)
+            intent.putExtra("Company Name",it.txtCompanyName)
             startActivity(intent)
         }
     }
@@ -60,12 +74,13 @@ class InfoActivity3 : AppCompatActivity() {
                             InfoCarModelDataModel(
                                 dc.document.data["logo"].toString(),
                                 dc.document.data["name"].toString()
-                        )
+                            )
                         )
                     }
                 }
                 dataAdapter.notifyDataSetChanged()
             }
         })
+
     }
 }

@@ -4,16 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardealapplication.dataAdapter.InfoCarDetailsDataAdapter
-import com.example.cardealapplication.dataAdapter.MyCarsDataAdapter
 import com.example.cardealapplication.dataModel.InfoCarDetailsDataModel
-import com.example.cardealapplication.dataModel.MyCarsDataModel
-import com.example.cardealapplication.dataModel.PurchaseDataModel
 import com.example.cardealapplication.databinding.ActivityInfo2Binding
-import com.example.cardealapplication.purchase.PurchaseActivity2
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestoreException

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cardealapplication.R
 import com.example.cardealapplication.dataModel.HomeRecommendedCarsModelData
-import com.example.cardealapplication.dataModel.InfoCarDetailsDataModel
 import com.example.cardealapplication.viewHolder.InfoRecommendedCarsViewHolder
 
 class InfoRecommendedCarsDataAdapter(val context: Context,val model : ArrayList<HomeRecommendedCarsModelData> ):

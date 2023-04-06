@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Details of cars are this"
+        android:text="@string/details_of_cars_are_this"
         android:padding="22dp"
         android:id="@+id/txtDetails"
         android:textColor="@color/black"

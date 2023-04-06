@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.telephony.SmsManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cardealapplication.MainActivity
 import com.example.cardealapplication.OptionsActivity
 import com.example.cardealapplication.databinding.ActivitySell3Binding
 import com.google.firebase.auth.FirebaseAuth
@@ -48,52 +49,45 @@ class SellActivity3 : AppCompatActivity() {
             binding.txtAddress.error="Cannot Be Empty"
         }else {
             makeDatabase(name,phone,address,price)
-            sendSMS(phone,address)
+
         }
     }
-    private fun sendSMS(phone: String, address: String) {
 
-        val smsManager:SmsManager = SmsManager.getDefault()
-        smsManager.sendTextMessage(phone,null,
-            "Your Inspection is Confirmed at this address:\n$address",null,null)
-        Toast.makeText(this, "Inspection Confirmed", Toast.LENGTH_SHORT).show()
-    }
     private fun makeDatabase(name: String, phone: String, address: String, price: String) {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        val brand = intent.extras?.getString("brand")
-        val model = intent.extras?.getString("model")
-        val variant = intent.extras?.getString("variant")
-        val year = intent.extras?.getString("year")
-        val state = intent.extras?.getString("state")
-        val city = intent.extras?.getString("city")
-        val insurance = intent.extras?.getString("insurance")
-        val transmission = intent.extras?.getString("transmission")
-        val owners = intent.extras?.getString("owners")
-        val color = intent.extras?.getString("color")
-        val kms = intent.extras?.getString("kms")
+        val txtCarName = intent.extras?.getString("txtCarName")
+        val txtManufactureYear = intent.extras?.getString("txtManufactureYear")
+        val txtFuelType = intent.extras?.getString("txtFuelType")
+        val txtRegisteredState = intent.extras?.getString("txtRegisteredState")
+        val txtCity = intent.extras?.getString("txtCity")
+        val txtTransmission = intent.extras?.getString("txtTransmission")
+        val txtOwners = intent.extras?.getString("txtOwners")
+        val txtInsurance = intent.extras?.getString("txtInsurance")
+        val txtColor = intent.extras?.getString("txtColor")
+        val txtKms = intent.extras?.getString("txtKms")
+
 
         db.collection("Sell Car").document().set(
             hashMapOf(
                 "Name" to name,
                 "Phone" to phone,
-                "Brand" to brand,
-                "Model" to model,
-                "Variant" to variant,
-                "Manufacture Year" to year,
-                "State" to state,
-                "City" to city,
-                "Insurance" to insurance,
-                "Transmission" to transmission,
-                "Owners" to owners,
-                "Color" to color,
-                "Kms" to kms,
+                "txtCarName" to txtCarName,
+                "Model" to txtManufactureYear,
+                "txtFuelType" to txtFuelType,
+                "txtRegisteredState" to txtRegisteredState,
+                "txtCity" to txtCity,
+                "txtTransmission" to txtTransmission,
+                "txtOwners" to txtOwners,
+                "txtInsurance" to txtInsurance,
+                "txtColor" to txtColor,
+                "txtKms" to txtKms,
                 "Address" to address,
                 "Expected Price" to price,
                 "User Id" to uid
             )
         )
 
-        startActivity(Intent(this, OptionsActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
     private fun isValidPhone(Phone: String): Boolean {
