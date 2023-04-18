@@ -1,16 +1,22 @@
 package com.example.cardealapplication.sell
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.telephony.SmsManager
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.example.cardealapplication.MainActivity
 import com.example.cardealapplication.OptionsActivity
 import com.example.cardealapplication.databinding.ActivitySell3Binding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -18,6 +24,9 @@ class SellActivity3 : AppCompatActivity() {
 
     lateinit var binding: ActivitySell3Binding
     private var db = Firebase.firestore
+    private lateinit var sr : StorageReference
+    private lateinit var fs : FirebaseFirestore
+     var imageViewUrl : String? = null
 
     private val phonePattern= Pattern.compile("^[6-9]\\d{9}\$")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +38,9 @@ class SellActivity3 : AppCompatActivity() {
         initView()
     }
     private fun initView() {
+        sr = FirebaseStorage.getInstance().reference.child("Sell Car")
+        fs = FirebaseFirestore.getInstance()
+
         binding.btnDone.setOnClickListener {
             performValidation()
         }
@@ -48,10 +60,32 @@ class SellActivity3 : AppCompatActivity() {
         }else if(address.isEmpty()){
             binding.txtAddress.error="Cannot Be Empty"
         }else {
-            makeDatabase(name,phone,address,price)
-
+            uploadData(name,phone,address,price)
         }
     }
+
+    private fun uploadData(name: String, phone: String, address: String, price: String) {
+        val sp: SharedPreferences = this.getSharedPreferences("userData", Context.MODE_PRIVATE)
+        val user = sp.getString("Name","name")
+        val imageUri = intent.extras?.getString("ImageUri")
+
+        Log.e("LINK",imageUri.toString())
+
+
+        sr = sr.child(user.toString()+System.currentTimeMillis())
+        sr.putFile(imageUri!!.toUri()).addOnCompleteListener {
+            if(it.isSuccessful) {
+                sr.downloadUrl.addOnCompleteListener {
+                    imageViewUrl = it.result.toString()
+                    Log.e("URI",imageViewUrl.toString())
+                    makeDatabase(name,phone,address,price)
+                }
+            }else{
+                Toast.makeText(this, ""+it.exception?.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
     private fun makeDatabase(name: String, phone: String, address: String, price: String) {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
@@ -65,7 +99,6 @@ class SellActivity3 : AppCompatActivity() {
         val txtInsurance = intent.extras?.getString("txtInsurance")
         val txtColor = intent.extras?.getString("txtColor")
         val txtKms = intent.extras?.getString("txtKms")
-
 
         db.collection("Sell Car").document().set(
             hashMapOf(
@@ -83,10 +116,10 @@ class SellActivity3 : AppCompatActivity() {
                 "txtKms" to txtKms,
                 "Address" to address,
                 "Expected Price" to price,
-                "User Id" to uid
+                "User Id" to uid,
+                "Image Url" to imageViewUrl.toString()
             )
         )
-
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

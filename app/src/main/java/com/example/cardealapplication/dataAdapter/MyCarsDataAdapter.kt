@@ -13,7 +13,7 @@ import com.example.cardealapplication.dataModel.PurchaseDataModel
 import com.example.cardealapplication.viewHolder.MyCarsViewHolder
 
 
-class MyCarsDataAdapter(val context: Context, val model:java.util.ArrayList<MyCarsDataModel>):
+class MyCarsDataAdapter (val context: Context, val model:java.util.ArrayList<MyCarsDataModel>):
     RecyclerView.Adapter<MyCarsViewHolder>() {
     var onItemClick : ((MyCarsDataModel) -> Unit)? = null
 

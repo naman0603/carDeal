@@ -55,7 +55,7 @@ class MyCarsActivity : AppCompatActivity() {
                     if(dc.type == DocumentChange.Type.ADDED){
                         model.add(
                             MyCarsDataModel(
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5kEhz8kWPfT53ac6oiHZYs4je6WWxillLmQ&usqp=CAU",
+                                dc.document.data["Image Url"].toString(),
                                 dc.document.data["Expected Price"].toString(),
                                 dc.document.data["Model"].toString(),
                                 dc.document.data["Name"].toString(),

@@ -1,26 +1,13 @@
 package com.example.cardealapplication.purchase
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cardealapplication.R
+import com.bumptech.glide.Glide
 import com.example.cardealapplication.adapter.BuyViewPagerAdapter
-import com.example.cardealapplication.adapter.InfoViewPagerAdapter
 import com.example.cardealapplication.dataAdapter.PurchaseDataAdapter
 import com.example.cardealapplication.dataModel.PurchaseDataModel
 import com.example.cardealapplication.databinding.ActivityPurchaseBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore.getInstance
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -42,6 +29,7 @@ class PurchaseActivity : AppCompatActivity() {
         val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
         val adapter = BuyViewPagerAdapter(supportFragmentManager,lifecycle,data)
         binding.viewPager.adapter=adapter
+        Glide.with(this).load(data?.img).into(binding.imgCar)
 
         TabLayoutMediator(binding.tabLayout,binding.viewPager){tab,position->
             when(position){

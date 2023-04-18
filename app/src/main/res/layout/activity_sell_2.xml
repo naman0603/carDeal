@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".sell.SellActivity2">
+    tools:context=".sell.SellActivity2"
+    >
 
 
     <TextView
@@ -87,6 +88,35 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_above="@id/btnCaptureImg"
+        android:id="@+id/imageView"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/edittext_background"
+        tools:ignore="ContentDescription"
+        android:padding="10dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCaptureImg"
+        android:hint="@string/capture_image"
+        android:background="@drawable/btn_bg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="35dp"
+        android:layout_above="@id/btnContinue"
+        android:textColorHint="@color/white"/>
+
+
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,11 +124,11 @@
         android:hint="Continue"
         android:background="@drawable/btn_bg"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="6dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:layout_below="@id/input2"
+        android:layout_alignParentBottom="true"
         android:textColorHint="@color/white"/>
 
 
