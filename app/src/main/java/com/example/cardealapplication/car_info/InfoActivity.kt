@@ -3,12 +3,11 @@ package com.example.cardealapplication.car_info
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.adapter.InfoViewPagerAdapter
-import com.example.cardealapplication.dataModel.HomeRecommendedCarsModelData
 import com.example.cardealapplication.dataModel.InfoCarDetailsDataModel
 import com.example.cardealapplication.databinding.ActivityInfoBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class InfoActivity : AppCompatActivity() {
+class  InfoActivity : AppCompatActivity() {
     
     lateinit var binding: ActivityInfoBinding
     override fun onCreate(savedInstanceState: Bundle?) {

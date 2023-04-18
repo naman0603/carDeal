@@ -40,7 +40,7 @@ class InfoActivity3 : AppCompatActivity() {
 
         dataAdapter.onItemClick = {
             val intent = Intent(this, InfoActivity2::class.java)
-            intent.putExtra("Car Name",it.txtCompanyName)
+            intent.putExtra("Company Name",it.txtCompanyName)
             startActivity(intent)
         }
     }

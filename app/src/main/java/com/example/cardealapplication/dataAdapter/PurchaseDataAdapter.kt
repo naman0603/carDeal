@@ -22,11 +22,11 @@ class PurchaseDataAdapter(val context:Context,val model:java.util.ArrayList<Purc
     override fun getItemCount():Int=model.size
 
     override fun onBindViewHolder(holder: PurchaseViewHolder, position: Int) {
-        val txtCarPrice = "<b>₹</b> "+model[position].txtCarPrice
-        holder.itemView.findViewById<TextView>(R.id.txtCarName).text=model[position].txtCarModel
+        val txtCarPrice = "<b>₹</b> "+model[position].Price
+        holder.itemView.findViewById<TextView>(R.id.txtCarName).text=model[position].txtCarName
         holder.itemView.findViewById<TextView>(R.id.txtCarPrice).text= Html.fromHtml(txtCarPrice)
         holder.itemView.findViewById<TextView>(R.id.txtPlace).text=
-            "${model[position].txtCity}, ${model[position].txtState}"
+            "${model[position].txtCity}, ${model[position].txtRegisteredState}"
         Glide.with(context).load(model[position].img).into(holder.itemView.findViewById(R.id.image))
 
         holder.itemView.setOnClickListener {

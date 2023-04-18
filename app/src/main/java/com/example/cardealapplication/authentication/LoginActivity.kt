@@ -1,6 +1,8 @@
 package com.example.cardealapplication.authentication
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,11 +11,14 @@ import com.example.cardealapplication.OptionsActivity
 import com.example.cardealapplication.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
    private lateinit var auth: FirebaseAuth
    lateinit var binding: ActivityLoginBinding
+    private val db = Firebase.firestore
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +50,8 @@ class LoginActivity : AppCompatActivity() {
     private fun performValidation() {
         val email=binding.emailAddress.text.toString()
         val password=binding.password.text.toString()
-        
+        val sp: SharedPreferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = sp.edit()
         if(email.isEmpty()||!isValidEmail(email)){
             binding.emailAddress.error="Cannot Be Empty "
         }else if (password.isEmpty()||!isValidPassword(password)){
@@ -54,7 +60,17 @@ class LoginActivity : AppCompatActivity() {
            auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
                if(it.isSuccessful ){
                    if(auth.currentUser!!.isEmailVerified){
-                       startActivity(Intent(this,OptionsActivity::class.java))
+                       val uid = auth.currentUser!!.uid
+                       db.collection("Users").document(uid).get().addOnSuccessListener { it ->
+                           if (it!=null){
+                               editor.putString("Name",it.data?.get("Name").toString())
+                               editor.putString("Email",it.data?.get("Email").toString())
+                               editor.putString("Phone",it.data?.get("Phone").toString())
+                               editor.putString("Password",password)
+                               editor.apply()
+                           }
+                       }
+                       startActivity(Intent(this,MainActivity::class.java))
                        finish()
                    }else{
                        auth.currentUser!!.sendEmailVerification().addOnCompleteListener {

@@ -9,9 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardealapplication.R
+import com.example.cardealapplication.adapter.BuyViewPagerAdapter
+import com.example.cardealapplication.adapter.InfoViewPagerAdapter
 import com.example.cardealapplication.dataAdapter.PurchaseDataAdapter
 import com.example.cardealapplication.dataModel.PurchaseDataModel
 import com.example.cardealapplication.databinding.ActivityPurchaseBinding
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
@@ -34,76 +37,22 @@ class PurchaseActivity : AppCompatActivity() {
 
         initView()
     }
-    private fun addData() {
-        val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        this.db = getInstance()
-        db.collection("Sell Car").whereNotEqualTo("User Id",uid).
-        addSnapshotListener(object : EventListener<QuerySnapshot>{
-            @SuppressLint("NotifyDataSetChanged")
-            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                if(error!=null){
-                    Log.v("error",""+error.message.toString())
-                }
-
-                    for (dc:DocumentChange in value?.documentChanges!!){
-                        if(dc.type == DocumentChange.Type.ADDED){
-                            model.add(PurchaseDataModel(
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5kEhz8kWPfT53ac6oiHZYs4je6WWxillLmQ&usqp=CAU",
-                                dc.document.data["Model"].toString(),
-                                dc.document.data["Manufacture Year"].toString(),
-                                dc.document.data["Expected Price"].toString(),
-                                dc.document.data["Phone"].toString(),
-                                dc.document.data["Brand"].toString(),
-                                dc.document.data["Variant"].toString(),
-                                dc.document.data["State"].toString(),
-                                dc.document.data["Insurance"].toString(),
-                                dc.document.data["Transmission"].toString(),
-                                dc.document.data["Owners"].toString(),
-                                dc.document.data["Color"].toString(),
-                                dc.document.data["Kms"].toString(),
-                                dc.document.data["Address"].toString(),
-                                dc.document.data["Name"].toString(),
-                                dc.document.data["City"].toString()
-                            ))
-                        }
-                    }
-                dataAdapter.notifyDataSetChanged()
-            }
-        })
-    }
 
     private fun initView() {
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.layoutManager=LinearLayoutManager(this)
-        dataAdapter= PurchaseDataAdapter(this,model)
-        binding.recyclerView.adapter=dataAdapter
-        addData()
-        dataAdapter.onItemClick = {
-            val intent = Intent(this,PurchaseActivity2::class.java)
-            intent.putExtra("Data",it)
-            startActivity(intent)
-        }
+        val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
+        val adapter = BuyViewPagerAdapter(supportFragmentManager,lifecycle,data)
+        binding.viewPager.adapter=adapter
+
+        TabLayoutMediator(binding.tabLayout,binding.viewPager){tab,position->
+            when(position){
+                0 -> {
+                    tab.text = "Specifications"
+                }
+                1-> {
+                    tab.text= "Owner Details"
+                }
+            }
+        }.attach()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-        menuInflater.inflate(R.menu.purchase_option_menu,menu)
-
-        val menuItems = menu!!.findItem(R.id.searchView)
-
-        val searchView = menuItems.actionView as SearchView
-        searchView.maxWidth = Int.MAX_VALUE
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return true
-            }
-
-        })
-        return true
-    }
 }

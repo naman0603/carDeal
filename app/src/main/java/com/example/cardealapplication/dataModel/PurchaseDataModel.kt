@@ -3,10 +3,10 @@ package com.example.cardealapplication.dataModel
 import android.os.Parcel
 import android.os.Parcelable
 
-class PurchaseDataModel(val img :String, val txtCarModel:String, val txtManYear:String, val txtCarPrice:String,
-                        val txtPhone:String, val txtCarBrand:String,val txtCarVariant:String,val txtState:String,
-                        val txtInsurance:String,val txtTransmission:String,val txtOwners:String,val txtColor:String,
-                        val txtKms:String, val txtAddress:String,val txtName:String,val txtCity:String) : Parcelable {
+    class PurchaseDataModel(val img :String, val Price:String, val Model:String, val Name:String,
+                        val Phone:String, val txtCarName:String,val txtCity:String,val txtColor:String,
+                        val txtFuelType:String,val txtInsurance:String,val txtKms:String,val txtOwners:String,
+                        val txtRegisteredState:String, val txtTransmission:String):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
@@ -21,30 +21,24 @@ class PurchaseDataModel(val img :String, val txtCarModel:String, val txtManYear:
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readString()!!,
-        parcel.readString()!!,
         parcel.readString()!!
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(img)
-        parcel.writeString(txtCarModel)
-        parcel.writeString(txtManYear)
-        parcel.writeString(txtCarPrice)
-        parcel.writeString(txtPhone)
-        parcel.writeString(txtCarBrand)
-        parcel.writeString(txtCarVariant)
-        parcel.writeString(txtState)
-        parcel.writeString(txtInsurance)
-        parcel.writeString(txtTransmission)
-        parcel.writeString(txtOwners)
-        parcel.writeString(txtColor)
-        parcel.writeString(txtKms)
-        parcel.writeString(txtAddress)
-        parcel.writeString(txtName)
+        parcel.writeString(Price)
+        parcel.writeString(Model)
+        parcel.writeString(Name)
+        parcel.writeString(Phone)
+        parcel.writeString(txtCarName)
         parcel.writeString(txtCity)
-
+        parcel.writeString(txtColor)
+        parcel.writeString(txtFuelType)
+        parcel.writeString(txtInsurance)
+        parcel.writeString(txtKms)
+        parcel.writeString(txtOwners)
+        parcel.writeString(txtRegisteredState)
+        parcel.writeString(txtTransmission)
     }
 
     override fun describeContents(): Int {
@@ -60,4 +54,5 @@ class PurchaseDataModel(val img :String, val txtCarModel:String, val txtManYear:
             return arrayOfNulls(size)
         }
     }
+
 }

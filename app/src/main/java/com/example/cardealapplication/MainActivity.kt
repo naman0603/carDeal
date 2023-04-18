@@ -1,10 +1,15 @@
 package com.example.cardealapplication
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import com.example.cardealapplication.databinding.ActivityMainBinding
+import com.example.cardealapplication.fragments.AccountFragment
+import com.example.cardealapplication.fragments.BuyFragment
 import com.example.cardealapplication.fragments.HomeFragment
 import com.example.cardealapplication.fragments.SellFragment
 
@@ -20,14 +25,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-
         binding.btmNav.setOnItemSelectedListener{
             when(it.itemId){
                 R.id.nav_Home->{replaceFragment(HomeFragment())
                     supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
                     supportActionBar!!.setCustomView(R.layout.custom_action_bar_home)
                 }
-                R.id.nav_Buy->{
+                R.id.nav_Buy->{ replaceFragment(BuyFragment())
                     supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
                     supportActionBar!!.setCustomView(R.layout.custom_action_bar_buy)
                 }
@@ -35,15 +39,13 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
                     supportActionBar!!.setCustomView(R.layout.custom_action_bar_sell)
                 }
-                R.id.nav_Account->{
+                R.id.nav_Account->{ replaceFragment(AccountFragment())
                     supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
                     supportActionBar!!.setCustomView(R.layout.custom_action_bar_account)
                 }
-
             }
             true
         }
-
         replaceFragment(HomeFragment())
     }
     private fun replaceFragment(frag : Fragment){

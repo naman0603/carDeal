@@ -54,7 +54,7 @@ class SignUpActivity : AppCompatActivity() {
             binding.emailAddress.error="Invalid Email"
         } else if(password.isEmpty()||!isValidPassword(password))
         {
-            binding.emailAddress.error="Minimum eight characters, at least one uppercase letter,\n"+
+            binding.password.error="Minimum eight characters, at least one uppercase letter,\n"+
                     "one lowercase letter, one number and one special character Required"
         } else
         {
@@ -70,7 +70,6 @@ class SignUpActivity : AppCompatActivity() {
                             finish()
                             Toast.makeText(this, "SignUp Successful\n" +
                                     "Verification Mail has been Sent", Toast.LENGTH_SHORT).show()
-
 
                     }.addOnFailureListener{
                         Toast.makeText(this, " Error Occured ", Toast.LENGTH_SHORT).show()

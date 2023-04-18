@@ -4,13 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,13 +20,8 @@ import com.example.cardealapplication.car_info.InfoActivity2
 import com.example.cardealapplication.car_info.InfoActivity3
 import com.example.cardealapplication.dataAdapter.InfoRecommendedCarsDataAdapter
 import com.example.cardealapplication.dataModel.HomeRecommendedCarsModelData
-import com.example.cardealapplication.dataModel.InfoCarDetailsDataModel
 import com.example.cardealapplication.dataModel.InfoCarModelDataModel
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -139,35 +134,35 @@ class HomeFragment : Fragment() {
     private fun onClick() {
         view?.findViewById<CardView>(R.id.crd6)?.setOnClickListener {
             val intent = Intent(requireContext(), InfoActivity2::class.java)
-            intent.putExtra("Car Name",dataModel[5].txtCompanyName)
+            intent.putExtra("Company Name",dataModel[5].txtCompanyName)
             startActivity(intent)
         }
         view?.findViewById<CardView>(R.id.crd2)?.setOnClickListener {
             val intent = Intent(requireContext(), InfoActivity2::class.java)
-            intent.putExtra("Car Name",dataModel[1].txtCompanyName)
+            intent.putExtra("Company Name",dataModel[1].txtCompanyName)
             startActivity(intent)
         }
         view?.findViewById<CardView>(R.id.crd1)?.setOnClickListener {
             val intent = Intent(requireContext(), InfoActivity2::class.java)
-            intent.putExtra("Car Name",dataModel[0].txtCompanyName)
+            intent.putExtra("Company Name",dataModel[0].txtCompanyName)
             startActivity(intent)
 
         }
         view?.findViewById<CardView>(R.id.crd3)?.setOnClickListener {
             val intent = Intent(requireContext(), InfoActivity2::class.java)
-            intent.putExtra("Car Name",dataModel[2].txtCompanyName)
+            intent.putExtra("Company Name",dataModel[2].txtCompanyName)
             startActivity(intent)
 
         }
         view?.findViewById<CardView>(R.id.crd4)?.setOnClickListener {
             val intent = Intent(requireContext(), InfoActivity2::class.java)
-            intent.putExtra("Car Name",dataModel[3].txtCompanyName)
+            intent.putExtra("Company Name",dataModel[3].txtCompanyName)
             startActivity(intent)
 
         }
         view?.findViewById<CardView>(R.id.crd5)?.setOnClickListener {
             val intent = Intent(requireContext(), InfoActivity2::class.java)
-            intent.putExtra("Car Name",dataModel[4].txtCompanyName)
+            intent.putExtra("Company Name",dataModel[4].txtCompanyName)
             startActivity(intent)
         }
 

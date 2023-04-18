@@ -1,16 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".purchase.PurchaseActivity">
-
-
-    <androidx.recyclerview.widget.RecyclerView
+    <ImageView
+        android:id="@+id/imgCar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        tools:ignore="ContentDescription"
+        android:src="@drawable/ic_car"/>
+    <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:id="@+id/recyclerView"/>
+        android:id="@+id/tabLayout"
+        android:layout_below="@+id/imgCar"
+        app:tabTextColor="@color/black"
+        app:tabIndicatorColor="@color/btn_bg"
+        app:tabSelectedTextColor="@color/btn_bg"
+        >
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_below="@id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+       />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPurchase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewPager"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/btn_bg"
+        android:hint="@string/purchase"
+        android:textColorHint="@color/white" />
 
 
-</ScrollView>
+</RelativeLayout>

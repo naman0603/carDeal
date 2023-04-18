@@ -85,4 +85,10 @@
     <string name="select_brand_of_your_car">Select Brand Of Your Car</string>
     <string name="registered_state">Registered State</string>
     <string name="registered_city">Registered City</string>
+    <string name="my_profile">My Profile</string>
+    <string name="mycars">My Cars</string>
+    <string name="about_us">About App</string>
+    <string name="price">Price</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="old_password">Old Password</string>
 </resources>

@@ -47,7 +47,7 @@ class InfoActivity2 : AppCompatActivity() {
 
     private fun addData() {
         val intent = intent
-        val carCompany: String = intent.getStringExtra("Car Name").toString()
+        val carCompany: String = intent.getStringExtra("Company Name").toString()
         db.collection("Display Info Cars").whereEqualTo("txtCompanyName",carCompany).
         addSnapshotListener(object : EventListener<QuerySnapshot> {
             @SuppressLint("NotifyDataSetChanged")
