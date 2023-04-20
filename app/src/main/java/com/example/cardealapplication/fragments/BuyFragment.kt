@@ -56,8 +56,9 @@ class BuyFragment : Fragment() {
 
     private fun addData() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        this.db = FirebaseFirestore.getInstance()
-        db.collection("Sell Car").
+        db = FirebaseFirestore.getInstance()
+        db.collection("Sell Car").whereNotEqualTo("User Id",uid).
+
         addSnapshotListener(object : EventListener<QuerySnapshot> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
@@ -81,7 +82,8 @@ class BuyFragment : Fragment() {
                             dc.document.data["txtKms"].toString(),
                             dc.document.data["txtOwners"].toString(),
                             dc.document.data["txtRegisteredState"].toString(),
-                            dc.document.data["txtTransmission"].toString()
+                            dc.document.data["txtTransmission"].toString(),
+                            dc.document.data["txtCarNumber"].toString()
                         ))
                     }
                 }

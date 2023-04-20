@@ -68,7 +68,9 @@ class MyCarsActivity : AppCompatActivity() {
                                 dc.document.data["txtKms"].toString(),
                                 dc.document.data["txtOwners"].toString(),
                                 dc.document.data["txtRegisteredState"].toString(),
-                                dc.document.data["txtTransmission"].toString())
+                                dc.document.data["txtTransmission"].toString(),
+                                dc.document.data["txtCarNumber"].toString())
+
                         )
                     }
                 }

@@ -30,12 +30,17 @@
         android:layout_height="370dp"
        />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnPurchase"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/viewPager"
         android:layout_alignParentBottom="true"
+        >
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPurchase"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
@@ -43,6 +48,21 @@
         android:background="@drawable/btn_bg"
         android:hint="@string/purchase"
         android:textColorHint="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnTestDrive"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/btn_bg"
+            android:hint="@string/test_drive"
+            android:textColorHint="@color/white"
+            />
+    </LinearLayout>
 
 
 </RelativeLayout>

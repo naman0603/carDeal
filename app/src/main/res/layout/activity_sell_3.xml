@@ -157,20 +157,56 @@
         android:textColorHint="@color/black"
 
         >
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtAddress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/txtAddress"
-            android:hint="@string/address"
-            android:inputType="textMultiLine"
-            android:imeOptions="actionDone"
             android:autofillHints="postalAddress"
+            android:hint="@string/address"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
             android:maxLines="6"
-            android:lines="6"
             android:textColor="@color/black"
+            android:gravity="top"
             />
-
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/input5"
+        android:layout_below="@id/input4"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxStrokeWidth="1.5dp"
+        app:boxStrokeColor="@color/btn_bg"
+        app:boxBackgroundMode="outline"
+        android:textColorHint="@color/black"
+
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtCarNumber"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Car Number"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:maxLines="6"
+            android:textColor="@color/black"
+            android:gravity="top"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
@@ -182,10 +218,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_below="@id/input4"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentBottom="true"
         android:textColorHint="@color/white"/>
-
 
 
 </RelativeLayout>

@@ -92,4 +92,10 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="old_password">Old Password</string>
     <string name="capture_image">Capture Image</string>
+    <string name="test_drive">Test Drive</string>
+    <string name="enter_your_address">Enter your Address</string>
+    <string name="select_time">Select Time</string>
+    <string name="select_date">Select Date</string>
+    <string name="confirm_details">Confirm Details</string>
+    <string name="enter_data">Enter Data</string>
 </resources>

@@ -22,7 +22,8 @@
             android:id="@+id/image"
             android:src="@mipmap/ic_launcher"
             android:paddingStart="4dp"
-            tools:ignore="RtlSymmetry" />
+            tools:ignore="RtlSymmetry"
+            android:padding="18dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

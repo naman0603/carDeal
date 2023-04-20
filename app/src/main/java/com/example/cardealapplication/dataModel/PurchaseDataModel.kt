@@ -6,8 +6,9 @@ import android.os.Parcelable
     class PurchaseDataModel(val img :String, val Price:String, val Model:String, val Name:String,
                         val Phone:String, val txtCarName:String,val txtCity:String,val txtColor:String,
                         val txtFuelType:String,val txtInsurance:String,val txtKms:String,val txtOwners:String,
-                        val txtRegisteredState:String, val txtTransmission:String):Parcelable {
+                        val txtRegisteredState:String, val txtTransmission:String,val txtCarNumber : String):Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -39,6 +40,8 @@ import android.os.Parcelable
         parcel.writeString(txtOwners)
         parcel.writeString(txtRegisteredState)
         parcel.writeString(txtTransmission)
+        parcel.writeString(txtCarNumber)
+
     }
 
     override fun describeContents(): Int {

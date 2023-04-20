@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.example.cardealapplication.MainActivity
-import com.example.cardealapplication.OptionsActivity
 import com.example.cardealapplication.databinding.ActivitySell3Binding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -50,6 +49,7 @@ class SellActivity3 : AppCompatActivity() {
         val phone=binding.txtPhone.text.toString()
         val address=binding.txtAddress.text.toString()
         val price = binding.txtExpPrice.text.toString()
+        val carNumber = binding.txtCarNumber.text.toString()
 
         if(name.isEmpty()){
             binding.txtName.error="Cannot Be Empty"
@@ -59,12 +59,20 @@ class SellActivity3 : AppCompatActivity() {
             binding.txtExpPrice.error="Cannot Be Empty"
         }else if(address.isEmpty()){
             binding.txtAddress.error="Cannot Be Empty"
-        }else {
-            uploadData(name,phone,address,price)
+        }else if(carNumber.isEmpty()){
+            binding.txtCarNumber.error="Cannot Be Empty"
+        } else {
+            uploadData(name,phone,address,price,carNumber)
         }
     }
 
-    private fun uploadData(name: String, phone: String, address: String, price: String) {
+    private fun uploadData(
+        name: String,
+        phone: String,
+        address: String,
+        price: String,
+        carNumber: String
+    ) {
         val sp: SharedPreferences = this.getSharedPreferences("userData", Context.MODE_PRIVATE)
         val user = sp.getString("Name","name")
         val imageUri = intent.extras?.getString("ImageUri")
@@ -72,13 +80,14 @@ class SellActivity3 : AppCompatActivity() {
         Log.e("LINK",imageUri.toString())
 
 
-        sr = sr.child(user.toString()+System.currentTimeMillis())
+        sr = sr.child(user.toString()+" "+System.currentTimeMillis())
         sr.putFile(imageUri!!.toUri()).addOnCompleteListener {
             if(it.isSuccessful) {
                 sr.downloadUrl.addOnCompleteListener {
                     imageViewUrl = it.result.toString()
                     Log.e("URI",imageViewUrl.toString())
-                    makeDatabase(name,phone,address,price)
+
+                    makeDatabase(name,phone,address,price,carNumber)
                 }
             }else{
                 Toast.makeText(this, ""+it.exception?.message, Toast.LENGTH_SHORT).show()
@@ -87,7 +96,13 @@ class SellActivity3 : AppCompatActivity() {
     }
 
 
-    private fun makeDatabase(name: String, phone: String, address: String, price: String) {
+    private fun makeDatabase(
+        name: String,
+        phone: String,
+        address: String,
+        price: String,
+        carNumber: String
+    ) {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val txtCarName = intent.extras?.getString("txtCarName")
         val txtManufactureYear = intent.extras?.getString("txtManufactureYear")
@@ -117,8 +132,10 @@ class SellActivity3 : AppCompatActivity() {
                 "Address" to address,
                 "Expected Price" to price,
                 "User Id" to uid,
-                "Image Url" to imageViewUrl.toString()
+                "Image Url" to imageViewUrl.toString(),
+                "Car Number" to carNumber
             )
+
         )
         startActivity(Intent(this, MainActivity::class.java))
         finish()
