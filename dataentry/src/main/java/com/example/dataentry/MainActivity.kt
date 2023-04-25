@@ -40,9 +40,10 @@ class MainActivity : AppCompatActivity() {
             val txtWidth = binding.txtWidth.text.toString()
             val txtHeight = binding.txtHeight.text.toString()
             val txtDetails = binding.txtDetails.text.toString()
+            val imgCarView  = ""
 
             val carsDataModel = CarsDataModel(txtCompanyName,txtCarName,txtPriceRange,txtMileage,txtEngine,txtSeat,txtFuelCapacity,txtFuelType,
-                txtTransmission,txtType,txtLength,txtWidth,txtHeight,txtDetails)
+                txtTransmission,txtType,txtLength,txtWidth,txtHeight,txtDetails,imgCarView)
             addData(carsDataModel)
         }
     }

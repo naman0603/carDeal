@@ -20,6 +20,7 @@ import com.example.cardealapplication.car_info.InfoActivity2
 import com.example.cardealapplication.car_info.InfoActivity3
 import com.example.cardealapplication.dataAdapter.InfoRecommendedCarsDataAdapter
 import com.example.cardealapplication.dataModel.HomeRecommendedCarsModelData
+import com.example.cardealapplication.dataModel.InfoCarDetailsDataModel
 import com.example.cardealapplication.dataModel.InfoCarModelDataModel
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
@@ -41,7 +42,7 @@ class HomeFragment : Fragment() {
     private lateinit var tv5:TextView
     private  lateinit var tv6:TextView
 
-    private var model=java.util.ArrayList<HomeRecommendedCarsModelData>()
+    private var model=java.util.ArrayList<InfoCarDetailsDataModel>()
     private lateinit var dataAdapter: InfoRecommendedCarsDataAdapter
     private var dataModel = ArrayList<InfoCarModelDataModel>()
 
@@ -174,7 +175,7 @@ class HomeFragment : Fragment() {
     private fun addData() {
         db = FirebaseFirestore.getInstance()
 
-        db.collection("Recommended Cars").
+        db.collection("Display Info Cars").whereEqualTo("type","recommended").
         addSnapshotListener(object : EventListener<QuerySnapshot>{
             @SuppressLint("NotifyDataSetChanged")
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
@@ -184,12 +185,22 @@ class HomeFragment : Fragment() {
 
                 for (dc : DocumentChange in value?.documentChanges!!){
                     if(dc.type == DocumentChange.Type.ADDED){
-                        model.add(HomeRecommendedCarsModelData(
-                            dc.document.data["imgLogo"].toString(),
-                            dc.document.data["imgCarImage"].toString(),
-                            dc.document.data["txtName"].toString(),
+                        model.add(InfoCarDetailsDataModel(
+                            dc.document.data["txtCompanyName"].toString(),
+                            dc.document.data["txtCarName"].toString(),
+                            dc.document.data["txtPriceRange"].toString(),
+                            dc.document.data["txtMileage"].toString(),
+                            dc.document.data["txtEngine"].toString(),
+                            dc.document.data["txtSeat"].toString(),
+                            dc.document.data["txtFuelCapacity"].toString(),
+                            dc.document.data["txtFuelType"].toString(),
+                            dc.document.data["txtTransmission"].toString(),
                             dc.document.data["txtType"].toString(),
-                            dc.document.data["txtPrice"].toString()
+                            dc.document.data["txtLength"].toString(),
+                            dc.document.data["txtWidth"].toString(),
+                            dc.document.data["txtHeight"].toString(),
+                            dc.document.data["txtDetails"].toString(),
+                            dc.document.data["imgCarView"].toString()
                         ))
                     }
                 }

@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         tools:ignore="ContentDescription"
-        android:src="@drawable/ic_car"/>
+        android:src="@drawable/ic_car"
+        />
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -47,12 +47,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/linearLayout"
             android:layout_below="@id/txtName"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/txtType"
                 android:text="@string/car_name"
                 android:padding="16dp"
@@ -62,12 +63,12 @@
             <TextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/txtPrice"
                 android:text="@string/car_name"
-                android:padding="16dp"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
+                android:paddingTop="16dp"
                 android:textColor="@color/app_theme"
                 />
 

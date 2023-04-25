@@ -1,5 +1,6 @@
 package com.example.cardealapplication.fragments
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Html
 import androidx.fragment.app.Fragment
@@ -30,6 +31,16 @@ class BuySpecificationFragment : Fragment() {
         val txtTransmission = view?.findViewById<TextView>(R.id.txtTransmission)
         val txtOwners = view?.findViewById<TextView>(R.id.txtOwners)
         val txtInsurance = view?.findViewById<TextView>(R.id.txtInsurance)
+
+        view?.findViewById<TextView>(R.id.txtViewColor)?.typeface = Typeface.DEFAULT_BOLD
+        view?.findViewById<TextView>(R.id.txtViewFuel)?.typeface = Typeface.DEFAULT_BOLD
+        view?.findViewById<TextView>(R.id.txtViewInsurance)?.typeface = Typeface.DEFAULT_BOLD
+        view?.findViewById<TextView>(R.id.txtViewKms)?.typeface = Typeface.DEFAULT_BOLD
+        view?.findViewById<TextView>(R.id.txtViewOwners)?.typeface = Typeface.DEFAULT_BOLD
+        view?.findViewById<TextView>(R.id.txtViewPrice)?.typeface = Typeface.DEFAULT_BOLD
+        view?.findViewById<TextView>(R.id.txtViewYear)?.typeface = Typeface.DEFAULT_BOLD
+        view?.findViewById<TextView>(R.id.txtViewTransmission)?.typeface = Typeface.DEFAULT_BOLD
+
 
         val prices = "<b>₹ </b>"+arguments?.getString("Price").toString()
         val models = arguments?.getString("Model")

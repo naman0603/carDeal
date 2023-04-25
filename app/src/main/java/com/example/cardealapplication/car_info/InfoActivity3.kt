@@ -26,7 +26,7 @@ class InfoActivity3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityInfo3Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         initView()
     }
 

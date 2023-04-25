@@ -21,7 +21,7 @@ class InfoCarDetailsDataAdapter(val context: Context,val model : ArrayList<InfoC
     override fun getItemCount(): Int = model.size
 
     override fun onBindViewHolder(holder: InfoCarDetailsViewHolder, position: Int) {
-        val txtPriceRange = "<b>₹</b>"+model[position].txtPriceRange
+        val txtPriceRange = "<b>₹ </b>"+model[position].txtPriceRange
 
         holder.itemView.findViewById<TextView>(R.id.txtCarName).text=model[position].txtCarName
         holder.itemView.findViewById<TextView>(R.id.txtTransmission).text= model[position].txtTransmission

@@ -23,7 +23,7 @@
                 android:padding="20dp"
                 android:src="@drawable/ic_car_profile"
                 tools:ignore="ContentDescription"
-
+                android:scaleType="fitCenter"
                 />
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -33,9 +33,8 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/txtCarName"
-                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="28dp"
                     android:text="@string/car_name"
                     android:textColor="@color/black"
@@ -45,10 +44,8 @@
                     />
                 <TextView
                     android:id="@+id/txtTransmission"
-                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:padding="8dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:text="@string/car_company"
                     android:textColor="@color/black"

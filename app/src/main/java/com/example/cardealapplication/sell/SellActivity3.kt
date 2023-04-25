@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
@@ -37,10 +38,12 @@ class SellActivity3 : AppCompatActivity() {
         initView()
     }
     private fun initView() {
+        binding.progressBar.visibility = View.INVISIBLE
         sr = FirebaseStorage.getInstance().reference.child("Sell Car")
         fs = FirebaseFirestore.getInstance()
 
         binding.btnDone.setOnClickListener {
+
             performValidation()
         }
     }
@@ -49,7 +52,6 @@ class SellActivity3 : AppCompatActivity() {
         val phone=binding.txtPhone.text.toString()
         val address=binding.txtAddress.text.toString()
         val price = binding.txtExpPrice.text.toString()
-        val carNumber = binding.txtCarNumber.text.toString()
 
         if(name.isEmpty()){
             binding.txtName.error="Cannot Be Empty"
@@ -57,12 +59,12 @@ class SellActivity3 : AppCompatActivity() {
             binding.txtPhone.error="Cannot Be Empty"
         }else if(price.isEmpty()){
             binding.txtExpPrice.error="Cannot Be Empty"
-        }else if(address.isEmpty()){
-            binding.txtAddress.error="Cannot Be Empty"
-        }else if(carNumber.isEmpty()){
-            binding.txtCarNumber.error="Cannot Be Empty"
-        } else {
-            uploadData(name,phone,address,price,carNumber)
+        }else if(address.isEmpty()) {
+            binding.txtAddress.error = "Cannot Be Empty"
+        }
+       else {
+            binding.progressBar.visibility = View.VISIBLE
+            uploadData(name,phone,address,price)
         }
     }
 
@@ -71,7 +73,7 @@ class SellActivity3 : AppCompatActivity() {
         phone: String,
         address: String,
         price: String,
-        carNumber: String
+
     ) {
         val sp: SharedPreferences = this.getSharedPreferences("userData", Context.MODE_PRIVATE)
         val user = sp.getString("Name","name")
@@ -87,7 +89,7 @@ class SellActivity3 : AppCompatActivity() {
                     imageViewUrl = it.result.toString()
                     Log.e("URI",imageViewUrl.toString())
 
-                    makeDatabase(name,phone,address,price,carNumber)
+                    makeDatabase(name,phone,address,price)
                 }
             }else{
                 Toast.makeText(this, ""+it.exception?.message, Toast.LENGTH_SHORT).show()
@@ -101,7 +103,6 @@ class SellActivity3 : AppCompatActivity() {
         phone: String,
         address: String,
         price: String,
-        carNumber: String
     ) {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val txtCarName = intent.extras?.getString("txtCarName")
@@ -132,8 +133,7 @@ class SellActivity3 : AppCompatActivity() {
                 "Address" to address,
                 "Expected Price" to price,
                 "User Id" to uid,
-                "Image Url" to imageViewUrl.toString(),
-                "Car Number" to carNumber
+                "Image Url" to imageViewUrl.toString()
             )
 
         )

@@ -14,6 +14,8 @@
         android:id="@+id/txtDone"
         android:padding="5dp"
         />
+
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDoneMessage"
         android:layout_width="match_parent"

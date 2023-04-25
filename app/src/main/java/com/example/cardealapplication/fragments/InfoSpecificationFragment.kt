@@ -1,5 +1,6 @@
 package com.example.cardealapplication.fragments
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,20 @@ class InfoSpecificationFragment : Fragment() {
         val txtLength = view.findViewById<TextView>(R.id.txtLength)
         val txtWidth = view.findViewById<TextView>(R.id.txtWidth)
         val txtHeight = view.findViewById<TextView>(R.id.txtHeight)
+
+        view.findViewById<TextView>(R.id.txtView1)?.typeface = Typeface.DEFAULT_BOLD
+        view.findViewById<TextView>(R.id.txtView2)?.typeface = Typeface.DEFAULT_BOLD
+        view.findViewById<TextView>(R.id.txtView3)?.typeface = Typeface.DEFAULT_BOLD
+        view.findViewById<TextView>(R.id.txtView4)?.typeface = Typeface.DEFAULT_BOLD
+        view.findViewById<TextView>(R.id.txtView5)?.typeface = Typeface.DEFAULT_BOLD
+        view.findViewById<TextView>(R.id.txtView6)?.typeface = Typeface.DEFAULT_BOLD
+        view.findViewById<TextView>(R.id.txtView7)?.typeface = Typeface.DEFAULT_BOLD
+        view.findViewById<TextView>(R.id.txtView9)?.typeface = Typeface.DEFAULT_BOLD
+        view.findViewById<TextView>(R.id.txtView8)?.typeface = Typeface.DEFAULT_BOLD
+        view.findViewById<TextView>(R.id.txtView10)?.typeface = Typeface.DEFAULT_BOLD
+        view.findViewById<TextView>(R.id.txtView11)?.typeface = Typeface.DEFAULT_BOLD
+
+
 
 
         val priceRange = arguments?.getString("txtPriceRange")

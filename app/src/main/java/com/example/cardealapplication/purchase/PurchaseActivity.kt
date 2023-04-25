@@ -6,6 +6,7 @@ import android.app.TimePickerDialog
 import android.os.Build
 import android.os.Bundle
 import android.telephony.SmsManager
+import android.text.Html
 import android.util.Log
 import android.view.ViewGroup.LayoutParams
 import android.widget.*
@@ -59,9 +60,6 @@ class PurchaseActivity : AppCompatActivity() {
             popUp()
         }
 
-        binding.btnPurchase.setOnClickListener {
-
-        }
     }
 
     private fun popUp() {
@@ -135,43 +133,44 @@ class PurchaseActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun popWindow(Address: String, Phone: String) {
         val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
-        val message = "Your Test Drive Is Confirmed for ${data?.txtCarName} at  :- \n\n"+
-                "Address :- "+ Address+"\n\n"+
-                "Phone :- "+ Phone+"\n\n"+
-                "Date : - "+ date + "\n\n"+
-                "Time :- "+ time
+        val message = "<b>Your Test Drive Is Confirmed for ${data?.txtCarName} at </b>  <br><br>"+
+                "Address : "+ Address+"<br><br>"+
+                "Phone : "+ Phone+"<br><br>"+
+                "Date : "+ date + "<br><br>"+
+                "Time : "+ time
 
         val dialogBinding = layoutInflater.inflate(R.layout.popup_message_confirm,null)
         val builder = Dialog(this)
         builder.setContentView(dialogBinding)
         builder.setCancelable(true)
         builder.setCanceledOnTouchOutside(true)
-        builder.findViewById<TextView>(R.id.txtDone).text = message
+        builder.findViewById<TextView>(R.id.txtDone).text = Html.fromHtml(message)
         builder.window?.setLayout(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT)
         builder.window?.setBackgroundDrawable(getDrawable(R.drawable.popup_bg))
         builder.show()
 
         builder.findViewById<Button>(R.id.btnDoneMessage).setOnClickListener {
-            sendSMS(data,builder)
+            sendSMS(data,builder,Phone)
         }
 
     }
-
-    private fun sendSMS(data: PurchaseDataModel?, builder: Dialog) {
+    private fun sendSMS(data: PurchaseDataModel?, builder: Dialog, Phone: String) {
         try {
             val smsManager: SmsManager = this.getSystemService(SmsManager::class.java)
             val message = " Hey ${data?.Name},\n"+"A buyer is interested for your ${data?.txtCarName}. Our person will contact you with further details.\n\nThank You for choosing CarDeal"
             smsManager.sendTextMessage("+91"+data?.Phone, null, message, null, null)
+
+            val msg = "Your Test Drive is Confirmed for ${data?.txtCarName} on " + date +" at " + time
+            smsManager.sendTextMessage("+91$Phone", null, msg, null, null)
+
             builder.dismiss()
 
         } catch (e: Exception) {
             Log.v("ERROR_MESSAGE",""+e.message.toString())
         }
     }
-
     private fun updateDateInView() {
         val myFormat = "dd/MM/yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.US)

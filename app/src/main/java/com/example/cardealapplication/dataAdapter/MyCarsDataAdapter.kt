@@ -1,8 +1,11 @@
 package com.example.cardealapplication.dataAdapter
 
+import android.annotation.SuppressLint
+import android.content.ClipData.Item
 import android.content.Context
 import android.text.Html
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +26,7 @@ class MyCarsDataAdapter (val context: Context, val model:java.util.ArrayList<MyC
 
     override fun getItemCount():Int=model.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyCarsViewHolder, position: Int) {
         val txtCarPrice = "<b>₹</b> "+model[position].Price
         holder.itemView.findViewById<TextView>(R.id.txtCarName).text=model[position].txtCarName
@@ -34,6 +38,5 @@ class MyCarsDataAdapter (val context: Context, val model:java.util.ArrayList<MyC
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(model[position])
         }
-
     }
 }

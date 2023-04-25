@@ -1,5 +1,6 @@
 package com.example.cardealapplication.fragments
 
+import android.graphics.Typeface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +25,9 @@ class BuyOwnerDetailsFragment : Fragment() {
         val txtState = view?.findViewById<TextView>(R.id.txtRegisteredState)
         val txtCity = view?.findViewById<TextView>(R.id.txtCity)
 
+        view?.findViewById<TextView>(R.id.textViewName)?.typeface = Typeface.DEFAULT_BOLD
+        view?.findViewById<TextView>(R.id.textViewCity)?.typeface = Typeface.DEFAULT_BOLD
+        view?.findViewById<TextView>(R.id.textViewState)?.typeface = Typeface.DEFAULT_BOLD
         val name = arguments?.getString("Name")
         val state = arguments?.getString("txtCity")
         val city = arguments?.getString("txtRegisteredState")

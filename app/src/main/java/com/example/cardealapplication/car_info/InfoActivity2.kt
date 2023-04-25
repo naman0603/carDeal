@@ -28,7 +28,7 @@ class InfoActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityInfo2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         initView()
     }
 
