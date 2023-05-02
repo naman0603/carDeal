@@ -4,14 +4,15 @@
 
     <uses-feature
         android:name="android.hardware.telephony"
-        android:required="false" />
+        android:required="true" />
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false" />
-
+        android:required="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
 
     <application
@@ -23,20 +24,22 @@
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.CarDealApplication"
-
         tools:targetApi="31" >
+        <activity
+            android:name=".myCars.MyCarsActivity2"
+            android:exported="false"
+            android:parentActivityName=".OptionsActivity"/>
         <activity
             android:name=".RecommendedActivity"
             android:exported="false" />
-
         <activity
             android:name=".ChangePasswordActivity"
-            android:parentActivityName=".OptionsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".OptionsActivity" />
         <activity
             android:name=".AboutUsActivity"
-            android:parentActivityName=".OptionsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".OptionsActivity" />
         <activity
             android:name=".car_info.InfoActivity3"
             android:exported="false"
@@ -47,7 +50,7 @@
             android:exported="true"
             android:theme="@style/Theme.CarDealApplication" />
         <activity
-            android:name=".MyCarsActivity"
+            android:name=".myCars.MyCarsActivity"
             android:exported="false"
             android:parentActivityName=".OptionsActivity"
             android:screenOrientation="portrait"
@@ -85,8 +88,8 @@
         <activity
             android:name=".car_info.InfoActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:parentActivityName=".OptionsActivity"
+            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".sell.SellActivity"
@@ -110,13 +113,13 @@
             android:name=".authentication.ForgotPasswordActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoActionBar"
+            android:parentActivityName=".OptionsActivity"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".authentication.SignUpActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoActionBar"
+            android:parentActivityName=".OptionsActivity"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".authentication.LoginActivity"
@@ -132,7 +135,6 @@
             tools:ignore="LockedOrientationActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

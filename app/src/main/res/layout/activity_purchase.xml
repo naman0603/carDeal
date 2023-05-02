@@ -18,8 +18,8 @@
         android:id="@+id/tabLayout"
         android:layout_below="@+id/imgCar"
         app:tabTextColor="@color/black"
-        app:tabIndicatorColor="@color/btn_bg"
-        app:tabSelectedTextColor="@color/btn_bg"
+        app:tabIndicatorColor="@color/app_theme"
+        app:tabSelectedTextColor="@color/app_theme"
         >
     </com.google.android.material.tabs.TabLayout>
 

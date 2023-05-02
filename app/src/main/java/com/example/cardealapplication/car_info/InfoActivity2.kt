@@ -28,6 +28,9 @@ class InfoActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityInfo2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        val intent = intent
+        val carCompany: String = intent.getStringExtra("Company Name").toString()
+        supportActionBar!!.title = ""+carCompany
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         initView()
     }

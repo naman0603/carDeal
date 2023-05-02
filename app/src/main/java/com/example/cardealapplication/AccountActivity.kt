@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cardealapplication.databinding.ActivityAccountBinding
@@ -30,6 +29,7 @@ class AccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding= ActivityAccountBinding.inflate(layoutInflater)
+        supportActionBar!!.title = "My Profile"
         setContentView(binding.root)
         auth = Firebase.auth
 

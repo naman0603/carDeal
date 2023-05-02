@@ -19,7 +19,6 @@ import com.example.cardealapplication.car_info.InfoActivity
 import com.example.cardealapplication.car_info.InfoActivity2
 import com.example.cardealapplication.car_info.InfoActivity3
 import com.example.cardealapplication.dataAdapter.InfoRecommendedCarsDataAdapter
-import com.example.cardealapplication.dataModel.HomeRecommendedCarsModelData
 import com.example.cardealapplication.dataModel.InfoCarDetailsDataModel
 import com.example.cardealapplication.dataModel.InfoCarModelDataModel
 import com.google.firebase.firestore.*

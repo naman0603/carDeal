@@ -13,6 +13,7 @@ class AboutUsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAboutUsBinding.inflate(layoutInflater)
+        supportActionBar!!.title = "About Us"
         setContentView(binding.root)
         initView()
     }

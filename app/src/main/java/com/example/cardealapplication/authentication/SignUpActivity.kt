@@ -42,6 +42,7 @@ class SignUpActivity : AppCompatActivity() {
         val email=binding.emailAddress.text.toString()
         val password=binding.password.text.toString()
         val phone=binding.phoneNumber.text.toString()
+        val pass = binding.confirmPassword.text.toString()
 
         if(name.isEmpty())
         {
@@ -54,8 +55,11 @@ class SignUpActivity : AppCompatActivity() {
             binding.emailAddress.error="Invalid Email"
         } else if(password.isEmpty()||!isValidPassword(password))
         {
-            binding.password.error="Minimum eight characters, at least one uppercase letter,\n"+
+            binding.confirmPassword.error="Minimum eight characters, at least one uppercase letter,\n"+
                     "one lowercase letter, one number and one special character Required"
+        }else if(pass != password)
+        {
+            binding.password.error="Password needs to be similar"
         } else
         {
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this){
@@ -75,7 +79,7 @@ class SignUpActivity : AppCompatActivity() {
                         Toast.makeText(this, " Error Occured ", Toast.LENGTH_SHORT).show()
                     }
                 }else{
-                    Toast.makeText(this, "SignUp Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "User with this Email already exist", Toast.LENGTH_SHORT).show()
                 }
             }
         }

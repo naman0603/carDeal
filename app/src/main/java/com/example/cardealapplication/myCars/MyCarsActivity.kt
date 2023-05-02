@@ -1,4 +1,4 @@
-package com.example.cardealapplication
+package com.example.cardealapplication.myCars
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardealapplication.dataAdapter.MyCarsDataAdapter
 import com.example.cardealapplication.dataModel.MyCarsDataModel
 import com.example.cardealapplication.databinding.ActivityMyCarsBinding
-import com.example.cardealapplication.purchase.PurchaseActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
@@ -29,14 +28,22 @@ class MyCarsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMyCarsBinding.inflate(layoutInflater)
+        supportActionBar!!.title = "My Cars"
         setContentView(binding.root)
         initView()
     }
     private fun initView() {
 
+
         binding.recyclerView.layoutManager=LinearLayoutManager(this)
         dataAdapter= MyCarsDataAdapter(this,model)
         binding.recyclerView.adapter=dataAdapter
+
+        dataAdapter.onItemClick = {
+            val intent = Intent(this, MyCarsActivity2::class.java)
+            intent.putExtra("Data",it)
+            startActivity(intent)
+        }
         addData()
     }
     private fun addData() {
@@ -53,6 +60,9 @@ class MyCarsActivity : AppCompatActivity() {
 
                 for (dc: DocumentChange in value?.documentChanges!!){
                     if(dc.type == DocumentChange.Type.ADDED){
+                        Log.v("DOCUMENT ID",""+dc.document.id)
+                        val id = dc.document.id
+
                         model.add(
                             MyCarsDataModel(
                                 dc.document.data["Image Url"].toString(),
@@ -69,13 +79,13 @@ class MyCarsActivity : AppCompatActivity() {
                                 dc.document.data["txtOwners"].toString(),
                                 dc.document.data["txtRegisteredState"].toString(),
                                 dc.document.data["txtTransmission"].toString(),
-                                dc.document.data["txtCarNumber"].toString())
-
+                                id)
                         )
                     }
                 }
                 dataAdapter.notifyDataSetChanged()
             }
         })
+
     }
 }

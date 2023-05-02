@@ -1,11 +1,8 @@
 package com.example.cardealapplication
 
-import android.content.Context
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.cardealapplication.databinding.ActivityMainBinding
 import com.example.cardealapplication.fragments.AccountFragment

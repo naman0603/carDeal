@@ -34,6 +34,8 @@ class PurchaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityPurchaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
+        supportActionBar!!.title = ""+data?.txtCarName
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         initView()

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".authentication.SignUpActivity">
 
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
@@ -16,11 +15,19 @@
         android:src="@drawable/ic_logo_2"
         tools:ignore="ContentDescription" />
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/logo">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_below="@id/logo" />
+        android:layout_height="40dp"
+        />
 
     <com.google.android.material.textfield.TextInputLayout
 
@@ -81,12 +88,12 @@
             android:id="@+id/phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:padding="18dp"
             android:hint="@string/phone_number"
             android:imeOptions="actionNext"
             android:inputType="phone"
             android:minLines="1"
+            android:maxLength="10"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -159,12 +166,44 @@
             android:padding="18dp"
             />
     </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input4"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/confirm_password"
+            app:passwordToggleEnabled="true"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/btn_bg"
+            app:boxStrokeWidth="1.5dp"
+            app:boxBackgroundMode="outline"
+            app:boxBackgroundColor="@color/white"
+            android:textColorHint="@color/black"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autofillHints="password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:minLines="1"
+                android:padding="18dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <View
+        <View
         android:id="@+id/view2"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_below="@id/input4" />
+        android:layout_below="@id/input5" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignUp"
@@ -185,10 +224,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btnSignUp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
         android:text="@string/already_have_account"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp"
+        />
 
     <TextView
         android:id="@+id/txt1"
@@ -196,7 +236,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btnSignUp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
         android:layout_toEndOf="@id/txt2"
         android:paddingStart="10dp"
         android:text="@string/login"
@@ -204,6 +244,6 @@
         android:textSize="16sp"
         android:textStyle="bold"
         tools:ignore="RtlSymmetry" />
-
-
+    </RelativeLayout>
+</ScrollView>
 </RelativeLayout>

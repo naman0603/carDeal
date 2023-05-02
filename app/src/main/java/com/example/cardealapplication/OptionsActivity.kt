@@ -16,6 +16,8 @@ import com.example.cardealapplication.sell.SellActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.example.cardealapplication.myCars.MyCarsActivity
+
 class OptionsActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -58,7 +60,7 @@ class OptionsActivity : AppCompatActivity() {
                 startActivity(Intent(this,AccountActivity::class.java))
             }
             R.id.btnMyCars ->{
-                startActivity(Intent(this,MyCarsActivity::class.java))
+                startActivity(Intent(this, MyCarsActivity::class.java))
             }
         }
         return super.onOptionsItemSelected(item)
