@@ -18,7 +18,7 @@ import com.google.firebase.ktx.Firebase
 
 class SellActivity : AppCompatActivity() {
     private var db = Firebase.firestore
-    var carName: MutableList<String> = mutableListOf<String>()
+    var carName: MutableList<String> = mutableListOf()
 
 
     lateinit var binding: ActivitySellBinding
@@ -30,7 +30,6 @@ class SellActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        val company : String = intent.extras?.getString("Company Name").toString()
         setModel()
         setData()
         checkData()
@@ -124,7 +123,7 @@ class SellActivity : AppCompatActivity() {
     }
 
     private fun viewTransmission() {
-        val transmission = listOf<String>("Manual Transmission (MT)","Automatic Transmission (AMT)",
+        val transmission = listOf("Manual Transmission (MT)","Automatic Transmission (AMT)",
             "Semi-Automatic transmission (SAT)")
         val adapter = ArrayAdapter(this, R.layout.list_item, transmission)
         binding.txtTransmission.setAdapter(adapter)

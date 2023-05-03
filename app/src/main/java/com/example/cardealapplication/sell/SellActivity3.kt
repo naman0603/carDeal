@@ -26,7 +26,7 @@ class SellActivity3 : AppCompatActivity() {
     private var db = Firebase.firestore
     private lateinit var sr : StorageReference
     private lateinit var fs : FirebaseFirestore
-     var imageViewUrl : String? = null
+     private var imageViewUrl : String? = null
 
     private val phonePattern= Pattern.compile("^[6-9]\\d{9}\$")
     override fun onCreate(savedInstanceState: Bundle?) {

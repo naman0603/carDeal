@@ -50,4 +50,5 @@ class MainActivity : AppCompatActivity() {
         fm.replace(R.id.frameLayout,frag)
         fm.commit()
     }
+    
 }

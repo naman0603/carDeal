@@ -11,9 +11,9 @@ import com.example.cardealapplication.fragments.BuySpecificationFragment
 import com.example.cardealapplication.fragments.InfoDetailsFragment
 
 class BuyViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle,data : PurchaseDataModel?): FragmentStateAdapter(fm,lifecycle) {
-    private val Price = data?.Price
-    private val Model = data?.Model
-    private val Name = data?.Name
+    private val price = data?.Price
+    private val model = data?.Model
+    private val name = data?.Name
     private val txtCity = data?.txtCity
     private val txtColor = data?.txtColor
     private val txtFuelType = data?.txtFuelType
@@ -32,8 +32,8 @@ class BuyViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle,data : Purch
             0 -> {
                 val bundle = Bundle()
 
-                bundle.putString("Price",Price)
-                bundle.putString("Model",Model)
+                bundle.putString("Price",price)
+                bundle.putString("Model",model)
                 bundle.putString("txtColor",txtColor)
                 bundle.putString("txtInsurance",txtInsurance)
                 bundle.putString("txtKms",txtKms)
@@ -50,7 +50,7 @@ class BuyViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle,data : Purch
             1 -> {
                 val bun = Bundle()
 
-                bun.putString("Name",Name)
+                bun.putString("Name",name)
                 bun.putString("txtCity",txtCity)
                 bun.putString("txtRegisteredState",txtRegisteredState)
 

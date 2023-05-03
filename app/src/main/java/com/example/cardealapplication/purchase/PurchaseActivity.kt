@@ -1,5 +1,6 @@
 package com.example.cardealapplication.purchase
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
@@ -26,10 +27,10 @@ class PurchaseActivity : AppCompatActivity() {
     private var time : String = ""
     private var date : String = ""
     private var cal = Calendar.getInstance()
-    lateinit var btnConfirm : Button
-    lateinit var btnTime : ImageButton
-    lateinit var btnDate : ImageButton
-    lateinit var txtDate : TextView
+    private lateinit var btnConfirm : Button
+    private lateinit var btnTime : ImageButton
+    private lateinit var btnDate : ImageButton
+    private lateinit var txtDate : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityPurchaseBinding.inflate(layoutInflater)
@@ -64,6 +65,7 @@ class PurchaseActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("CutPasteId", "InflateParams")
     private fun popUp() {
         val dialogBinding = layoutInflater.inflate(R.layout.popup_test_drive,null)
         val builder = Dialog(this)
@@ -84,7 +86,11 @@ class PurchaseActivity : AppCompatActivity() {
 
         mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
             override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                time =  String.format("%d : %d", hourOfDay, minute)
+                val calendar = Calendar.getInstance()
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                calendar.set(Calendar.MINUTE, minute)
+                val timeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
+                time =  timeFormat.format(calendar.time)
                 builder.findViewById<TextView>(R.id.txtTime).text = time
             }
         }, hour, minute, false)
@@ -135,6 +141,7 @@ class PurchaseActivity : AppCompatActivity() {
             }
         }
     }
+    @SuppressLint("InflateParams", "UseCompatLoadingForDrawables")
     private fun popWindow(Address: String, Phone: String) {
         val data = intent.getParcelableExtra<PurchaseDataModel>("Data")
         val message = "<b>Your Test Drive Is Confirmed for ${data?.txtCarName} at </b>  <br><br>"+
@@ -154,6 +161,7 @@ class PurchaseActivity : AppCompatActivity() {
         builder.show()
 
         builder.findViewById<Button>(R.id.btnDoneMessage).setOnClickListener {
+            Toast.makeText(this, "Button Pressed", Toast.LENGTH_SHORT).show()
             sendSMS(data,builder,Phone)
         }
 
@@ -178,6 +186,5 @@ class PurchaseActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         date = sdf.format(cal.time)
         txtDate.text = date
-
     }
 }

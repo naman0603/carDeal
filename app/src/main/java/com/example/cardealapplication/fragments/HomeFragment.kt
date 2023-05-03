@@ -26,7 +26,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
-   private lateinit var recyclerView:RecyclerView
+    private lateinit var recyclerView:RecyclerView
     private lateinit var iv1:ImageView
     private  lateinit var iv2:ImageView
     private  lateinit var iv3:ImageView

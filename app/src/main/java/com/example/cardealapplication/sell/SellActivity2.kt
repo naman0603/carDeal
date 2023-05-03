@@ -1,6 +1,7 @@
 package com.example.cardealapplication.sell
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.ContentValues
 import android.content.Intent
@@ -39,6 +40,7 @@ class SellActivity2 : AppCompatActivity() {
             performValidation()
         }
     }
+    @SuppressLint("InflateParams", "UseCompatLoadingForDrawables")
     private fun popUp() {
         val dialogBinding = layoutInflater.inflate(R.layout.popup_photo_sell,null)
         val builder = Dialog(this)
