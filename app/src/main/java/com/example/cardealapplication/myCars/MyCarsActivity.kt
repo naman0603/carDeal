@@ -34,7 +34,6 @@ class MyCarsActivity : AppCompatActivity() {
     }
     private fun initView() {
 
-
         binding.recyclerView.layoutManager=LinearLayoutManager(this)
         dataAdapter= MyCarsDataAdapter(this,model)
         binding.recyclerView.adapter=dataAdapter

@@ -9,21 +9,34 @@ import android.os.Bundle
 import android.telephony.SmsManager
 import android.text.Html
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup.LayoutParams
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.TimePicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.cardealapplication.R
 import com.example.cardealapplication.adapter.BuyViewPagerAdapter
 import com.example.cardealapplication.dataModel.PurchaseDataModel
+import com.example.cardealapplication.dataModel.TestDriveDataModel
 import com.example.cardealapplication.databinding.ActivityPurchaseBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 
 class PurchaseActivity : AppCompatActivity() {
     lateinit var binding: ActivityPurchaseBinding
+    private var db = Firebase.firestore
     private var time : String = ""
     private var date : String = ""
     private var cal = Calendar.getInstance()
@@ -152,6 +165,7 @@ class PurchaseActivity : AppCompatActivity() {
 
         val dialogBinding = layoutInflater.inflate(R.layout.popup_message_confirm,null)
         val builder = Dialog(this)
+
         builder.setContentView(dialogBinding)
         builder.setCancelable(true)
         builder.setCanceledOnTouchOutside(true)
@@ -159,27 +173,39 @@ class PurchaseActivity : AppCompatActivity() {
         builder.window?.setLayout(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT)
         builder.window?.setBackgroundDrawable(getDrawable(R.drawable.popup_bg))
         builder.show()
-
+        val pgbar = builder.findViewById<ProgressBar>(R.id.progressBarMessage)
+        pgbar.visibility = View.INVISIBLE
         builder.findViewById<Button>(R.id.btnDoneMessage).setOnClickListener {
-            Toast.makeText(this, "Button Pressed", Toast.LENGTH_SHORT).show()
-            sendSMS(data,builder,Phone)
+            pgbar.visibility = View.VISIBLE
+            sendSMS(data,builder,Phone,Address)
         }
 
     }
-    private fun sendSMS(data: PurchaseDataModel?, builder: Dialog, Phone: String) {
-        try {
-            val smsManager: SmsManager = this.getSystemService(SmsManager::class.java)
-            val message = " Hey ${data?.Name},\n"+"A buyer is interested for your ${data?.txtCarName}. Our person will contact you with further details.\n\nThank You for choosing CarDeal"
-            smsManager.sendTextMessage("+91"+data?.Phone, null, message, null, null)
+    private fun sendSMS(data: PurchaseDataModel?, builder: Dialog, Phone: String, Address: String) {
 
-            val msg = "Your Test Drive is Confirmed for ${data?.txtCarName} on " + date +" at " + time
-            smsManager.sendTextMessage("+91$Phone", null, msg, null, null)
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        val model = TestDriveDataModel(data?.img.toString(),data?.txtCarName.toString(),data?.Price.toString(),
+                                       Address,Phone,date,time,uid,data?.txtCity.toString(),data?.txtRegisteredState.toString())
 
-            builder.dismiss()
+        db.collection("Test Drive").document().set(model).addOnSuccessListener {
+            try {
+                val smsManager: SmsManager = this.getSystemService(SmsManager::class.java)
+                val message = " Hey ${data?.Name},\n"+"A buyer is interested for your ${data?.txtCarName}. Our person will contact you with further details.\n\nThank You for choosing CarDeal"
+                smsManager.sendTextMessage("+91"+data?.Phone, null, message, null, null)
 
-        } catch (e: Exception) {
-            Log.v("ERROR_MESSAGE",""+e.message.toString())
+                val msg = "Your Test Drive is Confirmed for ${data?.txtCarName} on " + date +" at " + time
+                smsManager.sendTextMessage("+91$Phone", null, msg, null, null)
+
+                builder.dismiss()
+
+            } catch (e: Exception) {
+                Log.v("ERROR_MESSAGE",""+e.message.toString())
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this , "Please Try Again Later", Toast.LENGTH_SHORT).show()
+            Log.e("ERROR_DATABASE",""+it.message)
         }
+
     }
     private fun updateDateInView() {
         val myFormat = "dd/MM/yyyy" // mention the format you need

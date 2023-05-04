@@ -61,5 +61,11 @@ class AccountFragment : Fragment() {
         changePass.setOnClickListener {
             startActivity(Intent(requireContext(),ChangePasswordActivity::class.java))
         }
+
+        val myTestDrive = view.findViewById<TextView>(R.id.txtMyTestDrive)
+        myTestDrive.setOnClickListener {
+            startActivity(Intent(requireContext(),MyTestDriveActivity::class.java))
+        }
+
     }
 }

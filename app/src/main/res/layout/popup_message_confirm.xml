@@ -15,6 +15,17 @@
         android:padding="5dp"
         />
 
+    <ProgressBar
+        android:id="@+id/progressBarMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:indeterminate="true"
+        android:layout_gravity="center_horizontal"
+        android:indeterminateDrawable="@drawable/progress_bg"
+        />
+
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDoneMessage"

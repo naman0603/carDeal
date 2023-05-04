@@ -100,4 +100,5 @@
     <string name="enter_data">Enter Data</string>
     <string name="remove">Remove Car</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="my_test_drive">My Test Drive</string>
 </resources>

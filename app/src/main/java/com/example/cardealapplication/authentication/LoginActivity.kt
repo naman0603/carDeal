@@ -65,6 +65,8 @@ class LoginActivity : AppCompatActivity() {
                                editor.putString("Name",it.data?.get("Name").toString())
                                editor.putString("Email",it.data?.get("Email").toString())
                                editor.putString("Phone",it.data?.get("Phone").toString())
+                               editor.putString("txtRegisteredState",it.data?.get("txtRegisteredState").toString())
+                               editor.putString("txtCity",it.data?.get("txtCity").toString())
                                editor.putString("Password",password)
                                editor.apply()
                            }

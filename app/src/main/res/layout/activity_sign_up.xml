@@ -97,13 +97,71 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/input3"
+            android:layout_below="@id/input2"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxStrokeWidth="1.5dp"
+            app:boxStrokeColor="@color/btn_bg"
+            >
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/txtRegisteredState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cursorVisible="false"
+                android:hint="@string/registered_state"
+                android:inputType="none"
+                android:padding="16dp"
+                android:imeOptions="actionDone"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/input4"
+            android:layout_below="@id/input3"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxStrokeWidth="1.5dp"
+            app:boxStrokeColor="@color/btn_bg"
+            >
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/txtCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cursorVisible="false"
+                android:hint="@string/registered_city"
+                android:inputType="none"
+                android:padding="16dp"
+                android:imeOptions="actionDone"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
 
-        android:id="@+id/input3"
+        android:id="@+id/input5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/input2"
+        android:layout_below="@id/input4"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -134,10 +192,10 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input4"
+        android:id="@+id/input6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/input3"
+        android:layout_below="@id/input5"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -167,10 +225,10 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input5"
+            android:id="@+id/input7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/input4"
+            android:layout_below="@id/input6"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -203,7 +261,7 @@
         android:id="@+id/view2"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_below="@id/input5" />
+        android:layout_below="@id/input7" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignUp"

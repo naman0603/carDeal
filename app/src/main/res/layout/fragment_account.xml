@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.AccountFragment"
-
     >
 
     <ImageView
@@ -60,6 +59,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtChangePassword"
+        android:id="@+id/txtMyTestDrive"
+        android:layout_marginTop="16dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColorHint="@color/black"
+        android:drawablePadding="16dp"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:text="@string/my_test_drive"
+        android:gravity="center"
+        android:textAlignment="viewStart"
+        android:drawableEnd="@drawable/ic_arrow"
+        tools:ignore="RtlCompat"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtMyTestDrive"
         android:id="@+id/txtAboutUs"
         android:layout_marginTop="16dp"
 
