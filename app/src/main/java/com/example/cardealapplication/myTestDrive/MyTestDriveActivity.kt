@@ -1,6 +1,7 @@
-package com.example.cardealapplication
+package com.example.cardealapplication.myTestDrive
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardealapplication.dataAdapter.TestDriveDataAdapter
 import com.example.cardealapplication.dataModel.TestDriveDataModel
 import com.example.cardealapplication.databinding.ActivityMyTestDriveBinding
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
@@ -37,6 +39,13 @@ class MyTestDriveActivity : AppCompatActivity() {
         dataAdapter= TestDriveDataAdapter(this,model)
         binding.recyclerView.adapter=dataAdapter
 
+        dataAdapter.onItemClick = {
+            val intent = Intent(this, MyTestDriveActivity2::class.java)
+            intent.putExtra("Data",it)
+            startActivity(intent)
+        }
+
+
         addData()
     }
 
@@ -56,6 +65,8 @@ class MyTestDriveActivity : AppCompatActivity() {
                     if(dc.type == DocumentChange.Type.ADDED){
                         Log.v("DOCUMENT ID",""+dc.document.id)
 
+                        val id = dc.document.id
+
                         model.add(
                             TestDriveDataModel(
                                 dc.document.data["img"].toString(),
@@ -68,6 +79,8 @@ class MyTestDriveActivity : AppCompatActivity() {
                                 dc.document.data["uid"].toString(),
                                 dc.document.data["city"].toString(),
                                 dc.document.data["state"].toString(),
+                                dc.document.data["id"].toString(),
+                                id
                                 )
                         )
                     }

@@ -74,6 +74,7 @@ class BuyFragment : Fragment() {
 
                     for (dc: DocumentChange in value?.documentChanges!!) {
                         if (dc.type == DocumentChange.Type.ADDED) {
+
                             model.add(
                                 PurchaseDataModel(
                                     dc.document.data["Image Url"].toString(),
@@ -90,7 +91,7 @@ class BuyFragment : Fragment() {
                                     dc.document.data["txtOwners"].toString(),
                                     dc.document.data["txtRegisteredState"].toString(),
                                     dc.document.data["txtTransmission"].toString(),
-                                    dc.document.data["txtCarNumber"].toString()
+                                    dc.document.id
                                 )
                             )
                         }

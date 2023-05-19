@@ -28,9 +28,13 @@
         android:theme="@style/Theme.CarDealApplication"
         tools:targetApi="31">
         <activity
-            android:name=".MyTestDriveActivity"
-            android:parentActivityName=".OptionsActivity"
-            android:exported="false" />
+            android:name=".myTestDrive.MyTestDriveActivity2"
+            android:exported="false"
+            android:parentActivityName=".OptionsActivity"/>
+        <activity
+            android:name=".myTestDrive.MyTestDriveActivity"
+            android:exported="false"
+            android:parentActivityName=".OptionsActivity" />
         <activity
             android:name=".myCars.MyCarsActivity2"
             android:exported="false"

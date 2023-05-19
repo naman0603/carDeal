@@ -95,8 +95,8 @@
             android:inputType="number"
             android:imeOptions="actionNext"
             android:autofillHints="phone"
+            android:maxLength="10"
             android:textColor="@color/black"
-
             />
 
     </com.google.android.material.textfield.TextInputLayout>

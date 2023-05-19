@@ -12,6 +12,7 @@ import com.example.cardealapplication.authentication.LoginActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.example.cardealapplication.myCars.MyCarsActivity
+import com.example.cardealapplication.myTestDrive.MyTestDriveActivity
 
 
 class AccountFragment : Fragment() {
@@ -64,7 +65,7 @@ class AccountFragment : Fragment() {
 
         val myTestDrive = view.findViewById<TextView>(R.id.txtMyTestDrive)
         myTestDrive.setOnClickListener {
-            startActivity(Intent(requireContext(),MyTestDriveActivity::class.java))
+            startActivity(Intent(requireContext(), MyTestDriveActivity::class.java))
         }
 
     }

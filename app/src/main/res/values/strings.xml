@@ -101,4 +101,9 @@
     <string name="remove">Remove Car</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="my_test_drive">My Test Drive</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="cancel_test_drive">Cancel Test Drive</string>
+    <string name="reschedule">Reschedule</string>
+    <string name="change_password">Change Password</string>
 </resources>

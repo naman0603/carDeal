@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".myTestDrive.MyTestDriveActivity2">
+
+    <ImageView
+        android:id="@+id/imgCar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        tools:ignore="ContentDescription"
+        android:src="@drawable/ic_car"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgCar"
+        android:id="@+id/layout1"
+        android:layout_marginTop="40dp">
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:gravity="start"
+            android:textColor="@color/app_theme"/>
+
+        <TextView
+            android:id="@+id/Name"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="16dp"
+            android:text="@string/car_price"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout1"
+        android:id="@+id/layout2">
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/date"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:gravity="start"
+            android:textColor="@color/app_theme"/>
+
+        <TextView
+            android:id="@+id/Date"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="16dp"
+            android:text="@string/car_price"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout2"
+        android:id="@+id/layout3">
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/time"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:gravity="start"
+            android:textColor="@color/app_theme"/>
+
+        <TextView
+            android:id="@+id/Time"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="16dp"
+            android:text="@string/car_price"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout3"
+        android:id="@+id/layout4">
+        <TextView
+            android:id="@+id/txtAddress"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/address"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:gravity="start"
+            android:textColor="@color/app_theme"/>
+
+        <TextView
+            android:id="@+id/Address"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="16dp"
+            android:text="@string/car_price"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDelete"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/btn_bg"
+            android:hint="@string/cancel_test_drive"
+            android:textColorHint="@color/white"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnReschedule"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/btn_bg"
+            android:hint="@string/reschedule"
+            android:textColorHint="@color/white"
+            />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
