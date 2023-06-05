@@ -23,6 +23,7 @@ class SellActivity2 : AppCompatActivity() {
     private  var imageUploadUri: Uri? = null
     private val galleryRequestCode : Int = 101
     private val cameraCaptureCode : Int = 100
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivitySell2Binding.inflate(layoutInflater)
