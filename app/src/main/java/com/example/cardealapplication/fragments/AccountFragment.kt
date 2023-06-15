@@ -29,9 +29,11 @@ class AccountFragment : Fragment() {
     }
 
     private fun setData(view: View?) {
+
         val text = view?.findViewById<TextView>(R.id.text)
         val version = "Version " + BuildConfig.VERSION_NAME
         text?.text = version
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
