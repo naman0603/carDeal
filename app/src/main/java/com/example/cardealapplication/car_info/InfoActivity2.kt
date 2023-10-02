@@ -15,12 +15,13 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.ArrayList
 
 class InfoActivity2 : AppCompatActivity() {
     lateinit var binding: ActivityInfo2Binding
     private val db = Firebase.firestore
 
-    private var model=java.util.ArrayList<InfoCarDetailsDataModel>()
+    private var model= ArrayList<InfoCarDetailsDataModel>()
     private lateinit var dataAdapter: InfoCarDetailsDataAdapter
 
 
